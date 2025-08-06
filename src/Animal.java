@@ -1,0 +1,61 @@
+public class Animal extends AbstractIntQuantity{
+
+    private AnimalFood animalFood;
+    private AnimalFeed animalFeed;
+
+    public Animal() {
+        super("New animal",0);
+        this.animalFood = new AnimalFood();
+        this.animalFeed = new AnimalFeed();
+    }
+
+    public Animal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
+        super(name, quantity);
+        this.animalFood = animalFood;
+        this.animalFeed = animalFeed;
+    }
+
+    @Override
+    public String toString(){
+        String line= (this.getQuantity() +" "+ this.getName() +" | " +
+                this.animalFeed.getName() + ": %.2f " + this.animalFeed.getFeedUnit() +" | " +
+                this.animalFood.getName() + ": %.1f " + this.animalFood.getProductionUnit());
+        return String.format(line,this.animalFeed.getQuantity(),this.animalFood.getQuantity());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Animal)) {
+            return false;
+        } else if (((Animal) o).getName().equals(this.getName())) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getName().hashCode();
+    }
+
+    public void setAnimalFood(AnimalFood Rate) {
+        this.animalFood = Rate;
+    }
+    public void setAnimalFeed(AnimalFeed Percentage) {
+        this.animalFeed = Percentage;
+    }
+
+    public AnimalFood getAnimalFood() {
+        return this.animalFood;
+    }
+    public AnimalFeed getAnimalFeed() {
+        return this.animalFeed;
+    }
+
+    public  void passTime(int days) {
+        this.animalFood.produce(days);
+        this.animalFeed.consume(days);
+    }
+
+}
