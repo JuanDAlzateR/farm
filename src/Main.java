@@ -66,6 +66,8 @@ public class Main {
 
         farm.passTime(5);
         System.out.println("Date:" + farm.getDate());
+
+        System.out.println("Date:" + farm.getDate());
     }
 
 }
