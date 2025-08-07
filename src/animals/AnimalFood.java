@@ -1,8 +1,7 @@
 package animals;
+import abstracts.Countable;
 
-import abstracts.FloatCountable;
-
-public class AnimalFood extends FloatCountable {
+public class AnimalFood extends Countable {
 
     private float productionRatePerDay;
     private String productionUnit;

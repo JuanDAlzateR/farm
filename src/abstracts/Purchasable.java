@@ -15,12 +15,12 @@ public abstract class Purchasable extends Countable{
         this.pricePer1Unit=0;
         this.currency="usd";
     }
-        public Purchasable(String name, int quantity){
+        public Purchasable(String name, float quantity){
         super(name,quantity);
         this.pricePer1Unit=0;
         this.currency="usd";
     }
-    public Purchasable(String name, int quantity, float price){
+    public Purchasable(String name, float quantity, float price){
         super(name,quantity);
         this.pricePer1Unit=price;
         this.currency="usd";

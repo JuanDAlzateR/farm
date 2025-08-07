@@ -2,7 +2,7 @@ package abstracts;
 
 public abstract class Countable {
 
-    private int quantity;
+    private float quantity;
     private String name;
 
     public Countable(){
@@ -10,18 +10,18 @@ public abstract class Countable {
         this.quantity=0;
     }
 
-    public Countable(String name, int quantity){
+    public Countable(String name, float quantity){
         this.name=name;
         this.quantity=quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
-    public void addQuantity(int quantity) {
+    public void addQuantity(float quantity) {
         this.quantity += quantity;
     }
-    public int getQuantity() {
+    public float getQuantity() {
         return this.quantity;
     }
 

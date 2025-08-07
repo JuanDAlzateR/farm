@@ -2,7 +2,7 @@ package animals;
 import abstracts.*;
 import interfaces.Buy;
 
-public class AnimalFeed extends FloatPurchasable implements Buy{
+public class AnimalFeed extends Purchasable implements Buy{
 
     private float consumptionRatePerDay;
     private String feedUnit;
