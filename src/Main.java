@@ -16,7 +16,6 @@ public class Main {
         account.display();
 
         Tool tool =new Tool("Pitchfork",40);
-        Tool tool =new Tool("Pitchfork",40);
         account.buyItem(tool);
         System.out.println(tool);
         System.out.println("-------");
