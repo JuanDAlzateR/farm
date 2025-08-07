@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface PassTime {
-    public  void passTime(int days);
+    void passTime(int days);
 }
