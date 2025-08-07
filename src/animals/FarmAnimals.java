@@ -1,6 +1,7 @@
 package animals;
 
 import abstracts.Purchasable;
+import farm.Farm;
 import interfaces.PassTime;
 import interfaces.Buy;
 
@@ -63,6 +64,11 @@ public abstract class FarmAnimals extends Purchasable implements PassTime, Buy {
     public  void passTime(int days) {
         this.animalFood.produce(days);
         this.animalFeed.consume(days);
+    }
+
+    @Override
+    public void addToFarm(Farm farm){
+        farm.addAnimal(this);
     }
 
 }

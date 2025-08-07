@@ -1,5 +1,7 @@
 import animals.*;
 import crops.*;
+import farm.*;
+
 import interfaces.Buy;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -9,28 +11,27 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         Farm farm = new Farm();
-
-        BankAccount account = new BankAccount("Bank", 1234, 1000F, "Income");
+        BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
+        FarmAccount account = new FarmAccount(farm,bankAccount);
         account.display();
 
         Tool tool =new Tool("Pitchfork",40);
-        if (Buy.buy(tool,account)){
-            farm.addTool(tool);
-        }
+        Tool tool =new Tool("Pitchfork",40);
+        account.buyItem(tool);
         System.out.println(tool);
-        account.display();
         System.out.println("-------");
 
-        Grain carrotSeeds = new Grain("Carrots", 100);
-        farm.addGrain(carrotSeeds);
+        Grain carrotSeeds = new Grain("Carrots", 100,0.1F);
+        account.buyItem(carrotSeeds);
+
         farm.sowAllGrains();
         System.out.println("Date:" + farm.getDate() + " carrots sown");
         farm.passTime(30);
 
-        Grain cornSeed = new Grain("Corn", 200);
-        Grain riceSeed = new Grain("Rice", 300);
-        farm.addGrain(cornSeed);
-        farm.addGrain(riceSeed);
+        Grain cornSeed = new Grain("Corn", 200, 0.2F);
+        Grain riceSeed = new Grain("Rice", 300, 0.1F);
+        account.buyItem(cornSeed);
+        account.buyItem(riceSeed);
         farm.sowAllGrains();
         System.out.println("Date:" + farm.getDate() + " corn and rice sown");
         System.out.println("-------");
@@ -55,9 +56,10 @@ public class Main {
         System.out.println("SELL PRODUCTS");
         System.out.println("30 carrots sold.");
         Product product = farm.getProducts().get(0);
+        product.setSellPrice(1F);
         float cash = farm.sell(product, 30);
-        account.addBalance(cash);
-        account.display();
+        bankAccount.addBalance(cash);
+        bankAccount.shortDisplay();
         farm.displayProducts();
 
         System.out.println("ANIMALS ACQUIRED");
@@ -67,9 +69,11 @@ public class Main {
         AnimalFood milk = new AnimalFood("milk", 0, 20, "liters");
         FarmAnimals chickens = new Poultry("chickens", 10, egg, chickenFeed);
         FarmAnimals cows = new Livestock("cows", 2, milk, cowFeed);
+        chickens.setPrice(20F);
+        cows.setPrice(600F);
 
-        farm.addAnimal(chickens);
-        farm.addAnimal(cows);
+        account.buyItem(chickens);
+        account.buyItem(cows);
         farm.displayAnimals();
 
         farm.passTime(5);

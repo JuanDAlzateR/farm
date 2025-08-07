@@ -1,5 +1,5 @@
 package interfaces;
-
+import farm.Farm;
 import abstracts.Account;
 
 public interface Buy {
@@ -12,7 +12,7 @@ public interface Buy {
             if(account.getBalance()>=price*quantity){
                 account.addBalance(-price*quantity);
                 System.out.println("Transaction approved");
-                System.out.println("Successfully bought " + item.getName()+" for total of "+ price*quantity +" "+item.getCurrency());
+                System.out.println("Successfully bought "+item.getQuantity() +" "+ item.getName()+" for total of "+ price*quantity +" "+item.getCurrency());
                 return true;
             }else{
                 System.out.println("Transaction denied: Unsufficient founds.");
@@ -30,4 +30,5 @@ public interface Buy {
     String getName();
     String getCurrency();
     float getQuantity();
+    void addToFarm(Farm farm);
 }
