@@ -1,3 +1,5 @@
+import abstracts.AbstractAccount;
+
 public class BankAccount extends AbstractAccount {
 
     private String bankName;

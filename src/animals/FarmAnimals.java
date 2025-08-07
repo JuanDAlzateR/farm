@@ -1,15 +1,19 @@
-public class Animal extends AbstractIntQuantity{
+package animals;
+import abstracts.Countable;
+import interfaces.PassTime;
+
+public abstract class FarmAnimals extends Countable implements PassTime {
 
     private AnimalFood animalFood;
     private AnimalFeed animalFeed;
 
-    public Animal() {
+    public FarmAnimals() {
         super("New animal",0);
         this.animalFood = new AnimalFood();
         this.animalFeed = new AnimalFeed();
     }
 
-    public Animal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
+    public FarmAnimals(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity);
         this.animalFood = animalFood;
         this.animalFeed = animalFeed;
@@ -25,9 +29,9 @@ public class Animal extends AbstractIntQuantity{
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Animal)) {
+        if (!(o instanceof FarmAnimals)) {
             return false;
-        } else if (((Animal) o).getName().equals(this.getName())) {
+        } else if (((FarmAnimals) o).getName().equals(this.getName())) {
             return true;
         } else{
             return false;
@@ -53,6 +57,7 @@ public class Animal extends AbstractIntQuantity{
         return this.animalFeed;
     }
 
+    @Override
     public  void passTime(int days) {
         this.animalFood.produce(days);
         this.animalFeed.consume(days);

@@ -1,7 +1,14 @@
+import animals.AnimalList;
+import animals.FarmAnimals;
+import crops.Crop;
+import crops.Grain;
+import crops.GrainList;
+import interfaces.PassTime;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Farm {
+public class Farm implements PassTime {
 
     private GrainList grains;
     private ArrayList<Product> products;
@@ -48,7 +55,7 @@ public class Farm {
     }
     public void displayAnimals() {
         System.out.println("Date:"+getDate()+" - Animals in farm:");
-        for (Animal animal: animals.getList()){
+        for (FarmAnimals animal: animals.getList()){
             System.out.println(animal);
         }
         System.out.println("-------");
@@ -109,20 +116,21 @@ public class Farm {
     public void addProduct(Product product) {
         this.products.add(product);
     }
-    public void addAnimal(Animal animal) {
+    public void addAnimal(FarmAnimals animal) {
         this.animals.add(animal);
     }
 
+    @Override
     public  void passTime(int days) {
         this.date=this.date.plusDays(days);
 
         for (Crop crop: crops){
-            crop.grow(days);
+            crop.passTime(days);
         }
         for (Product product: products){
-            product.rot(days);
+            product.passTime(days);
         }
-        for (Animal animal: animals.getList()){
+        for (FarmAnimals animal: animals.getList()){
             animal.passTime(days);
         }
     }

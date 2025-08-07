@@ -1,7 +1,10 @@
+package animals;
+
+import abstracts.AbstractList;
 import java.util.ArrayList;
 
 public class AnimalList extends AbstractList {
-    private ArrayList<Animal> animals = new ArrayList<>();
+    private ArrayList<FarmAnimals> animals = new ArrayList<>();
 
     /* Looks in the array for the index of item with that name
     If it doesn't find it, it returns -1  */
@@ -15,7 +18,7 @@ public class AnimalList extends AbstractList {
         return -1;
     }
 
-    public void add(Animal animal) {
+    public void add(FarmAnimals animal) {
         int index=indexOfName(animal.getName());
         if (index>-1){
             animals.get(index).addQuantity(animal.getQuantity());
@@ -25,12 +28,12 @@ public class AnimalList extends AbstractList {
     }
 
     public void printAll() {
-        for (Animal animal : animals) {
+        for (FarmAnimals animal : animals) {
             System.out.println(animal);
         }
     }
 
-    public ArrayList<Animal> getList() {
+    public ArrayList<FarmAnimals> getList() {
         return this.animals;
     }
 

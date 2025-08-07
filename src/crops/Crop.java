@@ -1,4 +1,9 @@
-public class Crop extends AbstractIntQuantity{
+package crops;
+
+import abstracts.Countable;
+import interfaces.PassTime;
+
+public class Crop extends Countable implements PassTime {
 
     private float germinationRate;
     private float growthPercentage;
@@ -47,7 +52,8 @@ public class Crop extends AbstractIntQuantity{
         return (int) (this.getQuantity()*this.germinationRate);
     }
 
-    public  void grow(int days) {
+    @Override
+    public  void passTime(int days) {
         if(this.getQuantity()>0){
             float newGrowth = this.growthPercentage+this.growthPerDay*days;
             if (newGrowth >= 100) {

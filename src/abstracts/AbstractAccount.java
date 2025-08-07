@@ -1,3 +1,5 @@
+package abstracts;
+
 public abstract class AbstractAccount {
 
     private String accountNickname;

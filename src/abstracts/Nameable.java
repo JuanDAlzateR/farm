@@ -1,12 +1,14 @@
-public abstract class AbstractNameable {
+package abstracts;
+
+public abstract class Nameable {
 
     private String name;
 
-    public AbstractNameable(){
+    public Nameable(){
         this.name="No Name";
     }
 
-    public AbstractNameable(String name){
+    public Nameable(String name){
         this.name=name;
     }
 

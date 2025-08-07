@@ -1,3 +1,6 @@
+import animals.*;
+import crops.*;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -53,8 +56,8 @@ public class Main {
         AnimalFeed cowFeed = new AnimalFeed("cattle feed", 1000, 15F, "kg");
         AnimalFood egg = new AnimalFood("egg", 0, 1, "units");
         AnimalFood milk = new AnimalFood("milk", 0, 20, "liters");
-        Animal chickens = new Animal("chickens", 10, egg, chickenFeed);
-        Animal cows = new Animal("cows", 2, milk, cowFeed);
+        FarmAnimals chickens = new Poultry("chickens", 10, egg, chickenFeed);
+        FarmAnimals cows = new Livestock("cows", 2, milk, cowFeed);
 
         farm.addAnimal(chickens);
         farm.addAnimal(cows);
@@ -65,8 +68,6 @@ public class Main {
         farm.displayProducts();
 
         farm.passTime(5);
-        System.out.println("Date:" + farm.getDate());
-
         System.out.println("Date:" + farm.getDate());
     }
 

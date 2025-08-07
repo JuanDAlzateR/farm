@@ -1,4 +1,7 @@
-public class AnimalFood extends AbstractFloatQuantity{
+package animals;
+import abstracts.AbstractFloatQuantity;
+
+public class AnimalFood extends AbstractFloatQuantity {
 
     private float productionRatePerDay;
     private String productionUnit;

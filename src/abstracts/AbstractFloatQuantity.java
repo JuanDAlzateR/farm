@@ -1,4 +1,6 @@
-public abstract class AbstractFloatQuantity extends AbstractNameable {
+package abstracts;
+
+public abstract class AbstractFloatQuantity extends Nameable {
 
     private float quantity;
 

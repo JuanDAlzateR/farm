@@ -1,4 +1,8 @@
-public class Product extends AbstractIntQuantity{
+import abstracts.Countable;
+import crops.Crop;
+import interfaces.PassTime;
+
+public class Product extends Countable implements PassTime {
 
     private float rottenPercentage;
     private float rotPerDay;
@@ -44,7 +48,8 @@ public class Product extends AbstractIntQuantity{
         return this.rotPerDay;
     }
 
-    public  void rot(int days) {
+    @Override
+    public  void passTime(int days) {
         if(this.getQuantity()>0){
             float newRot = this.rottenPercentage +this.rotPerDay *days;
             if (newRot >= 100) {

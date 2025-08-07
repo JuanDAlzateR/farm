@@ -1,4 +1,8 @@
-public class Grain extends AbstractIntQuantity{
+package crops;
+
+import abstracts.Countable;
+
+public class Grain extends Countable {
 
     public Grain(String name, int quantity) {
         super(name,quantity);
