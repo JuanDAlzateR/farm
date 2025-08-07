@@ -1,6 +1,8 @@
 package abstracts;
 
-public abstract class AbstractList {
+import interfaces.SearchName;
+
+public abstract class AbstractList implements SearchName {
 
     public AbstractList(){}
 
