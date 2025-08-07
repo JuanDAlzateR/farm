@@ -1,7 +1,7 @@
 package animals;
 import abstracts.*;
 
-public class AnimalFeed extends AbstractFloatQuantity {
+public class AnimalFeed extends FloatCountable {
 
     private float consumptionRatePerDay;
     private String feedUnit;

@@ -1,0 +1,35 @@
+package abstracts;
+
+public abstract class FloatCountable {
+
+    private float quantity;
+    private String name;
+
+    public FloatCountable(){
+        this.name="New name";
+        this.quantity=0;
+    }
+
+    public FloatCountable(String name, float quantity){
+        this.name=name;
+        this.quantity=quantity;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
+    public void addQuantity(float quantity) {
+        this.quantity += quantity;
+    }
+    public float getQuantity() {
+        return this.quantity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return this.name;
+    }
+
+}

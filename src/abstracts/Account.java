@@ -1,18 +1,18 @@
 package abstracts;
 
-public abstract class AbstractAccount {
+public abstract class Account {
 
     private String accountNickname;
     private Float balance;
     private String currency;
 
-    public AbstractAccount(Float balance, String accountNickname) {
+    public Account(Float balance, String accountNickname) {
         this.balance = balance;
         this.accountNickname = accountNickname;
         this.currency = "usd";
     }
 
-    public AbstractAccount() {
+    public Account() {
         this.balance=0F;
         this.accountNickname="New Account";
         this.currency="usd";

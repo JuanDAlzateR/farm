@@ -1,6 +1,7 @@
-import abstracts.AbstractAccount;
+import abstracts.Account;
+import interfaces.Display;
 
-public class BankAccount extends AbstractAccount {
+public class BankAccount extends Account implements Display {
 
     private String bankName;
     private int accountNumber;

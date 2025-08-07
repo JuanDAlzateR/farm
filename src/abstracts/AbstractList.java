@@ -8,5 +8,4 @@ public abstract class AbstractList implements SearchName {
 
     public abstract int indexOfName(String name);
 
-
 }

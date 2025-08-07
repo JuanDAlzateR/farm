@@ -12,6 +12,14 @@ public class Main {
         BankAccount account = new BankAccount("Bank", 1234, 1000F, "Income");
         account.display();
 
+        Tool tool =new Tool("Pitchfork",40);
+        if (tool.buy(tool.getPrice(),account)){
+            farm.addTool(tool);
+        }
+        System.out.println(tool);
+        account.display();
+        System.out.println("-------");
+
         Grain carrotSeeds = new Grain("Carrots", 100);
         farm.addGrain(carrotSeeds);
         farm.sowAllGrains();
@@ -69,6 +77,7 @@ public class Main {
 
         farm.passTime(5);
         System.out.println("Date:" + farm.getDate());
+        System.out.println(tool);
     }
 
 }

@@ -1,18 +1,18 @@
 import animals.AnimalList;
 import animals.FarmAnimals;
-import crops.Crop;
-import crops.Grain;
-import crops.GrainList;
+import crops.*;
+import interfaces.Display;
 import interfaces.PassTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Farm implements PassTime {
+public class Farm implements PassTime, Display {
 
     private GrainList grains;
     private ArrayList<Product> products;
     private ArrayList<Crop> crops;
+    private ArrayList<Tool> tools;
     private LocalDate date;
     private AnimalList animals;
 
@@ -20,9 +20,11 @@ public class Farm implements PassTime {
         GrainList grains = new GrainList();
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Crop> crops = new ArrayList<>();
+        ArrayList<Tool> tools = new ArrayList<>();
         this.grains = grains;
         this.products = products;
         this.crops = crops;
+        this.tools = tools;
         this.date = LocalDate.now();
         this.animals= new AnimalList();
     }
@@ -31,6 +33,7 @@ public class Farm implements PassTime {
         GrainList grains = new GrainList();
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Crop> crops = new ArrayList<>();
+        ArrayList<Tool> tools = new ArrayList<>();
         this.grains = grains;
         this.products = products;
         this.crops = crops;
@@ -44,6 +47,7 @@ public class Farm implements PassTime {
         System.out.println("Number of types of crops: " + this.crops.toArray().length);
         System.out.println("Number of types of products: " + this.products.toArray().length);
         System.out.println("Number of types of animals: " + this.animals.getList().toArray().length);
+        System.out.println("Number of tools: " + this.tools.toArray().length);
     }
 
     public void displayGrains() {
@@ -74,6 +78,13 @@ public class Farm implements PassTime {
         }
         System.out.println("-------");
     }
+    public void displayTools() {
+        System.out.println("Date:"+getDate()+" - Tools in farm:");
+        for (Tool tool: tools){
+            System.out.println(tool);
+        }
+        System.out.println("-------");
+    }
 
     public void setGrains( GrainList grains) {
         this.grains = grains;
@@ -83,6 +94,9 @@ public class Farm implements PassTime {
     }
     public void setCrops( ArrayList<Crop> crops) {
         this.crops = crops;
+    }
+    public void setTools( ArrayList<Tool> tools) {
+        this.tools = tools;
     }
     public void setDate(LocalDate date) {
         this.date = date;
@@ -99,6 +113,9 @@ public class Farm implements PassTime {
     }
     public ArrayList<Crop> getCrops() {
         return this.crops;
+    }
+    public ArrayList<Tool> getTools() {
+        return this.tools;
     }
     public LocalDate getDate() {
         return this.date;
@@ -119,6 +136,9 @@ public class Farm implements PassTime {
     public void addAnimal(FarmAnimals animal) {
         this.animals.add(animal);
     }
+    public void addTool(Tool tool) {
+        this.tools.add(tool);
+    }
 
     @Override
     public  void passTime(int days) {
@@ -132,6 +152,9 @@ public class Farm implements PassTime {
         }
         for (FarmAnimals animal: animals.getList()){
             animal.passTime(days);
+        }
+        for (Tool tool: tools){
+            tool.passTime(days);
         }
     }
 
