@@ -1,8 +1,8 @@
 package crops;
+import interfaces.Buy;
+import abstracts.Purchasable;
 
-import abstracts.Countable;
-
-public class Grain extends Countable {
+public class Grain extends Purchasable implements Buy{
 
     public Grain(String name, int quantity) {
         super(name,quantity);

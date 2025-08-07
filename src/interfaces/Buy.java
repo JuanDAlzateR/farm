@@ -4,17 +4,30 @@ import abstracts.Account;
 
 public interface Buy {
 
-    default boolean buy(float price, Account account){
-        if(account.getBalance()>=price){
-            account.addBalance(-price);
-            System.out.println("Transaction approved");
-            System.out.println("Successfully bought an item for "+price);
-            return true;
-        }else{
-            System.out.println("Transaction denied");
-            System.out.println("Unsufficient founds, the account needs at least "+price);
+    static boolean buy(Buy item, Account account){
+        float price=item.getPrice();
+        //float quantity=item.getQuantity;
+
+        if (item.getCurrency().equals(account.getCurrency())){
+            if(account.getBalance()>=price){
+                account.addBalance(-price);
+                System.out.println("Transaction approved");
+                System.out.println("Successfully bought " + item.getName()+" for "+price+" "+item.getCurrency());
+                return true;
+            }else{
+                System.out.println("Transaction denied: Unsufficient founds.");
+                System.out.println("The account needs at least "+price+" "+item.getCurrency()+" to buy "+item.getName());
+                return false;
+            }
+        } else{
+            System.out.println("Error in transaction: different currencies.");
+            System.out.println("Account currency: "+account.getCurrency()+"!= Item currency: "+item.getCurrency());
             return false;
         }
     }
 
+    float getPrice();
+    String getName();
+    String getCurrency();
+    //float getQuantity();
 }

@@ -1,18 +1,17 @@
-import abstracts.Countable;
+import abstracts.Purchasable;
 import crops.Crop;
 import interfaces.PassTime;
+import interfaces.Buy;
 
-public class Product extends Countable implements PassTime {
+public class Product extends Purchasable implements PassTime, Buy {
 
     private float rottenPercentage;
     private float rotPerDay;
-    private float price;
 
     public Product() {
         super("New Product",0);
         this.rottenPercentage = 0;
         this.rotPerDay = 5F;
-        this.price=1F;
     }
 
     public Product(Crop crop) {
@@ -20,7 +19,6 @@ public class Product extends Countable implements PassTime {
         this.rottenPercentage = 0;
         this.rotPerDay = 2F;
         crop.setQuantity(0);
-        this.price=1F;
     }
 
     @Override
@@ -28,9 +26,6 @@ public class Product extends Countable implements PassTime {
         return (this.getName() + " | quantity " + getQuantity()+ " | " + this.rottenPercentage + "% of rot");
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
     public void setRottenPercentage(Float Percentage) {
         this.rottenPercentage = Percentage;
     }
@@ -38,9 +33,6 @@ public class Product extends Countable implements PassTime {
         this.rotPerDay = rotPerDay;
     }
 
-    public float getPrice() {
-        return this.price;
-    }
     public float getRottenPercentage() {
         return this.rottenPercentage;
     }

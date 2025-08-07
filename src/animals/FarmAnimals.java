@@ -1,8 +1,10 @@
 package animals;
-import abstracts.Countable;
-import interfaces.PassTime;
 
-public abstract class FarmAnimals extends Countable implements PassTime {
+import abstracts.Purchasable;
+import interfaces.PassTime;
+import interfaces.Buy;
+
+public abstract class FarmAnimals extends Purchasable implements PassTime, Buy {
 
     private AnimalFood animalFood;
     private AnimalFeed animalFeed;

@@ -1,5 +1,6 @@
 import animals.*;
 import crops.*;
+import interfaces.Buy;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -13,7 +14,7 @@ public class Main {
         account.display();
 
         Tool tool =new Tool("Pitchfork",40);
-        if (tool.buy(tool.getPrice(),account)){
+        if (Buy.buy(tool,account)){
             farm.addTool(tool);
         }
         System.out.println(tool);
