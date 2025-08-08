@@ -3,8 +3,8 @@ I created packages, so the classes and files would be a little more organized
 The interfaces could be improved, I think Buy it's well implemented, but the
 other interfaces just check if the classes have the respective methods.
 
-I hope to implement a user Menu using Scanner
-(a Menu that is usefull and not to complicated)
+I hope to implement a user menu.Menu using Scanner
+(a menu.Menu that is useful and not to complicated)
 
 I'll continue working on the code, so far I haven't implemented all
 changes and suggestions (from the last time), but still I wanted to
@@ -14,13 +14,96 @@ share the progress so far.
 import animals.*;
 import crops.*;
 import farm.*;
+import menu.*;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+
+import java.util.Scanner;
+//TIP To <b>interfaces.Run</b> code, press <shortcut actionId="interfaces.Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
+
+        Scanner scanner = new Scanner(System.in);
+        int option;
+
+        AllMenus allMenus = new AllMenus();
+
+//        allMenus.display();
+
+        Menu mainMenu=allMenus.getMenu(2);
+        mainMenu.run(scanner);
+
+        mainMenu(scanner);
+
+        scanner.close();
+
+    }
+
+    public static void mainMenu(Scanner scanner){
+        int option;
+        while(true){
+            System.out.println("== Main menu.Menu ==");
+            System.out.println("Choose one option:");
+            System.out.println("1) Create/Choose Farm");
+            System.out.println("2) Admin bank accounts:");
+            System.out.println("3) Admin Farm:");
+            System.out.println("0) Quit or Exit");
+            System.out.println("Write the number of the chosen option:");
+            option= scanner.nextInt();
+
+            switch(option){
+                case 1:
+                    System.out.println("1)");
+                    break;
+                case 2:
+                    System.out.println("2");
+                    break;
+                case 3:
+                    adminFarmMenu(scanner);
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again");
+            }
+        }
+    }
+
+    public static void adminFarmMenu(Scanner scanner){
+        int option;
+        boolean activeMenu=true;
+        while(activeMenu){
+            System.out.println("== Admin Farm menu.Menu ==");
+            System.out.println("1) Buy items or animals");
+            System.out.println("2) Admin Crops");
+            System.out.println("3) Sell products");
+            System.out.println("0) Back to Main menu.Menu");
+            System.out.println("Write the number of the chosen option:");
+            option= scanner.nextInt();
+
+            switch(option){
+                case 1:
+                    System.out.println("1)");
+                    break;
+                case 2:
+                    System.out.println("2");
+                    break;
+                case 3:
+                    System.out.println("3");
+                    break;
+                case 0:
+                    activeMenu=false;
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again");
+            }
+        }
+    }
+
+    public static void example(){
         Farm farm = new Farm();
         BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
         FarmAccount account = new FarmAccount(farm,bankAccount);
@@ -93,6 +176,6 @@ public class Main {
         farm.passTime(5);
         System.out.println("Date:" + farm.getDate());
         System.out.println(tool);
-    }
 
+    }
 }
