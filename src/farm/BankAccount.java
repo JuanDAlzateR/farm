@@ -31,8 +31,6 @@ public class BankAccount extends Account implements Display {
         System.out.println("-------");
     }
 
-
-
     public  void setBankName(String bankName) {
         this.bankName =bankName;
     }

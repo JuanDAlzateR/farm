@@ -1,8 +1,19 @@
+/* Last update 07/Aug/2025
+I created packages, so the classes and files would be a little more organized
+The interfaces could be improved, I think Buy it's well implemented, but the
+other interfaces just check if the classes have the respective methods.
+
+I hope to implement a user Menu using Scanner
+(a Menu that is usefull and not to complicated)
+
+I'll continue working on the code, so far I haven't implemented all
+changes and suggestions (from the last time), but still I wanted to
+share the progress so far.
+ */
+
 import animals.*;
 import crops.*;
 import farm.*;
-
-import interfaces.Buy;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

@@ -59,6 +59,7 @@ public class Product extends Purchasable implements PassTime, Buy {
             this.rottenPercentage =newRot;
         }
     }
+
     @Override
     public void addToFarm(Farm farm){
         farm.addProduct(this);
