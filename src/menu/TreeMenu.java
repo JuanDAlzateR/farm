@@ -30,24 +30,62 @@ public class TreeMenu {
         }
     }
 
+
     public NodeMenu mainMenu(){
         NodeMenu mainMenu = new NodeMenu("MAIN MENU");
         allNodes.add(mainMenu);
 
-
-        MenuMethod exitMethod = new MenuMethod("Quit or Exit",MenuMethod.exitMethod());
-        NodeMenu exit = new NodeMenu("",exitMethod,mainMenu);
-
-       // NodeMenu createFarm =createFarmMenu();
+        NodeMenu createFarm =createFarmMenu(mainMenu);
         NodeMenu adminBankAccounts =new NodeMenu("","Admin bank accounts");
         NodeMenu adminFarm =adminFarmMenu(mainMenu);
+        NodeMenu exit=createExit(mainMenu);
 
-      //  mainMenu.add(createFarm);
+        mainMenu.add(createFarm);
         mainMenu.add(adminBankAccounts);
         mainMenu.add(adminFarm);
         mainMenu.add(exit);
 
         return mainMenu;
+    }
+
+    public NodeMenu mainMenu2(){
+        NodeMenu mainMenu = new NodeMenu("MAIN MENU");
+        allNodes.add(mainMenu);
+
+        mainMenu.add(createFarmMenu(mainMenu));
+        mainMenu.add(new NodeMenu("","Admin bank accounts"));
+        mainMenu.add(adminFarmMenu(mainMenu));
+        mainMenu.add(createExit(mainMenu));
+
+        return mainMenu;
+    }
+
+    public NodeMenu createExit(NodeMenu parentMenu){
+        MenuMethod exitMethod = new MenuMethod("Quit or Exit",MenuMethod.exitMethod());
+        NodeMenu exit = new NodeMenu("",exitMethod,parentMenu);
+        return exit;
+    }
+    public NodeMenu createGoBack(NodeMenu parentMenu){
+        MenuMethod goBackMethod =new MenuMethod("Go back to the previous menu",parentMenu);
+        NodeMenu goBack =new NodeMenu("",goBackMethod,parentMenu);
+        return goBack;
+    }
+
+    public NodeMenu createFarmMenu(NodeMenu parentMenu){
+        NodeMenu createFarm = new NodeMenu("LIST OF FARMS","Create/Choose farm");
+        allNodes.add(createFarm);
+
+        NodeMenu newFarm =new NodeMenu("","Create a farm");
+        NodeMenu editFarm =new NodeMenu("","Edit a farm");
+        NodeMenu chooseFarm =new NodeMenu("","Choose the active farm");
+        NodeMenu goBack =createGoBack(parentMenu);
+
+        createFarm.add(newFarm);
+        createFarm.add(editFarm);
+        createFarm.add(chooseFarm);
+        createFarm.add(goBack);
+
+        return createFarm;
     }
 
     public NodeMenu adminFarmMenu(NodeMenu parentMenu){
@@ -57,8 +95,7 @@ public class TreeMenu {
         NodeMenu buyItems =new NodeMenu("","Buy items or animals");
         NodeMenu adminCrops =new NodeMenu("","Admin Crops");
         NodeMenu sellProducts =new NodeMenu("","Sell products");
-        MenuMethod goBackMethod =new MenuMethod("Go back to the previous menu",parentMenu);
-        NodeMenu goBack =new NodeMenu("",goBackMethod,parentMenu);
+        NodeMenu goBack =createGoBack(parentMenu);
 
         adminFarm.add(buyItems);
         adminFarm.add(adminCrops);
@@ -67,7 +104,6 @@ public class TreeMenu {
 
         return adminFarm;
     }
-
 
 
 }

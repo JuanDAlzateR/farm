@@ -22,7 +22,6 @@ public class NodeMenu implements Run {
     public NodeMenu(String name, String option){
         this.menuName=name;
         this.menuMethod=new MenuMethod(option);
-
     }
 
     public NodeMenu(NodeMenu parent){
@@ -58,7 +57,6 @@ public class NodeMenu implements Run {
     public MenuMethod getMenuMethod() {
         return menuMethod;
     }
-
 
     public void setParent(NodeMenu parent) {
         this.parent = parent;
