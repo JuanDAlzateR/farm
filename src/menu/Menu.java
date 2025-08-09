@@ -9,7 +9,6 @@ public class Menu implements Run {
     private ArrayList<MenuMethod> menuMethods = new ArrayList<>();
     private String menuName = "New Menu";
 
-
     public Menu(){
 
     }
@@ -40,7 +39,7 @@ public class Menu implements Run {
         System.out.println("=== "+ menuName + " ===");
         int index=0;
         for(MenuMethod menuMethod:menuMethods){
-            System.out.println(index+")"+menuMethod.getOption());
+            System.out.println(index+") "+menuMethod.getOption());
             index++;
         }
 

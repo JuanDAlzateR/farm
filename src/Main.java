@@ -28,14 +28,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        AllMenus allMenus = new AllMenus();
+        TreeMenu allMenus = new TreeMenu();
 
 //        allMenus.display();
 
-        Menu mainMenu=allMenus.getMenu(2);
-        mainMenu.run(scanner);
+        NodeMenu mainMenu=allMenus.getRoot();
+        mainMenu.display("\t");
+        mainMenu.getMenuMethods().get(1).display("\t\t");
+        System.out.println("height"+mainMenu.getMenuMethods().get(1).getHeight());
 
-        mainMenu(scanner);
+        mainMenu.run(scanner);
 
         scanner.close();
 

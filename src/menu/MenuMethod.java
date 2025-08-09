@@ -46,6 +46,7 @@ public class MenuMethod implements Run{
         ExitMethod exitMethod = new ExitMethod();
         return exitMethod;
     }
+
 }
 
 class SimpleMethod implements Run {
