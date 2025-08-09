@@ -14,6 +14,7 @@ share the progress so far.
 import animals.*;
 import crops.*;
 import farm.*;
+import interfaces.Run;
 import menu.*;
 
 
@@ -33,9 +34,6 @@ public class Main {
 //        allMenus.display();
 
         NodeMenu mainMenu=allMenus.getRoot();
-        mainMenu.display("\t");
-        mainMenu.getMenuMethods().get(1).display("\t\t");
-        System.out.println("height"+mainMenu.getMenuMethods().get(1).getHeight());
 
         mainMenu.run(scanner);
 
