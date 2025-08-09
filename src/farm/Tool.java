@@ -1,3 +1,5 @@
+package farm;
+
 import abstracts.Purchasable;
 import interfaces.Buy;
 import interfaces.PassTime;
@@ -45,6 +47,11 @@ public class Tool extends Purchasable implements PassTime, Buy {
             newPercentage = 100;
         }
         this.wearAndTearPercentage =newPercentage;
+    }
+
+    @Override
+    public void addToFarm(Farm farm){
+        farm.addTool(this);
     }
 
 }

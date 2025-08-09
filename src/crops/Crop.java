@@ -1,6 +1,7 @@
 package crops;
 
 import abstracts.Countable;
+import farm.Farm;
 import interfaces.PassTime;
 
 public class Crop extends Countable implements PassTime {
@@ -63,4 +64,7 @@ public class Crop extends Countable implements PassTime {
         }
     }
 
+    public void addToFarm(Farm farm){
+        farm.addCrop(this);
+    }
 }

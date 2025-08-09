@@ -1,13 +1,17 @@
 package crops;
+import farm.Farm;
 import interfaces.Buy;
 import abstracts.Purchasable;
 
 public class Grain extends Purchasable implements Buy{
 
-    public Grain(String name, int quantity) {
+    public Grain(String name, float quantity) {
         super(name,quantity);
     }
+    public Grain(String name, float quantity, float price){
+        super(name,quantity,price);
 
+    }
     public Grain() {
         super("New grain",0);
     }
@@ -44,4 +48,8 @@ public class Grain extends Purchasable implements Buy{
         }
     }
 
+    @Override
+    public void addToFarm(Farm farm){
+        farm.addGrain(this);
+    }
 }

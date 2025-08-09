@@ -1,5 +1,6 @@
 package animals;
 import abstracts.*;
+import farm.Farm;
 import interfaces.Buy;
 
 public class AnimalFeed extends Purchasable implements Buy{
@@ -64,4 +65,9 @@ public class AnimalFeed extends Purchasable implements Buy{
         }
     }
 
+    /*This method doesn't do anything,
+    AnimalFeed will be added to the Farm, when a FarmAnimal it's added.
+    */
+    @Override
+    public void addToFarm(Farm farm){     }
 }

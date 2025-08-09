@@ -1,3 +1,5 @@
+package farm;
+
 import animals.AnimalList;
 import animals.FarmAnimals;
 import crops.*;
@@ -202,20 +204,21 @@ public class Farm implements PassTime, Display {
     public  Float sell(Product product, int quantity) {
         Product foundProduct=findProduct(product);
         if (foundProduct.equals(null)){
-            System.out.println("Product "+product.getName()+" not in stock");
+            System.out.println("crops.Product "+product.getName()+" not in stock");
             return 0F;
         }else if (foundProduct.getQuantity()<quantity){
-            System.out.println("Product "+product.getName()+" without enough stock");
+            System.out.println("crops.Product "+product.getName()+" without enough stock");
             System.out.println("Only "+product.getQuantity()+" in stock, unable to sell "+quantity);
             return 0F;
         }else if(foundProduct.getRottenPercentage()>=100){
-            System.out.println("Product "+product.getName()+" it's rotten, unable to sell.");
+            System.out.println("crops.Product "+product.getName()+" it's rotten, unable to sell.");
             System.out.println("The product will be automatically removed from the system.");
             products.remove(foundProduct);
             return 0F;
         }else{
+            System.out.println(product.getName()+" successfully sold for "+product.getSellPrice()*quantity);
             product.addQuantity(-quantity);
-            return product.getPrice()*quantity;
+            return product.getSellPrice()*quantity;
         }
     }
 

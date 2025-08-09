@@ -1,3 +1,5 @@
+package farm;
+
 import abstracts.Account;
 import interfaces.Display;
 
@@ -18,10 +20,14 @@ public class BankAccount extends Account implements Display {
         this.accountNumber=0000;
     }
 
-    public  void display() {
+    public void display() {
         System.out.println("Account Nickname: "+this.getNickname());
         System.out.println("Bank:"+ this.bankName + "   Account Number: "+this.accountNumber);
         System.out.printf("Balance: %.2f "+this.getCurrency()+"%n",this.getBalance());
+        System.out.println("-------");
+    }
+    public void shortDisplay() {
+        System.out.printf("Account #: "+this.accountNumber+"  Balance: %.2f "+this.getCurrency()+"%n",this.getBalance());
         System.out.println("-------");
     }
 

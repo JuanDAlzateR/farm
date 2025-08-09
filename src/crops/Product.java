@@ -1,5 +1,7 @@
+package crops;
+
 import abstracts.Purchasable;
-import crops.Crop;
+import farm.Farm;
 import interfaces.PassTime;
 import interfaces.Buy;
 
@@ -7,9 +9,10 @@ public class Product extends Purchasable implements PassTime, Buy {
 
     private float rottenPercentage;
     private float rotPerDay;
+    private float sellPrice;
 
     public Product() {
-        super("New Product",0);
+        super("New crops.Product",0);
         this.rottenPercentage = 0;
         this.rotPerDay = 5F;
     }
@@ -32,12 +35,18 @@ public class Product extends Purchasable implements PassTime, Buy {
     public void setRotPerDay(Float rotPerDay) {
         this.rotPerDay = rotPerDay;
     }
+    public void setSellPrice(Float sellPrice) {
+        this.sellPrice = sellPrice;
+    }
 
     public float getRottenPercentage() {
         return this.rottenPercentage;
     }
     public float getRottenPerDay() {
         return this.rotPerDay;
+    }
+    public float getSellPrice( ) {
+        return this.sellPrice;
     }
 
     @Override
@@ -49,6 +58,11 @@ public class Product extends Purchasable implements PassTime, Buy {
             }
             this.rottenPercentage =newRot;
         }
+    }
+
+    @Override
+    public void addToFarm(Farm farm){
+        farm.addProduct(this);
     }
 
 }
