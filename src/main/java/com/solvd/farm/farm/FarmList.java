@@ -1,5 +1,6 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
 
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 public class FarmList extends AbstractList {
     private ArrayList<Farm> farms = new ArrayList<>();
-    int defaultFarmIndex=0;
+    private int defaultFarmIndex=0;
 
     /* Looks in the array for the index of item with that name
         If it doesn't find it, it returns -1  */
@@ -42,12 +43,29 @@ public class FarmList extends AbstractList {
         }
     }
 
+    public void displayWithIndex() {
+        System.out.println();
+        System.out.println("list of all farms");
+        for (int i=0; i<this.farms.size();i++) {
+            if(i==this.defaultFarmIndex){
+                System.out.println("\t"+i+") "+this.farms.get(i).getFarmName()+ "(Default)");
+            }else{
+                System.out.println("\t"+i+") "+this.farms.get(i).getFarmName());
+            }
+        }
+    }
+
     public ArrayList<Farm> getList() {
         return this.farms;
     }
 
-    public void setDefaultFarmIndex(int defaultFarmIndex) {
-        this.defaultFarmIndex = defaultFarmIndex;
+    public void setDefaultFarmIndex(int index) {
+        if (0<=index && index<this.farms.size()){
+            this.defaultFarmIndex = index;
+        }else{
+            Main.LOGGER.error("FarmIndexOutOfBounds");
+        }
+
     }
 
     public int getDefaultFarmIndex() {

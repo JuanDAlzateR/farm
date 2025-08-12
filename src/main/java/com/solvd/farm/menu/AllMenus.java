@@ -33,7 +33,10 @@ public class AllMenus {
         MenuAction adminAccountsMenu = new MenuAction("ADMIN BANK ACCOUNTS");
         MenuAction adminFarmMenu = new MenuAction( "ADMIN FARM");
 
+        MenuAction buyMenu = new MenuAction( "BUY ITEMS");
+        MenuAction adminCropsMenu = new MenuAction( "ADMIN CROPS");
         MenuAction adminAnimalsMenu = new MenuAction( "ADMIN FARM ANIMALS");
+        MenuAction sellMenu = new MenuAction( "SELL PRODUCTS");
 
         //Now, define each menu, with the options and the actions
 
@@ -45,24 +48,35 @@ public class AllMenus {
 
         //Choose Farm Menu
         chooseFarmMenu.add("Back to previous menu",mainMenu);
-        chooseFarmMenu.add("Create Farm",AllActions::newFarm);
-        chooseFarmMenu.add("*Choose Default Farm",AllActions::editarAnimal);
-        chooseFarmMenu.add("*Edit Farm",AllActions::eliminarAnimal);
-        chooseFarmMenu.add("Display all farms",AllActions::eliminarAnimal);
+        chooseFarmMenu.add("Create Farm",AllActions::addFarm);
+        chooseFarmMenu.add("Choose Default Farm",AllActions::setDefaultFarm);
+        chooseFarmMenu.add("Edit Farm",AllActions::editFarm);
+        chooseFarmMenu.add("Display all farms",AllActions::displayFarms);
 
         //Admin Accounts Menu
         adminAccountsMenu.add("Back to previous menu",mainMenu);
-        adminAccountsMenu.add("*Create Bank Account",(params) -> AllActions.addAnimal(params));
-        adminAccountsMenu.add("*Choose Default Bank Account",AllActions::editarAnimal);
-        adminAccountsMenu.add("*Edit Bank Account",AllActions::eliminarAnimal);
-        adminAccountsMenu.add("*Display all farms",AllActions::eliminarAnimal);
+        adminAccountsMenu.add("Create Bank Account",AllActions::addBankAccount);
+        adminAccountsMenu.add("Choose Default Bank Account",AllActions::setDefaultBankAccount);
+        adminAccountsMenu.add("Edit Bank Account",AllActions::editBankAccount);
+        adminAccountsMenu.add("Display all bank accounts",AllActions::displayBankAccounts);
 
         //Admin Farm Menu
         adminFarmMenu.add("Back to previous menu",mainMenu);
-        adminFarmMenu.add("*Buy Items/Animals",(params) -> AllActions.addAnimal(params));
+        adminFarmMenu.add("Buy Items/Animals",buyMenu);
         adminFarmMenu.add("*Admin Crops",AllActions::editarAnimal);
         adminFarmMenu.add("*Admin Animals",AllActions::eliminarAnimal);
         adminFarmMenu.add("*Sell Products",AllActions::eliminarAnimal);
+
+        //Buy Items Menu
+        buyMenu.add("Back to previous menu",adminFarmMenu);
+        buyMenu.add("*Buy Tool",AllActions::addBankAccount);
+        buyMenu.add("*Buy Animal Feed ",AllActions::setDefaultBankAccount);
+        buyMenu.add("*Buy Animal",AllActions::editBankAccount);
+        buyMenu.add("*Display all tools",AllActions::displayBankAccounts);
+        buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
+        buyMenu.add("*Display all animals",AllActions::displayBankAccounts);
+
+        //syntax of  lambda expression: (params) -> AllActions.addAnimal(params)
 
     }
 

@@ -30,13 +30,29 @@ public class BankAccountList {
     }
 
     public void display() {
+        System.out.println();
+        System.out.println("list of all bank accounts");
         for (int i=0; i<this.bankAccounts.size();i++) {
             int accountNumber=this.bankAccounts.get(i).getAccountNumber();
             String bankName=this.bankAccounts.get(i).getBankName();
             if(i==this.defaultAccountIndex){
-                System.out.println(bankName+" - Account #: "+ accountNumber+" (Default Account)");
+                System.out.println("\t"+bankName+" - Account #: "+ accountNumber+" (Default Account)");
             }else{
-                System.out.println(bankName+" - Account #: "+ accountNumber);
+                System.out.println("\t"+bankName+" - Account #: "+ accountNumber);
+            }
+        }
+    }
+
+    public void displayWithIndex() {
+        System.out.println();
+        System.out.println("list of all bank accounts");
+        for (int i=0; i<this.bankAccounts.size();i++) {
+            int accountNumber=this.bankAccounts.get(i).getAccountNumber();
+            String bankName=this.bankAccounts.get(i).getBankName();
+            if(i==this.defaultAccountIndex){
+                System.out.println("\t"+i+") "+bankName+" - Account #: "+ accountNumber+ "(Default)");
+            }else{
+                System.out.println("\t"+i+") "+bankName+" - Account #: "+ accountNumber);
             }
         }
     }
