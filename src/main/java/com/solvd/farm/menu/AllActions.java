@@ -1,16 +1,15 @@
 package com.solvd.farm.menu;
 
+import com.solvd.farm.animals.AnimalFeed;
 import com.solvd.farm.animals.FarmAnimals;
-import com.solvd.farm.farm.BankAccount;
-import com.solvd.farm.farm.Farm;
+import com.solvd.farm.farm.*;
 
 public class AllActions {
     //static Scanner scanner;
 
     // Methods for the menu actions
     public static Object[] addFarm(Object[] params) {
-        System.out.println("Please type the name of the farm");
-        String farmName = AllMenus.scanner.nextLine();
+        String farmName = inputString("Please type the name of the farm");
         Farm farm=new Farm(farmName);
         AllMenus.farmList.add(farm);
         return null;
@@ -18,9 +17,7 @@ public class AllActions {
 
     public static Object[] setDefaultFarm(Object[] params) {
         AllMenus.farmList.displayWithIndex();
-        System.out.println("Please type the number of the farm to set as default");
-        int index = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
+        int index =inputInt("Please type the number of the farm to set as default");
         AllMenus.farmList.setDefaultFarmIndex(index);
         Farm defaultFarm=AllMenus.farmList.getDefaultFarm();
         AllMenus.farmAccount.setFarm(defaultFarm);
@@ -29,12 +26,9 @@ public class AllActions {
 
     public static Object[] editFarm(Object[] params) {
         AllMenus.farmList.displayWithIndex();
-        System.out.println("Please type the number of the farm to edit");
-        int index = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
+        int index = inputInt("Please type the number of the farm to edit");
         Farm farm =AllMenus.farmList.getList().get(index);
-        System.out.println("Please type the new name of the farm");
-        String farmName = AllMenus.scanner.nextLine();
+        String farmName = inputString("Please type the new name of the farm");
         farm.setFarmName(farmName);
         return null;
     }
@@ -46,16 +40,10 @@ public class AllActions {
 
     // Methods for the bank account menu
     public static Object[] addBankAccount(Object[] params) {
-        System.out.println("Please type the name of the bank");
-        String bankName = AllMenus.scanner.nextLine();
-        System.out.println("Please type the account number");
-        int accountNumber = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
-        System.out.println("Please type the account balance");
-        float balance = AllMenus.scanner.nextFloat();
-        AllMenus.scanner.nextLine();
-        System.out.println("Please type the account nickname");
-        String nickName = AllMenus.scanner.nextLine();
+        String bankName =inputString("Please type the name of the bank");
+        int accountNumber = inputInt("Please type the account number");
+        float balance = inputFloat("Please type the account balance");
+        String nickName =inputString("Please type the account nickname");
 
         BankAccount bankAccount=new BankAccount(bankName,accountNumber,balance,nickName);
         AllMenus.bankAccountList.add(bankAccount);
@@ -64,9 +52,7 @@ public class AllActions {
 
     public static Object[] setDefaultBankAccount(Object[] params) {
         AllMenus.bankAccountList.displayWithIndex();
-        System.out.println("Please type the option number of the bank account to set as default");
-        int index = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
+        int index = inputInt("Please type the option number of the bank account to set as default");
         AllMenus.bankAccountList.setDefaultAccountIndex(index);
         BankAccount defaultAccount=AllMenus.bankAccountList.getList().get(index);
         AllMenus.farmAccount.setBankAccount(defaultAccount);
@@ -75,21 +61,14 @@ public class AllActions {
 
     public static Object[] editBankAccount(Object[] params) {
         AllMenus.bankAccountList.displayWithIndex();
-        System.out.println("Please type the option number of the bank account to edit");
-        int index = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
+
+        int index = inputInt("Please type the option number of the bank account to edit");
         BankAccount bankAccount=AllMenus.bankAccountList.getList().get(index);
 
-        System.out.println("Current bank: "+bankAccount.getBankName()+". Please type the new name of the bank");
-        String bankName = AllMenus.scanner.nextLine();
-        System.out.println("Current Account number: "+bankAccount.getAccountNumber()+". Please type the account number");
-        int accountNumber = AllMenus.scanner.nextInt();
-        AllMenus.scanner.nextLine();
-        System.out.println("Current balance: "+bankAccount.getBalance()+". Please type the account balance");
-        float balance = AllMenus.scanner.nextFloat();
-        AllMenus.scanner.nextLine();
-        System.out.println("Current nickname: "+bankAccount.getNickname()+". Please type the account nickname");
-        String nickName = AllMenus.scanner.nextLine();
+        String bankName = inputString("Current bank: "+bankAccount.getBankName()+". Please type the new name of the bank");
+        int accountNumber = inputInt("Current Account number: "+bankAccount.getAccountNumber()+". Please type the account number");
+        float balance = inputFloat("Current balance: "+bankAccount.getBalance()+". Please type the account balance");
+        String nickName = inputString("Current nickname: "+bankAccount.getNickname()+". Please type the account nickname");
 
         bankAccount.setBankName(bankName);
         bankAccount.setAccountNumber(accountNumber);
@@ -99,12 +78,53 @@ public class AllActions {
         return null;
     }
 
-
-
     public static Object[] displayBankAccounts(Object[] params) {
         AllMenus.bankAccountList.display();
         return null;
     }
+
+    public static Object[] buyTool(Object[] params) {
+        AllMenus.farmAccount.getBankAccount().display();
+
+        String toolName = inputString("Please type the name of the tool:");
+        int price = inputInt("Please type the price of the tool:");
+        Tool tool=new Tool(toolName,price);
+        AllMenus.farmAccount.buyItem(tool);
+
+        return null;
+    }
+
+    //AnimalFeed chickenFeed = new AnimalFeed("chicken feed", 0.9F, 0.1F, "kg");
+    public static Object[] buyAnimalFeed(Object[] params) {
+        AllMenus.farmAccount.getFarm().getAnimals().displayAllFeed();
+
+        String feedName = inputString("Please type the name of the animal feed:");
+        String feedUnit = inputString("Please type the unit of "+feedName+" :");
+        float price = inputFloat("Please type the price of"+feedName+"for 1" +feedUnit+" :");
+        float consumptionRate = inputFloat("What is the consumption of" +feedName+ "for an animal per day:");
+
+        AnimalFeed animalFeed=new AnimalFeed(feedName,price,consumptionRate,feedUnit);
+        AllMenus.farmAccount.buyItem(animalFeed);
+
+        return null;
+    }
+
+    public static Object[] displayTools(Object[] params) {
+        AllMenus.farmAccount.getFarm().displayTools();
+        return null;
+    }
+
+    public static Object[] displayAnimalFeed(Object[] params) {
+        AllMenus.farmAccount.getFarm().getAnimals().displayAllFeed();
+        return null;
+    }
+
+    public static Object[] displayAnimals(Object[] params) {
+        AllMenus.farmAccount.getFarm().getAnimals().display();
+        return null;
+    }
+
+
 
     public static Object[] addAnimal(Object[] params) {
         System.out.println("Adding animal...");
@@ -133,10 +153,24 @@ public class AllActions {
         return null;
     }
 
-    public static Object[] displayAnimals(Object[] params) {
-        ((Farm)params[0]).displayAnimals();
-        return null;
+    public static String inputString(String message) {
+        System.out.println(message);
+        String input = AllMenus.scanner.nextLine();
+        return input;
     }
 
+    public static int inputInt(String message) {
+        System.out.println(message);
+        int input = AllMenus.scanner.nextInt();
+        AllMenus.scanner.nextLine();
+        return input;
+    }
+
+    public static float inputFloat(String message) {
+        System.out.println(message);
+        float input = AllMenus.scanner.nextFloat();
+        AllMenus.scanner.nextLine();
+        return input;
+    }
 
 }

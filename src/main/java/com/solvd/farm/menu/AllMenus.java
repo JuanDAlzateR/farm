@@ -69,10 +69,10 @@ public class AllMenus {
 
         //Buy Items Menu
         buyMenu.add("Back to previous menu",adminFarmMenu);
-        buyMenu.add("*Buy Tool",AllActions::addBankAccount);
+        buyMenu.add("Buy Tool",AllActions::buyTool);
         buyMenu.add("*Buy Animal Feed ",AllActions::setDefaultBankAccount);
         buyMenu.add("*Buy Animal",AllActions::editBankAccount);
-        buyMenu.add("*Display all tools",AllActions::displayBankAccounts);
+        buyMenu.add("Display all tools",AllActions::displayTools);
         buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
         buyMenu.add("*Display all animals",AllActions::displayBankAccounts);
 

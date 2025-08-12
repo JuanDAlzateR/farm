@@ -1,5 +1,5 @@
 package com.solvd.farm.interfaces;
 
-public interface SearchName {
+public interface ISearchName {
     int indexOfName(String name);
 }

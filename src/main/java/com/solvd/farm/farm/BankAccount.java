@@ -1,9 +1,9 @@
 package com.solvd.farm.farm;
 
 import com.solvd.farm.abstracts.Account;
-import com.solvd.farm.interfaces.Display;
+import com.solvd.farm.interfaces.IDisplay;
 
-public class BankAccount extends Account implements Display {
+public class BankAccount extends Account implements IDisplay {
 
     private String bankName;
     private int accountNumber;

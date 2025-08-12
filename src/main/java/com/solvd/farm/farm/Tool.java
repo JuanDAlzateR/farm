@@ -1,10 +1,10 @@
 package com.solvd.farm.farm;
 
 import com.solvd.farm.abstracts.Purchasable;
-import com.solvd.farm.interfaces.Buy;
-import com.solvd.farm.interfaces.PassTime;
+import com.solvd.farm.interfaces.IBuy;
+import com.solvd.farm.interfaces.IPassTime;
 
-public class Tool extends Purchasable implements PassTime, Buy {
+public class Tool extends Purchasable implements IPassTime, IBuy {
 
     private float wearAndTearPercentage;
     private float wearAndTearPerDay;

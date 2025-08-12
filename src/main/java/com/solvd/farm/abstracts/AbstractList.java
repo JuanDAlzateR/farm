@@ -1,8 +1,8 @@
 package com.solvd.farm.abstracts;
 
-import com.solvd.farm.interfaces.SearchName;
+import com.solvd.farm.interfaces.ISearchName;
 
-public abstract class AbstractList implements SearchName {
+public abstract class AbstractList implements ISearchName {
 
     public AbstractList(){}
 

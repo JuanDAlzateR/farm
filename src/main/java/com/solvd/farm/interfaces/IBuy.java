@@ -2,9 +2,9 @@ package com.solvd.farm.interfaces;
 import com.solvd.farm.farm.Farm;
 import com.solvd.farm.abstracts.Account;
 
-public interface Buy {
+public interface IBuy {
 
-    static boolean buy(Buy item, Account account){
+    static boolean buy(IBuy item, Account account){
         float price=item.getPrice();
         float quantity=item.getQuantity();
 
