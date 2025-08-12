@@ -30,6 +30,20 @@ public class Farm implements PassTime, Display {
         this.tools = tools;
         this.date = LocalDate.now();
         this.animals= new AnimalList();
+        this.farmName="New Farm";
+    }
+
+    public Farm(String farmName) {
+        GrainList grains = new GrainList();
+        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<Crop> crops = new ArrayList<>();
+        ArrayList<Tool> tools = new ArrayList<>();
+        this.grains = grains;
+        this.products = products;
+        this.crops = crops;
+        this.date = date;
+        this.animals= new AnimalList();
+        this.farmName=farmName;
     }
 
     public Farm(LocalDate date) {
@@ -42,6 +56,7 @@ public class Farm implements PassTime, Display {
         this.crops = crops;
         this.date = date;
         this.animals= new AnimalList();
+        this.farmName="New Farm";
     }
 
     public void display() {

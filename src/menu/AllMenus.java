@@ -1,21 +1,34 @@
 package menu;
 
+import farm.*;
 import interfaces.IMenuAction;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AllMenus {
-    private Scanner scanner;
-    private MenuAction mainMenu;
+    static Scanner scanner;
+    static MenuAction mainMenu;
+    static FarmList farmList=new FarmList();
+    static BankAccountList bankAccountList=new BankAccountList();
+    static FarmAccount farmAccount;
 
     public AllMenus() {
+        farm.Farm farm = new farm.Farm();
+        BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
+        FarmAccount account = new FarmAccount(farm,bankAccount);
+        farmAccount=account;
+        farmList.add(farm);
+        bankAccountList.add(bankAccount);
+
+
         this.scanner = new Scanner(System.in);
         ArrayList<String> options = new ArrayList<>();
         ArrayList<IMenuAction> actions = new ArrayList<>();
 
         //First create all the menus, with the name
         MenuAction mainMenu = new MenuAction(scanner, "MAIN MENU");
+        this.mainMenu=mainMenu;
         MenuAction chooseFarmMenu = new MenuAction(scanner, "CHOOSE FARM");
         MenuAction adminAccountsMenu = new MenuAction(scanner, "ADMIN BANK ACCOUNTS");
         MenuAction adminFarmMenu = new MenuAction(scanner, "ADMIN FARM");
@@ -35,26 +48,51 @@ public class AllMenus {
         options.add(2, "Create/Choose Bank Account");
         options.add(3, "Admin Farm");
 
-        mainMenu.setMenu(options, actions);
-        options.clear();
-        actions.clear();
+        mainMenu.setAndClear(options, actions);
 
-        //Admin Farm Menu
+        //Choose Farm Menu
+        actions.add(0, mainMenu);
+        actions.add(1, (params) -> AllActions.newFarm(params));
+        actions.add(2, AllActions::editarAnimal);
+        actions.add(3, AllActions::eliminarAnimal);
+        actions.add(4, (params) -> AllActions.displayFarms(params));
+
+        options.add(0, "Back to previous menu");
+        options.add(1, "Create Farm");
+        options.add(2, "Choose Default Farm");
+        options.add(3, "Edit Farm");
+        options.add(4, "Display all farms");
+
+        chooseFarmMenu.setAndClear(options, actions);
+
+        //Admin Accounts Menu
         actions.add(0, mainMenu);
         actions.add(1, (params) -> AllActions.addAnimal(params));
         actions.add(2, AllActions::editarAnimal);
         actions.add(3, AllActions::eliminarAnimal);
 
         options.add(0, "Back to previous menu");
-        options.add(1, "Create/Choose Farm");
-        options.add(2, "Create/Choose Bank Account");
-        options.add(3, "Admin Farm");
+        options.add(1, "Create Bank Account");
+        options.add(2, "Choose Default Bank Account");
+        options.add(3, "Edit Bank Account");
 
-        adminFarmMenu.setMenu(options, actions);
-        options.clear();
-        actions.clear();
+        adminAccountsMenu.setAndClear(options, actions);
 
-        this.mainMenu=mainMenu;
+        //Admin Farm Menu
+        actions.add(0, mainMenu);
+        actions.add(1, (params) -> AllActions.addAnimal(params));
+        actions.add(2, AllActions::editarAnimal);
+        actions.add(3, AllActions::eliminarAnimal);
+        actions.add(4, AllActions::eliminarAnimal);
+
+        options.add(0, "Back to previous menu");
+        options.add(1, "Buy Items/Animals");
+        options.add(2, "Admin Crops");
+        options.add(3, "Admin Animals");
+        options.add(4, "Sell Products");
+
+        adminFarmMenu.setAndClear(options, actions);
+
     }
 
     public Scanner getScanner() {
@@ -67,6 +105,17 @@ public class AllMenus {
     public void runMainMenu(){
         this.mainMenu.run(this.scanner);
     }
+
+    public void updateDefaults(){
+        String defaultFarmName=AllMenus.farmAccount.getFarm().getFarmName();
+        int farmIndex=farmList.indexOfName(defaultFarmName);
+        farmList.setDefaultFarmIndex(farmIndex);
+
+        int defaultAccountNumber=AllMenus.farmAccount.getBankAccount().getAccountNumber();
+        int accountIndex= bankAccountList.indexOf(defaultAccountNumber);
+        bankAccountList.setDefaultAccountIndex(accountIndex);
+    }
+
 
 
 

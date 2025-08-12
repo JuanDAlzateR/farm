@@ -32,9 +32,10 @@ public class Main {
 //      TreeMenu allMenus = new TreeMenu();
 //      NodeMenu mainMenu=allMenus.getRoot();
 
+
         AllMenus menu = new AllMenus();
         Farm farm =new Farm();
-
+        scanner=menu.getScanner();
         menu.getMainMenu().run();
 
         scanner.close();

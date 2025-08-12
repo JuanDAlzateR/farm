@@ -3,9 +3,25 @@ package menu;
 import animals.FarmAnimals;
 import farm.Farm;
 
-public class AllActions {
+import java.util.Scanner;
 
-    // Métodos que representan acciones del menú
+public class AllActions {
+    //static Scanner scanner;
+
+    // Methods for the menu actions
+    public static Object[] newFarm(Object[] params) {
+        System.out.println("Please type the name of the farm");
+        String farmName = AllMenus.scanner.nextLine();
+        Farm farm=new Farm(farmName);
+        AllMenus.farmList.add(farm);
+        return null;
+    }
+
+    public static Object[] displayFarms(Object[] params) {
+        AllMenus.farmList.display();
+        return null;
+    }
+
     public static Object[] addAnimal(Object[] params) {
         System.out.println("Adding animal...");
         if ((params[0] instanceof Farm)&&(params[1] instanceof FarmAnimals)){
@@ -28,7 +44,8 @@ public class AllActions {
     }
 
     public static Object[] exit(Object[] params) {
-        System.out.println("Saliendo del programa...");
+        System.out.println("Closing...");
+        System.exit(0);
         return null;
     }
 

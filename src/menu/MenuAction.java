@@ -51,11 +51,13 @@ public class MenuAction implements IMenuAction {
         return actions;
     }
 
-    public void setMenu(ArrayList<String> options, ArrayList<IMenuAction> actions) {
+    public void setAndClear(ArrayList<String> options, ArrayList<IMenuAction> actions) {
         this.options = new ArrayList<>(options);
         for (int i = 0; i < actions.size(); i++) {
             this.actions.put(i, actions.get(i));
         }
+        options.clear();
+        actions.clear();
     }
 
     public void displayMenu() {
@@ -70,9 +72,11 @@ public class MenuAction implements IMenuAction {
     public Object[] run(Object... args) {
         int opcion;
         do {
+            System.out.println(" ");
             displayMenu();
             System.out.print("Type an option: ");
             opcion = scanner.nextInt();
+            scanner.nextLine();
 
             IMenuAction action = actions.get(opcion);
             if (action != null) {

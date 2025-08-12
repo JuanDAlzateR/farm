@@ -31,11 +31,13 @@ public class FarmList extends AbstractList {
     }
 
     public void display() {
+        System.out.println();
+        System.out.println("list of all farms");
         for (int i=0; i<this.farms.size();i++) {
             if(i==this.defaultFarmIndex){
-                System.out.println(this.farms.get(i).getFarmName()+ "(Default)");
+                System.out.println("\t"+this.farms.get(i).getFarmName()+ "(Default)");
             }else{
-                System.out.println(this.farms.get(i).getFarmName());
+                System.out.println("\t"+this.farms.get(i).getFarmName());
             }
         }
     }
