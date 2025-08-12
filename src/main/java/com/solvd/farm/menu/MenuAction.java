@@ -10,15 +10,13 @@ import java.util.Scanner;
 public class MenuAction implements IMenuAction {
     private String menuName = "New Menu";
     private Map<Integer, IMenuAction> actions = new HashMap<>();
-    private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> options = new ArrayList<>();
 
     public MenuAction() {
 
     }
 
-    public MenuAction(Scanner scanner, String menuName) {
-        this.scanner=scanner;
+    public MenuAction(String menuName) {
         this.menuName=menuName;
     }
 
@@ -29,8 +27,8 @@ public class MenuAction implements IMenuAction {
         }
     }
 
-    public MenuAction(Scanner scanner, String menuName, ArrayList<String> options, ArrayList<IMenuAction> actions) {
-        this.scanner=scanner;
+    public MenuAction(String menuName, ArrayList<String> options, ArrayList<IMenuAction> actions) {
+
         this.menuName=menuName;
         this.options = options;
         for (int i = 0; i < actions.size(); i++) {
@@ -41,9 +39,7 @@ public class MenuAction implements IMenuAction {
     public String getMenuName() {
         return menuName;
     }
-    public Scanner getScanner() {
-        return scanner;
-    }
+
     public ArrayList<String> getOptions() {
         return options;
     }
@@ -75,8 +71,8 @@ public class MenuAction implements IMenuAction {
             System.out.println(" ");
             displayMenu();
             System.out.print("Type an option: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine();
+            opcion = AllMenus.scanner.nextInt();
+            AllMenus.scanner.nextLine();
 
             IMenuAction action = actions.get(opcion);
             if (action != null) {

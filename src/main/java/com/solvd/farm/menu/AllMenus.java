@@ -26,14 +26,14 @@ public class AllMenus {
         ArrayList<String> options = new ArrayList<>();
         ArrayList<IMenuAction> actions = new ArrayList<>();
 
-        //First create all the menus, with the name
-        MenuAction mainMenu = new MenuAction(scanner, "MAIN MENU");
+        //First create all the menus, with just the name
+        MenuAction mainMenu = new MenuAction("MAIN MENU");
         this.mainMenu=mainMenu;
-        MenuAction chooseFarmMenu = new MenuAction(scanner, "CHOOSE FARM");
-        MenuAction adminAccountsMenu = new MenuAction(scanner, "ADMIN BANK ACCOUNTS");
-        MenuAction adminFarmMenu = new MenuAction(scanner, "ADMIN FARM");
+        MenuAction chooseFarmMenu = new MenuAction("CHOOSE FARM");
+        MenuAction adminAccountsMenu = new MenuAction("ADMIN BANK ACCOUNTS");
+        MenuAction adminFarmMenu = new MenuAction( "ADMIN FARM");
 
-        MenuAction adminAnimalsMenu = new MenuAction(scanner, "ADMIN FARM ANIMALS");
+        MenuAction adminAnimalsMenu = new MenuAction( "ADMIN FARM ANIMALS");
 
         //Now, define each menu, with the options and the actions
 
