@@ -38,60 +38,31 @@ public class AllMenus {
         //Now, define each menu, with the options and the actions
 
         //Main Menu
-        actions.add(0, AllActions::exit);
-        actions.add(1, chooseFarmMenu);
-        actions.add(2, adminAccountsMenu);
-        actions.add(3, adminFarmMenu);
-
-        options.add(0, "Quit or Exit");
-        options.add(1, "Create/Choose Farm");
-        options.add(2, "Create/Choose Bank Account");
-        options.add(3, "Admin Farm");
-
-        mainMenu.setAndClear(options, actions);
+        mainMenu.add("Quit or Exit",AllActions::exit);
+        mainMenu.add("Create/Choose Farm",chooseFarmMenu);
+        mainMenu.add("Create/Choose Bank Account",adminAccountsMenu);
+        mainMenu.add("Admin Farm",adminFarmMenu);
 
         //Choose Farm Menu
-        actions.add(0, mainMenu);
-        actions.add(1, AllActions::newFarm);
-        actions.add(2, AllActions::editarAnimal);
-        actions.add(3, AllActions::eliminarAnimal);
-        actions.add(4, (params) -> AllActions.displayFarms(params));
-
-        options.add(0, "Back to previous menu");
-        options.add(1, "Create Farm");
-        options.add(2, "Choose Default Farm");
-        options.add(3, "Edit Farm");
-        options.add(4, "Display all farms");
-
-        chooseFarmMenu.setAndClear(options, actions);
+        chooseFarmMenu.add("Back to previous menu",mainMenu);
+        chooseFarmMenu.add("Create Farm",AllActions::newFarm);
+        chooseFarmMenu.add("Choose Default Farm",AllActions::editarAnimal);
+        chooseFarmMenu.add("Edit Farm",AllActions::eliminarAnimal);
+        chooseFarmMenu.add("Display all farms",AllActions::eliminarAnimal);
 
         //Admin Accounts Menu
-        actions.add(0, mainMenu);
-        actions.add(1, (params) -> AllActions.addAnimal(params));
-        actions.add(2, AllActions::editarAnimal);
-        actions.add(3, AllActions::eliminarAnimal);
-
-        options.add(0, "Back to previous menu");
-        options.add(1, "Create Bank Account");
-        options.add(2, "Choose Default Bank Account");
-        options.add(3, "Edit Bank Account");
-
-        adminAccountsMenu.setAndClear(options, actions);
+        adminAccountsMenu.add("Back to previous menu",mainMenu);
+        adminAccountsMenu.add("Create Bank Account",(params) -> AllActions.addAnimal(params));
+        adminAccountsMenu.add("Choose Default Bank Account",AllActions::editarAnimal);
+        adminAccountsMenu.add("Edit Bank Account",AllActions::eliminarAnimal);
+        adminAccountsMenu.add("Display all farms",AllActions::eliminarAnimal);
 
         //Admin Farm Menu
-        actions.add(0, mainMenu);
-        actions.add(1, (params) -> AllActions.addAnimal(params));
-        actions.add(2, AllActions::editarAnimal);
-        actions.add(3, AllActions::eliminarAnimal);
-        actions.add(4, AllActions::eliminarAnimal);
-
-        options.add(0, "Back to previous menu");
-        options.add(1, "Buy Items/Animals");
-        options.add(2, "Admin Crops");
-        options.add(3, "Admin Animals");
-        options.add(4, "Sell Products");
-
-        adminFarmMenu.setAndClear(options, actions);
+        adminFarmMenu.add("Back to previous menu",mainMenu);
+        adminFarmMenu.add("Buy Items/Animals",(params) -> AllActions.addAnimal(params));
+        adminFarmMenu.add("Admin Crops",AllActions::editarAnimal);
+        adminFarmMenu.add("Admin Animals",AllActions::eliminarAnimal);
+        adminFarmMenu.add("Sell Products",AllActions::eliminarAnimal);
 
     }
 

@@ -65,6 +65,12 @@ public class MenuAction implements IMenuAction {
         }
     }
 
+    public void add(String option, IMenuAction action) {
+        this.options.add(option);
+        int lenght = actions.size();
+        actions.put(lenght,action);
+    }
+
     public Object[] run(Object... args) {
         int opcion;
         do {
