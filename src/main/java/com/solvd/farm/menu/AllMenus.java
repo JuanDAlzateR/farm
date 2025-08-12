@@ -46,23 +46,23 @@ public class AllMenus {
         //Choose Farm Menu
         chooseFarmMenu.add("Back to previous menu",mainMenu);
         chooseFarmMenu.add("Create Farm",AllActions::newFarm);
-        chooseFarmMenu.add("Choose Default Farm",AllActions::editarAnimal);
-        chooseFarmMenu.add("Edit Farm",AllActions::eliminarAnimal);
+        chooseFarmMenu.add("*Choose Default Farm",AllActions::editarAnimal);
+        chooseFarmMenu.add("*Edit Farm",AllActions::eliminarAnimal);
         chooseFarmMenu.add("Display all farms",AllActions::eliminarAnimal);
 
         //Admin Accounts Menu
         adminAccountsMenu.add("Back to previous menu",mainMenu);
-        adminAccountsMenu.add("Create Bank Account",(params) -> AllActions.addAnimal(params));
-        adminAccountsMenu.add("Choose Default Bank Account",AllActions::editarAnimal);
-        adminAccountsMenu.add("Edit Bank Account",AllActions::eliminarAnimal);
-        adminAccountsMenu.add("Display all farms",AllActions::eliminarAnimal);
+        adminAccountsMenu.add("*Create Bank Account",(params) -> AllActions.addAnimal(params));
+        adminAccountsMenu.add("*Choose Default Bank Account",AllActions::editarAnimal);
+        adminAccountsMenu.add("*Edit Bank Account",AllActions::eliminarAnimal);
+        adminAccountsMenu.add("*Display all farms",AllActions::eliminarAnimal);
 
         //Admin Farm Menu
         adminFarmMenu.add("Back to previous menu",mainMenu);
-        adminFarmMenu.add("Buy Items/Animals",(params) -> AllActions.addAnimal(params));
-        adminFarmMenu.add("Admin Crops",AllActions::editarAnimal);
-        adminFarmMenu.add("Admin Animals",AllActions::eliminarAnimal);
-        adminFarmMenu.add("Sell Products",AllActions::eliminarAnimal);
+        adminFarmMenu.add("*Buy Items/Animals",(params) -> AllActions.addAnimal(params));
+        adminFarmMenu.add("*Admin Crops",AllActions::editarAnimal);
+        adminFarmMenu.add("*Admin Animals",AllActions::eliminarAnimal);
+        adminFarmMenu.add("*Sell Products",AllActions::eliminarAnimal);
 
     }
 
