@@ -30,13 +30,12 @@ public class TreeMenu {
         }
     }
 
-
     public NodeMenu mainMenu(){
-        NodeMenu mainMenu = new NodeMenu("MAIN MENU");
+        NodeMenu mainMenu = new NodeMenu("","MAIN MENU");
         allNodes.add(mainMenu);
 
         NodeMenu createFarm =createFarmMenu(mainMenu);
-        NodeMenu adminBankAccounts =new NodeMenu("","Admin bank accounts");
+        NodeMenu adminBankAccounts =adminBankAccountsMenu(mainMenu);
         NodeMenu adminFarm =adminFarmMenu(mainMenu);
         NodeMenu exit=createExit(mainMenu);
 
@@ -44,18 +43,6 @@ public class TreeMenu {
         mainMenu.add(adminBankAccounts);
         mainMenu.add(adminFarm);
         mainMenu.add(exit);
-
-        return mainMenu;
-    }
-
-    public NodeMenu mainMenu2(){
-        NodeMenu mainMenu = new NodeMenu("MAIN MENU");
-        allNodes.add(mainMenu);
-
-        mainMenu.add(createFarmMenu(mainMenu));
-        mainMenu.add(new NodeMenu("","Admin bank accounts"));
-        mainMenu.add(adminFarmMenu(mainMenu));
-        mainMenu.add(createExit(mainMenu));
 
         return mainMenu;
     }
@@ -72,12 +59,12 @@ public class TreeMenu {
     }
 
     public NodeMenu createFarmMenu(NodeMenu parentMenu){
-        NodeMenu createFarm = new NodeMenu("LIST OF FARMS","Create/Choose farm");
+        NodeMenu createFarm = new NodeMenu("Create/Choose farm","LIST OF FARMS");
         allNodes.add(createFarm);
 
-        NodeMenu newFarm =new NodeMenu("","Create a farm");
-        NodeMenu editFarm =new NodeMenu("","Edit a farm");
-        NodeMenu chooseFarm =new NodeMenu("","Choose the active farm");
+        NodeMenu newFarm =new NodeMenu("Create a farm");
+        NodeMenu editFarm =new NodeMenu("Edit a farm");
+        NodeMenu chooseFarm =new NodeMenu("Choose the active farm");
         NodeMenu goBack =createGoBack(parentMenu);
 
         createFarm.add(newFarm);
@@ -88,13 +75,30 @@ public class TreeMenu {
         return createFarm;
     }
 
+    public NodeMenu adminBankAccountsMenu(NodeMenu parentMenu){
+        NodeMenu adminBankAccounts = new NodeMenu("Admin bank accounts","LIST OF BANK ACCOUNTS");
+        allNodes.add(adminBankAccounts);
+
+        NodeMenu newAccount =new NodeMenu("Create an account");
+        NodeMenu editAccount =new NodeMenu("Edit an account");
+        NodeMenu chooseAccount =new NodeMenu("Choose the default account");
+        NodeMenu goBack =createGoBack(parentMenu);
+
+        adminBankAccounts.add(newAccount);
+        adminBankAccounts.add(editAccount);
+        adminBankAccounts.add(chooseAccount);
+        adminBankAccounts.add(goBack);
+
+        return adminBankAccounts;
+    }
+
     public NodeMenu adminFarmMenu(NodeMenu parentMenu){
-        NodeMenu adminFarm = new NodeMenu("ADMIN FARM","Admin Farm");
+        NodeMenu adminFarm = new NodeMenu("Admin Farm","ADMIN FARM");
         allNodes.add(adminFarm);
 
-        NodeMenu buyItems =new NodeMenu("","Buy items or animals");
-        NodeMenu adminCrops =new NodeMenu("","Admin Crops");
-        NodeMenu sellProducts =new NodeMenu("","Sell products");
+        NodeMenu buyItems =new NodeMenu("Buy items or animals");
+        NodeMenu adminCrops =new NodeMenu("Admin Crops");
+        NodeMenu sellProducts =new NodeMenu("Sell products");
         NodeMenu goBack =createGoBack(parentMenu);
 
         adminFarm.add(buyItems);

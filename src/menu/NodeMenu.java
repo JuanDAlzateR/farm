@@ -4,7 +4,7 @@ import interfaces.Run;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-//change the name of the class for NodeMenu??
+
 public class NodeMenu implements Run {
     private ArrayList<NodeMenu> nodeMenus = new ArrayList<>();
     private String menuName = "New Menu";
@@ -16,10 +16,10 @@ public class NodeMenu implements Run {
     public NodeMenu(){
 
     }
-    public NodeMenu(String name){
-        this.menuName=name;
+    public NodeMenu(String option){
+        this.menuMethod=new MenuMethod(option);
     }
-    public NodeMenu(String name, String option){
+    public NodeMenu(String option, String name){
         this.menuName=name;
         this.menuMethod=new MenuMethod(option);
     }
@@ -40,7 +40,11 @@ public class NodeMenu implements Run {
         this.parent=parent;
         this.height=parent.getHeight()+1;
     }
-
+    public NodeMenu(String option,String menuName,ArrayList<String> options){
+        this.menuName=menuName;
+        this.menuMethod=new MenuMethod(option);
+        this.add(options);
+    }
 
     public NodeMenu getParent() {
         return this.parent;
@@ -51,7 +55,7 @@ public class NodeMenu implements Run {
     public String getMenuName() {
         return menuName;
     }
-    public ArrayList<NodeMenu> getMenuMethods() {
+    public ArrayList<NodeMenu> getNodeMenus() {
         return nodeMenus;
     }
     public MenuMethod getMenuMethod() {
@@ -74,18 +78,36 @@ public class NodeMenu implements Run {
         this.menuMethod = menuMethod;
     }
 
-
     public void add(NodeMenu nodeMenu){
         nodeMenus.add(nodeMenu);
         nodeMenu.setParent(this);
         nodeMenu.setHeight(this.height+1);
     }
 
+    public void add(ArrayList<String> options){
+        for(String option:options){
+            nodeMenus.add(new NodeMenu(option));
+        }
+    }
+
+    public NodeMenu getNode(int index) {
+        return this.nodeMenus.get(index);
+    }
+    public void setChildNode(int index, NodeMenu nodeMenu) {
+        this.nodeMenus.set(index,nodeMenu);
+    }
+
+    public void setChildMethod(int index,MenuMethod method){
+        if(this.getNodeMenus().size()>index){
+            this.getNode(index).setMenuMethod(method);
+        }else{
+            System.out.println("Error, index out of bounds");
+        }
+    }
+
     public boolean isLeaf(){
         return nodeMenus.isEmpty();
     }
-
-
 
     public void display(String indent){
         String indent1=indent;
@@ -101,7 +123,7 @@ public class NodeMenu implements Run {
     }
 
     @Override
-    public void run(Object... args){
+    public Object[] run(Object... args){
         if (this.isLeaf()){
             System.out.println("running method...");
             this.menuMethod.run(args);
@@ -121,13 +143,14 @@ public class NodeMenu implements Run {
                     System.out.println("Type the number of the chosen option:");
                     int option =((Scanner) args[0]).nextInt();
                     System.out.println("------------");
-                    nodeMenus.get(option).run(args);
+                   // Object[] outObject=
+                    Object[] outObject=nodeMenus.get(option).run(args);
                 } else{
                     System.out.println("Execution Error:");
                     System.out.println("To choose an option, an scanner it's needed");
                 }
             }
         }
-
+        return null;
     }
 }

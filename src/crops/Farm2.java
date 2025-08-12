@@ -1,18 +1,17 @@
 package crops;
-import farm.Farm;
 import interfaces.Buy;
 import abstracts.Purchasable;
 
-public class Grain extends Purchasable implements Buy{
+public class Farm2 extends Purchasable implements Buy{
 
-    public Grain(String name, float quantity) {
+    public Farm2(String name, float quantity) {
         super(name,quantity);
     }
-    public Grain(String name, float quantity, float price){
+    public Farm2(String name, float quantity, float price){
         super(name,quantity,price);
 
     }
-    public Grain() {
+    public Farm2() {
         super("New grain",0);
     }
 
@@ -23,9 +22,9 @@ public class Grain extends Purchasable implements Buy{
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Grain)) {
+        if (!(o instanceof Farm2)) {
             return false;
-        } else if (((Grain) o).getName().equals(this.getName())) {
+        } else if (((Farm2) o).getName().equals(this.getName())) {
             return true;
         } else{
             return false;
@@ -49,7 +48,7 @@ public class Grain extends Purchasable implements Buy{
     }
 
     @Override
-    public void addToFarm(Farm farm){
+    public void addToFarm(farm.Farm farm){
         farm.addGrain(this);
     }
 }

@@ -1,7 +1,6 @@
 package crops;
 
 import abstracts.Countable;
-import farm.Farm;
 import interfaces.PassTime;
 
 public class Crop extends Countable implements PassTime {
@@ -17,7 +16,7 @@ public class Crop extends Countable implements PassTime {
         this.growthPerDay = 1F;
     }
 
-    public Crop(Grain grain) {
+    public Crop(Farm2 grain) {
         super(grain.getName(),grain.getQuantity());
         this.germinationRate = 0.5F;
         this.growthPercentage = 0;
@@ -64,7 +63,7 @@ public class Crop extends Countable implements PassTime {
         }
     }
 
-    public void addToFarm(Farm farm){
+    public void addToFarm(farm.Farm farm){
         farm.addCrop(this);
     }
 }

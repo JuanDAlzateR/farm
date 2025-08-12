@@ -1,5 +1,7 @@
 package menu;
 
+import animals.FarmAnimals;
+import farm.Farm;
 import interfaces.Run;
 
 public class MenuMethod implements Run{
@@ -38,8 +40,9 @@ public class MenuMethod implements Run{
     }
 
     @Override
-    public void run(Object... args){
-        this.method.run(args);
+    public Object[] run(Object... args){
+        Object[] outObject=this.method.run(args);
+        return outObject;
     }
 
     public static ExitMethod exitMethod(){
@@ -55,14 +58,18 @@ public class MenuMethod implements Run{
 
 class SimpleMethod implements Run {
     @Override
-    public void run(Object... args){
+    public Object[] run(Object... args){
         System.out.println("Running simple Method");
+        return null;
     }
 }
 class ExitMethod implements Run {
     @Override
-    public void run(Object... args){
+    public Object[] run(Object... args){
         System.out.println("Good bye");
         System.exit(0);
+        return null;
     }
 }
+
+

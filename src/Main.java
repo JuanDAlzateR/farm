@@ -13,8 +13,8 @@ share the progress so far.
 
 import animals.*;
 import crops.*;
+import crops.Farm2;
 import farm.*;
-import interfaces.Run;
 import menu.*;
 
 
@@ -27,15 +27,15 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
 
         Scanner scanner = new Scanner(System.in);
-        int option;
 
-        TreeMenu allMenus = new TreeMenu();
 
-//        allMenus.display();
+//      TreeMenu allMenus = new TreeMenu();
+//      NodeMenu mainMenu=allMenus.getRoot();
 
-        NodeMenu mainMenu=allMenus.getRoot();
+        AllMenus menu = new AllMenus();
+        Farm farm =new Farm();
 
-        mainMenu.run(scanner);
+        menu.getMainMenu().run();
 
         scanner.close();
 
@@ -104,7 +104,7 @@ public class Main {
     }
 
     public static void example(){
-        Farm farm = new Farm();
+        farm.Farm farm = new farm.Farm();
         BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
         FarmAccount account = new FarmAccount(farm,bankAccount);
         account.display();
@@ -114,15 +114,15 @@ public class Main {
         System.out.println(tool);
         System.out.println("-------");
 
-        Grain carrotSeeds = new Grain("Carrots", 100,0.1F);
+        Farm2 carrotSeeds = new Farm2("Carrots", 100,0.1F);
         account.buyItem(carrotSeeds);
 
         farm.sowAllGrains();
         System.out.println("Date:" + farm.getDate() + " carrots sown");
         farm.passTime(30);
 
-        Grain cornSeed = new Grain("Corn", 200, 0.2F);
-        Grain riceSeed = new Grain("Rice", 300, 0.1F);
+        Farm2 cornSeed = new Farm2("Corn", 200, 0.2F);
+        Farm2 riceSeed = new Farm2("Rice", 300, 0.1F);
         account.buyItem(cornSeed);
         account.buyItem(riceSeed);
         farm.sowAllGrains();

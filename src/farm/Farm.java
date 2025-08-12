@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Farm implements PassTime, Display {
 
+    private String farmName;
     private GrainList grains;
     private ArrayList<Product> products;
     private ArrayList<Crop> crops;
@@ -54,7 +55,7 @@ public class Farm implements PassTime, Display {
 
     public void displayGrains() {
         System.out.println("Date:"+getDate()+" - Grains in stock:");
-        for (Grain grain: grains.getList()){
+        for (Farm2 grain: grains.getList()){
             System.out.println(grain);
         }
         System.out.println("-------");
@@ -88,7 +89,11 @@ public class Farm implements PassTime, Display {
         System.out.println("-------");
     }
 
-    public void setGrains( GrainList grains) {
+
+    public void setFarmName(String farmName) {
+        this.farmName = farmName;
+    }
+    public void setGrains(GrainList grains) {
         this.grains = grains;
     }
     public void setProducts( ArrayList<Product> products) {
@@ -107,6 +112,9 @@ public class Farm implements PassTime, Display {
         this.animals = animals;
     }
 
+    public String getFarmName() {
+        return farmName;
+    }
     public GrainList getGrains() {
         return this.grains;
     }
@@ -126,7 +134,7 @@ public class Farm implements PassTime, Display {
         return this.animals;
     }
 
-    public void addGrain(Grain grain) {
+    public void addGrain(Farm2 grain) {
         this.grains.add(grain);
     }
     public void addCrop(Crop crop) {
@@ -161,7 +169,7 @@ public class Farm implements PassTime, Display {
     }
 
     public  void sowAllGrains() {
-        for (Grain grain: grains.getList()){
+        for (Farm2 grain: grains.getList()){
             if (grain.getQuantity()>0) {
                 Crop crop = new Crop(grain);
                 addCrop(crop);

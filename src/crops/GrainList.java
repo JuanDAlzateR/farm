@@ -5,7 +5,7 @@ import abstracts.AbstractList;
 import java.util.ArrayList;
 
 public class GrainList extends AbstractList {
-    private ArrayList<Grain> grains = new ArrayList<>();
+    private ArrayList<Farm2> grains = new ArrayList<>();
 
     /* Looks in the array for the index of item with that name
         If it doesn't find it, it returns -1  */
@@ -19,7 +19,7 @@ public class GrainList extends AbstractList {
         return -1;
     }
 
-    public void add(Grain grain) {
+    public void add(Farm2 grain) {
         int index=indexOfName(grain.getName());
         if (index>-1){
             grains.get(index).addQuantity(grain.getQuantity());
@@ -29,12 +29,12 @@ public class GrainList extends AbstractList {
     }
 
     public void printAll() {
-        for (Grain grain : grains) {
+        for (Farm2 grain : grains) {
             System.out.println(grain);
         }
     }
 
-    public ArrayList<Grain> getList() {
+    public ArrayList<Farm2> getList() {
         return this.grains;
     }
 
