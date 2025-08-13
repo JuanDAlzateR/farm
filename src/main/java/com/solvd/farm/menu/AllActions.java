@@ -1,7 +1,6 @@
 package com.solvd.farm.menu;
 
-import com.solvd.farm.animals.AnimalFeed;
-import com.solvd.farm.animals.FarmAnimals;
+import com.solvd.farm.animals.*;
 import com.solvd.farm.farm.*;
 
 public class AllActions {
@@ -87,24 +86,51 @@ public class AllActions {
         AllMenus.farmAccount.getBankAccount().display();
 
         String toolName = inputString("Please type the name of the tool:");
-        int price = inputInt("Please type the price of the tool:");
+        float price = inputFloat("Please type the price of the tool:");
         Tool tool=new Tool(toolName,price);
         AllMenus.farmAccount.buyItem(tool);
 
         return null;
     }
 
+    //Syntax reminders ;)
     //AnimalFeed chickenFeed = new AnimalFeed("chicken feed", 0.9F, 0.1F, "kg");
     public static Object[] buyAnimalFeed(Object[] params) {
         AllMenus.farmAccount.getFarm().getAnimals().displayAllFeed();
 
         String feedName = inputString("Please type the name of the animal feed:");
         String feedUnit = inputString("Please type the unit of "+feedName+" :");
+        float quantity = inputFloat("Please type how many "+feedUnit+" you want to buy :");
         float price = inputFloat("Please type the price of"+feedName+"for 1" +feedUnit+" :");
         float consumptionRate = inputFloat("What is the consumption of" +feedName+ "for an animal per day:");
 
-        AnimalFeed animalFeed=new AnimalFeed(feedName,price,consumptionRate,feedUnit);
+        AnimalFeed animalFeed=new AnimalFeed(feedName,quantity,consumptionRate,feedUnit);
+        animalFeed.setPrice(price);
         AllMenus.farmAccount.buyItem(animalFeed);
+
+        return null;
+    }
+
+    //Syntax reminders ;)
+    //AnimalFood milk = new AnimalFood("milk", 0, 20, "liters");
+    //FarmAnimals chickens = new Poultry("chickens", 10, egg, chickenFeed);
+    public static Object[] buyAnimal(Object[] params) {
+        //displayAnimals(null);
+
+        String animalName = inputString("Please type the name of the animal to buy:");
+        int quantity = inputInt("Please type how many "+animalName+" you want to buy :");
+        float price = inputFloat("Please type the price of "+animalName+" for only 1 animal :");
+
+        //Temporary implementation, uses default animalFeed and animalFood it needs to change.
+        AnimalFeed animalFeed=new AnimalFeed();
+        animalFeed.setQuantity(10);
+        AnimalFood animalFood=new AnimalFood();
+        animalFood.setQuantity(10);
+
+        //Temporary implementation, the animal it's created as LiveStock, it needs to change be able to add it as the respective class.
+        Livestock animal =new Livestock(animalName,quantity,animalFood,animalFeed);
+        animal.setPrice(price);
+        AllMenus.farmAccount.buyItem(animal);
 
         return null;
     }

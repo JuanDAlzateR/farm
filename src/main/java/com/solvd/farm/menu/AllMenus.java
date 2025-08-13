@@ -63,18 +63,20 @@ public class AllMenus {
         //Admin Farm Menu
         adminFarmMenu.add("Back to previous menu",mainMenu);
         adminFarmMenu.add("Buy Items/Animals",buyMenu);
-        adminFarmMenu.add("*Admin Crops",AllActions::editarAnimal);
-        adminFarmMenu.add("*Admin Animals",AllActions::eliminarAnimal);
-        adminFarmMenu.add("*Sell Products",AllActions::eliminarAnimal);
+
+        //I haven't implemented some features in the menu, I hope to finish this for the next week
+//        adminFarmMenu.add("*Admin Crops",AllActions::editarAnimal);
+//        adminFarmMenu.add("*Admin Animals",AllActions::eliminarAnimal);
+//        adminFarmMenu.add("*Sell Products",AllActions::eliminarAnimal);
 
         //Buy Items Menu
         buyMenu.add("Back to previous menu",adminFarmMenu);
         buyMenu.add("Buy Tool",AllActions::buyTool);
-        buyMenu.add("*Buy Animal Feed ",AllActions::setDefaultBankAccount);
-        buyMenu.add("*Buy Animal",AllActions::editBankAccount);
+        //buyMenu.add("*Buy Animal Feed ",AllActions::buyAnimalFeed);
+        buyMenu.add("Buy Animal",AllActions::buyAnimal);
         buyMenu.add("Display all tools",AllActions::displayTools);
-        buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
-        buyMenu.add("*Display all animals",AllActions::displayBankAccounts);
+        //buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
+        buyMenu.add("Display all animals",AllActions::displayAnimals);
 
         //syntax of  lambda expression: (params) -> AllActions.addAnimal(params)
 

@@ -1,27 +1,28 @@
 package com.solvd.farm.interfaces;
+
 import com.solvd.farm.farm.Farm;
 import com.solvd.farm.abstracts.Account;
 
 public interface IBuy {
 
-    static boolean buy(IBuy item, Account account){
-        float price=item.getPrice();
-        float quantity=item.getQuantity();
+    static boolean buy(IBuy item, Account account) {
+        float price = item.getPrice();
+        float quantity = item.getQuantity();
 
-        if (item.getCurrency().equals(account.getCurrency())){
-            if(account.getBalance()>=price*quantity){
-                account.addBalance(-price*quantity);
+        if (item.getCurrency().equals(account.getCurrency())) {
+            if (account.getBalance() >= price * quantity) {
+                account.addBalance(-price * quantity);
                 System.out.println("Transaction approved");
-                System.out.println("Successfully bought "+item.getQuantity() +" "+ item.getName()+" for total of "+ price*quantity +" "+item.getCurrency());
+                System.out.println("Successfully bought " + item.getQuantity() + " " + item.getName() + " for total of " + price * quantity + " " + item.getCurrency());
                 return true;
-            }else{
+            } else {
                 System.out.println("Transaction denied: Unsufficient founds.");
-                System.out.println("The account needs at least "+price*quantity+" "+item.getCurrency()+" to buy "+item.getName());
+                System.out.println("The account needs at least " + price * quantity + " " + item.getCurrency() + " to buy " + item.getName());
                 return false;
             }
-        } else{
+        } else {
             System.out.println("Error in transaction: different currencies.");
-            System.out.println("Account currency: "+account.getCurrency()+"!= Item currency: "+item.getCurrency());
+            System.out.println("Account currency: " + account.getCurrency() + "!= Item currency: " + item.getCurrency());
             return false;
         }
     }
