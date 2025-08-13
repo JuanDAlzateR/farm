@@ -2,9 +2,9 @@ package com.solvd.farm.animals;
 
 import com.solvd.farm.abstracts.*;
 import com.solvd.farm.farm.Farm;
-import com.solvd.farm.interfaces.Buy;
+import com.solvd.farm.interfaces.IBuy;
 
-public class AnimalFeed extends Purchasable implements Buy{
+public class AnimalFeed extends Purchasable implements IBuy {
 
     private float consumptionRatePerDay;
     private String feedUnit;

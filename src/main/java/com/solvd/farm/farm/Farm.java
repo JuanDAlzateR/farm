@@ -3,13 +3,13 @@ package com.solvd.farm.farm;
 import com.solvd.farm.animals.AnimalList;
 import com.solvd.farm.animals.FarmAnimals;
 import com.solvd.farm.crops.*;
-import com.solvd.farm.interfaces.Display;
-import com.solvd.farm.interfaces.PassTime;
+import com.solvd.farm.interfaces.IDisplay;
+import com.solvd.farm.interfaces.IPassTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Farm implements PassTime, Display {
+public class Farm implements IPassTime, IDisplay {
 
     private String farmName;
     private GrainList grains;
@@ -97,6 +97,7 @@ public class Farm implements PassTime, Display {
         System.out.println("-------");
     }
     public void displayTools() {
+        System.out.println("");
         System.out.println("Date:"+getDate()+" - Tools in farm:");
         for (Tool tool: tools){
             System.out.println(tool);

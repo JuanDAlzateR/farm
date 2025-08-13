@@ -1,10 +1,10 @@
 package com.solvd.farm.crops;
 
-import com.solvd.farm.interfaces.Buy;
+import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.abstracts.Purchasable;
 import com.solvd.farm.farm.Farm;
 
-public class Grain extends Purchasable implements Buy{
+public class Grain extends Purchasable implements IBuy {
 
     public Grain(String name, float quantity) {
         super(name,quantity);

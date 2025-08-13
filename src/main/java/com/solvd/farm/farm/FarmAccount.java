@@ -1,9 +1,9 @@
 package com.solvd.farm.farm;
 
-import com.solvd.farm.interfaces.Buy;
-import com.solvd.farm.interfaces.Display;
+import com.solvd.farm.interfaces.IBuy;
+import com.solvd.farm.interfaces.IDisplay;
 
-public class FarmAccount implements Display {
+public class FarmAccount implements IDisplay {
 
     private BankAccount account;
     private Farm farm;
@@ -34,9 +34,9 @@ public class FarmAccount implements Display {
     public  Farm getFarm(  ) {
         return this.farm;
     }
-    public void buyItem(Buy item){
+    public void buyItem(IBuy item){
         System.out.println(farm.getDate());
-        if (Buy.buy(item,this.account)){
+        if (IBuy.buy(item,this.account)){
             item.addToFarm(this.farm);
             account.shortDisplay();
         }

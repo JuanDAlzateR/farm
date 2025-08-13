@@ -27,9 +27,17 @@ public class AnimalList extends AbstractList {
         }
     }
 
-    public void printAll() {
+    public void display() {
+        System.out.println();
+        System.out.println("list of all animals in the farm");
         for (FarmAnimals animal : animals) {
             System.out.println(animal);
+        }
+    }
+
+    public void displayAllFeed() {
+        for (FarmAnimals animal : animals) {
+            System.out.println(animal.getAnimalFeed());
         }
     }
 

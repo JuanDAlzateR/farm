@@ -2,10 +2,10 @@ package com.solvd.farm.animals;
 
 import com.solvd.farm.abstracts.Purchasable;
 import com.solvd.farm.farm.Farm;
-import com.solvd.farm.interfaces.PassTime;
-import com.solvd.farm.interfaces.Buy;
+import com.solvd.farm.interfaces.IPassTime;
+import com.solvd.farm.interfaces.IBuy;
 
-public abstract class FarmAnimals extends Purchasable implements PassTime, Buy {
+public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy {
 
     private AnimalFood animalFood;
     private AnimalFeed animalFeed;

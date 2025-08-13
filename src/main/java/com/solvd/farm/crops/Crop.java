@@ -1,10 +1,10 @@
 package com.solvd.farm.crops;
 
 import com.solvd.farm.abstracts.Countable;
-import com.solvd.farm.interfaces.PassTime;
+import com.solvd.farm.interfaces.IPassTime;
 import com.solvd.farm.farm.Farm;
 
-public class Crop extends Countable implements PassTime {
+public class Crop extends Countable implements IPassTime {
 
     private float germinationRate;
     private float growthPercentage;
