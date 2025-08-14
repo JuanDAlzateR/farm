@@ -54,13 +54,13 @@ public class Crop extends Countable implements IPassTime {
     }
 
     @Override
-    public  void passTime(int days) {
-        if(this.getQuantity()>0){
-            float newGrowth = this.growthPercentage+this.growthPerDay*days;
+    public void passTime(int days) {
+        if (this.getQuantity() > 0) {
+            float newGrowth = this.growthPercentage + this.growthPerDay * days;
             if (newGrowth >= 100) {
                 newGrowth = 100;
             }
-            this.growthPercentage=newGrowth;
+            this.growthPercentage = newGrowth;
         }
     }
 

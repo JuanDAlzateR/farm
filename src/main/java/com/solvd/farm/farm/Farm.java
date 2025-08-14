@@ -29,8 +29,8 @@ public class Farm implements IPassTime, IDisplay {
         this.crops = crops;
         this.tools = tools;
         this.date = LocalDate.now();
-        this.animals= new AnimalList();
-        this.farmName="New Farm";
+        this.animals = new AnimalList();
+        this.farmName = "New Farm";
     }
 
     public Farm(String farmName) {
@@ -42,8 +42,8 @@ public class Farm implements IPassTime, IDisplay {
         this.products = products;
         this.crops = crops;
         this.date = date;
-        this.animals= new AnimalList();
-        this.farmName=farmName;
+        this.animals = new AnimalList();
+        this.farmName = farmName;
     }
 
     public Farm(LocalDate date) {
@@ -55,8 +55,8 @@ public class Farm implements IPassTime, IDisplay {
         this.products = products;
         this.crops = crops;
         this.date = date;
-        this.animals= new AnimalList();
-        this.farmName="New Farm";
+        this.animals = new AnimalList();
+        this.farmName = "New Farm";
     }
 
     public void display() {
@@ -69,37 +69,41 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void displayGrains() {
-        System.out.println("Date:"+getDate()+" - Grains in stock:");
-        for (Grain grain: grains.getList()){
+        System.out.println("Date:" + getDate() + " - Grains in stock:");
+        for (Grain grain : grains.getList()) {
             System.out.println(grain);
         }
         System.out.println("-------");
     }
+
     public void displayAnimals() {
-        System.out.println("Date:"+getDate()+" - Animals in farm:");
-        for (FarmAnimals animal: animals.getList()){
+        System.out.println("Date:" + getDate() + " - Animals in farm:");
+        for (FarmAnimals animal : animals.getList()) {
             System.out.println(animal);
         }
         System.out.println("-------");
     }
+
     public void displayCrops() {
-        System.out.println("Date:"+getDate()+" - Crops in stock:");
-        for (Crop crop: crops){
+        System.out.println("Date:" + getDate() + " - Crops in stock:");
+        for (Crop crop : crops) {
             System.out.println(crop);
         }
         System.out.println("-------");
     }
+
     public void displayProducts() {
-        System.out.println("Date:"+getDate()+" - Products in stock:");
-        for (Product product: products){
+        System.out.println("Date:" + getDate() + " - Products in stock:");
+        for (Product product : products) {
             System.out.println(product);
         }
         System.out.println("-------");
     }
+
     public void displayTools() {
         System.out.println("");
-        System.out.println("Date:"+getDate()+" - Tools in farm:");
-        for (Tool tool: tools){
+        System.out.println("Date:" + getDate() + " - Tools in farm:");
+        for (Tool tool : tools) {
             System.out.println(tool);
         }
         System.out.println("-------");
@@ -112,19 +116,19 @@ public class Farm implements IPassTime, IDisplay {
     public void setGrains(GrainList grains) {
         this.grains = grains;
     }
-    public void setProducts( ArrayList<Product> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
-    public void setCrops( ArrayList<Crop> crops) {
+    public void setCrops(ArrayList<Crop> crops) {
         this.crops = crops;
     }
-    public void setTools( ArrayList<Tool> tools) {
+    public void setTools(ArrayList<Tool> tools) {
         this.tools = tools;
     }
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public void setAnimals( AnimalList animals) {
+    public void setAnimals(AnimalList animals) {
         this.animals = animals;
     }
 
@@ -167,34 +171,35 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     @Override
-    public  void passTime(int days) {
-        this.date=this.date.plusDays(days);
+    public void passTime(int days) {
+        this.date = this.date.plusDays(days);
 
-        for (Crop crop: crops){
+        for (Crop crop : crops) {
             crop.passTime(days);
         }
-        for (Product product: products){
+        for (Product product : products) {
             product.passTime(days);
         }
-        for (FarmAnimals animal: animals.getList()){
+        for (FarmAnimals animal : animals.getList()) {
             animal.passTime(days);
         }
-        for (Tool tool: tools){
+        for (Tool tool : tools) {
             tool.passTime(days);
         }
     }
 
-    public  void sowAllGrains() {
-        for (Grain grain: grains.getList()){
-            if (grain.getQuantity()>0) {
+    public void sowAllGrains() {
+        for (Grain grain : grains.getList()) {
+            if (grain.getQuantity() > 0) {
                 Crop crop = new Crop(grain);
                 addCrop(crop);
             }
         }
     }
-    public  void harvestAllCrops() {
-        for (Crop crop: crops){
-            if (crop.getGrowthPercentage()>=100) {
+
+    public void harvestAllCrops() {
+        for (Crop crop : crops) {
+            if (crop.getGrowthPercentage() >= 100) {
                 Product product = new Product(crop);
                 addProduct(product);
                 crop.setGrowthPercentage(0F);
@@ -202,8 +207,8 @@ public class Farm implements IPassTime, IDisplay {
         }
     }
 
-    public  void harvestCrop(Crop crop, float price) {
-        if (crop.getGrowthPercentage()>=100) {
+    public void harvestCrop(Crop crop, float price) {
+        if (crop.getGrowthPercentage() >= 100) {
             Product product = new Product(crop);
             product.setPrice(price);
             addProduct(product);
@@ -211,8 +216,8 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Product findProduct(Product product1) {
-        for (Product product: products){
-            if(product.getName().equals(product1.getName())){
+        for (Product product : products) {
+            if (product.getName().equals(product1.getName())) {
                 return product;
             }
         }
@@ -225,24 +230,24 @@ public class Farm implements IPassTime, IDisplay {
      * @return the amount of cash corresponding to the sale,
      * 0 if not enough stock.
      */
-    public  Float sell(Product product, int quantity) {
-        Product foundProduct=findProduct(product);
-        if (foundProduct.equals(null)){
-            System.out.println("crops.Product "+product.getName()+" not in stock");
+    public Float sell(Product product, int quantity) {
+        Product foundProduct = findProduct(product);
+        if (foundProduct.equals(null)) {
+            System.out.println("crops.Product " + product.getName() + " not in stock");
             return 0F;
-        }else if (foundProduct.getQuantity()<quantity){
-            System.out.println("crops.Product "+product.getName()+" without enough stock");
-            System.out.println("Only "+product.getQuantity()+" in stock, unable to sell "+quantity);
+        } else if (foundProduct.getQuantity() < quantity) {
+            System.out.println("crops.Product " + product.getName() + " without enough stock");
+            System.out.println("Only " + product.getQuantity() + " in stock, unable to sell " + quantity);
             return 0F;
-        }else if(foundProduct.getRottenPercentage()>=100){
-            System.out.println("crops.Product "+product.getName()+" it's rotten, unable to sell.");
+        } else if (foundProduct.getRottenPercentage() >= 100) {
+            System.out.println("crops.Product " + product.getName() + " it's rotten, unable to sell.");
             System.out.println("The product will be automatically removed from the system.");
             products.remove(foundProduct);
             return 0F;
-        }else{
-            System.out.println(product.getName()+" successfully sold for "+product.getSellPrice()*quantity);
+        } else {
+            System.out.println(product.getName() + " successfully sold for " + product.getSellPrice() * quantity);
             product.addQuantity(-quantity);
-            return product.getSellPrice()*quantity;
+            return product.getSellPrice() * quantity;
         }
     }
 

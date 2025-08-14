@@ -11,7 +11,7 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     private AnimalFeed animalFeed;
 
     public FarmAnimals() {
-        super("New animal",0);
+        super("New animal", 0);
         this.animalFood = new AnimalFood();
         this.animalFeed = new AnimalFeed();
     }
@@ -23,11 +23,11 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     }
 
     @Override
-    public String toString(){
-        String line= (this.getQuantity() +" "+ this.getName() +" | " +
-                this.animalFeed.getName() + ": %.2f " + this.animalFeed.getFeedUnit() +" | " +
+    public String toString() {
+        String line = (this.getQuantity() + " " + this.getName() + " | " +
+                this.animalFeed.getName() + ": %.2f " + this.animalFeed.getFeedUnit() + " | " +
                 this.animalFood.getName() + ": %.1f " + this.animalFood.getProductionUnit());
-        return String.format(line,this.animalFeed.getQuantity(),this.animalFood.getQuantity());
+        return String.format(line, this.animalFeed.getQuantity(), this.animalFood.getQuantity());
     }
 
     @Override
@@ -36,13 +36,13 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
             return false;
         } else if (((FarmAnimals) o).getName().equals(this.getName())) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return this.getName().hashCode();
     }
 
@@ -61,13 +61,13 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     }
 
     @Override
-    public  void passTime(int days) {
+    public void passTime(int days) {
         this.animalFood.produce(days);
         this.animalFeed.consume(days);
     }
 
     @Override
-    public void addToFarm(Farm farm){
+    public void addToFarm(Farm farm) {
         farm.addAnimal(this);
     }
 

@@ -11,8 +11,8 @@ public class GrainList extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i=0; i< grains.size();i++){
-            if (grains.get(i).getName().equals(name)){
+        for (int i = 0; i < grains.size(); i++) {
+            if (grains.get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -20,10 +20,10 @@ public class GrainList extends AbstractList {
     }
 
     public void add(Grain grain) {
-        int index=indexOfName(grain.getName());
-        if (index>-1){
+        int index = indexOfName(grain.getName());
+        if (index > -1) {
             grains.get(index).addQuantity(grain.getQuantity());
-        }else{
+        } else {
             grains.add(grain);
         }
     }
