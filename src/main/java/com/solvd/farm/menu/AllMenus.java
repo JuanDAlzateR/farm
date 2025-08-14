@@ -1,10 +1,12 @@
 package com.solvd.farm.menu;
 
+import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IMenuAction;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class AllMenus {
     static Scanner scanner;
@@ -12,6 +14,7 @@ public class AllMenus {
     static FarmList farmList=new FarmList();
     static BankAccountList bankAccountList=new BankAccountList();
     static FarmAccount farmAccount;
+
 
     public AllMenus() {
         Farm farm = new Farm();
@@ -89,8 +92,12 @@ public class AllMenus {
         return mainMenu;
     }
 
-    public void runMainMenu(){
-        this.mainMenu.run(this.scanner);
+    public void runMainMenu() throws InvalidOptionException{
+        try {
+            this.mainMenu.run(this.scanner);
+        } catch (InvalidOptionException e) {
+            this.mainMenu.run(this.scanner);
+        }
     }
 
     public void updateDefaults(){
@@ -103,8 +110,4 @@ public class AllMenus {
         bankAccountList.setDefaultAccountIndex(accountIndex);
     }
 
-
-
-
 }
-

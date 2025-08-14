@@ -18,8 +18,8 @@ public class Grain extends Purchasable implements IBuy {
     }
 
     @Override
-    public String toString(){
-        return (this.getQuantity()+ " seeds of "+this.getName());
+    public String toString() {
+        return (this.getQuantity() + " seeds of " + this.getName());
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Grain extends Purchasable implements IBuy {
             return false;
         } else if (((Grain) o).getName().equals(this.getName())) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -38,13 +38,13 @@ public class Grain extends Purchasable implements IBuy {
         return this.getName().hashCode();
     }
 
-    public  void sow( int quantity) {
-        if (quantity<=this.getQuantity() && quantity>=0) {
+    public void sow(int quantity) {
+        if (quantity <= this.getQuantity() && quantity >= 0) {
             this.addQuantity(-quantity);
-        }else if (quantity>=0){
+        } else if (quantity >= 0) {
             this.setQuantity(0);
-            System.out.println("All seeds sown. Quantity of "+this.getName()+" set to 0.");
-        }else{
+            System.out.println("All seeds sown. Quantity of " + this.getName() + " set to 0.");
+        } else {
             System.out.println("Error, you can't sow a negative amount");
         }
     }

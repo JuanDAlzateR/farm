@@ -12,21 +12,21 @@ public class Product extends Purchasable implements IPassTime, IBuy {
     private float sellPrice;
 
     public Product() {
-        super("New crops.Product",0);
+        super("New crops.Product", 0);
         this.rottenPercentage = 0;
         this.rotPerDay = 5F;
     }
 
     public Product(Crop crop) {
-        super(crop.getName(),crop.getExpectedQuantity());
+        super(crop.getName(), crop.getExpectedQuantity());
         this.rottenPercentage = 0;
         this.rotPerDay = 2F;
         crop.setQuantity(0);
     }
 
     @Override
-    public String toString(){
-        return (this.getName() + " | quantity " + getQuantity()+ " | " + this.rottenPercentage + "% of rot");
+    public String toString() {
+        return (this.getName() + " | quantity " + getQuantity() + " | " + this.rottenPercentage + "% of rot");
     }
 
     public void setRottenPercentage(Float Percentage) {
@@ -45,23 +45,23 @@ public class Product extends Purchasable implements IPassTime, IBuy {
     public float getRottenPerDay() {
         return this.rotPerDay;
     }
-    public float getSellPrice( ) {
+    public float getSellPrice() {
         return this.sellPrice;
     }
 
     @Override
-    public  void passTime(int days) {
-        if(this.getQuantity()>0){
-            float newRot = this.rottenPercentage +this.rotPerDay *days;
+    public void passTime(int days) {
+        if (this.getQuantity() > 0) {
+            float newRot = this.rottenPercentage + this.rotPerDay * days;
             if (newRot >= 100) {
                 newRot = 100;
             }
-            this.rottenPercentage =newRot;
+            this.rottenPercentage = newRot;
         }
     }
 
     @Override
-    public void addToFarm(Farm farm){
+    public void addToFarm(Farm farm) {
         farm.addProduct(this);
     }
 

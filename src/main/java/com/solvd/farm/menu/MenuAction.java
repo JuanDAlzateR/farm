@@ -1,5 +1,7 @@
 package com.solvd.farm.menu;
 
+import com.solvd.farm.Main;
+import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.interfaces.IMenuAction;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class MenuAction implements IMenuAction {
     }
 
     public MenuAction(String menuName) {
-        this.menuName=menuName;
+        this.menuName = menuName;
     }
 
     public MenuAction(ArrayList<String> options, ArrayList<IMenuAction> actions) {
@@ -29,7 +31,7 @@ public class MenuAction implements IMenuAction {
 
     public MenuAction(String menuName, ArrayList<String> options, ArrayList<IMenuAction> actions) {
 
-        this.menuName=menuName;
+        this.menuName = menuName;
         this.options = options;
         for (int i = 0; i < actions.size(); i++) {
             this.actions.put(i, actions.get(i));
@@ -43,6 +45,7 @@ public class MenuAction implements IMenuAction {
     public ArrayList<String> getOptions() {
         return options;
     }
+
     public Map<Integer, IMenuAction> getActions() {
         return actions;
     }
@@ -68,23 +71,26 @@ public class MenuAction implements IMenuAction {
     public void add(String option, IMenuAction action) {
         this.options.add(option);
         int lenght = actions.size();
-        actions.put(lenght,action);
+        actions.put(lenght, action);
     }
 
-    public Object[] run(Object... args) {
+    public Object[] run(Object... args) throws InvalidOptionException {
         int opcion;
         do {
             System.out.println(" ");
             displayMenu();
-            System.out.print("Type an option: ");
-            opcion = AllMenus.scanner.nextInt();
-            AllMenus.scanner.nextLine();
+
+            opcion = AllActions.inputInt("Type an option: ");
 
             IMenuAction action = actions.get(opcion);
+
             if (action != null) {
                 action.run(args);
             } else {
-                System.out.println("Invalid option.");
+                Main.LOGGER.warn("Invalid input option in " + this.menuName + " menu");
+                this.run(args);
+                throw new InvalidOptionException();
+                //System.out.println("Invalid option.");
             }
         } while (opcion != 0);
         return null;

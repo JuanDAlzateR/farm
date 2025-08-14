@@ -16,13 +16,13 @@ public class Tool extends Purchasable implements IPassTime, IBuy {
     }
 
     public Tool(String name, float price) {
-        super(name,1,price);
+        super(name, 1, price);
         this.wearAndTearPercentage = 0;
         this.wearAndTearPerDay = 0.1F;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return (this.getName() + " | " + this.wearAndTearPercentage + "% of wear and tear");
     }
 
@@ -42,15 +42,15 @@ public class Tool extends Purchasable implements IPassTime, IBuy {
 
     @Override
     public void passTime(int days) {
-        float newPercentage = this.wearAndTearPercentage +this.wearAndTearPerDay *days;
+        float newPercentage = this.wearAndTearPercentage + this.wearAndTearPerDay * days;
         if (newPercentage >= 100) {
             newPercentage = 100;
         }
-        this.wearAndTearPercentage =newPercentage;
+        this.wearAndTearPercentage = newPercentage;
     }
 
     @Override
-    public void addToFarm(Farm farm){
+    public void addToFarm(Farm farm) {
         farm.addTool(this);
     }
 

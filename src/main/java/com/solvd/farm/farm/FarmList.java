@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class FarmList extends AbstractList {
     private ArrayList<Farm> farms = new ArrayList<>();
-    private int defaultFarmIndex=0;
+    private int defaultFarmIndex = 0;
 
     /* Looks in the array for the index of item with that name
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i = 0; i< farms.size(); i++){
-            if (farms.get(i).getFarmName().equals(name)){
+        for (int i = 0; i < farms.size(); i++) {
+            if (farms.get(i).getFarmName().equals(name)) {
                 return i;
             }
         }
@@ -23,10 +23,10 @@ public class FarmList extends AbstractList {
     }
 
     public void add(Farm farm) {
-        int index=indexOfName(farm.getFarmName());
-        if (index>-1){
+        int index = indexOfName(farm.getFarmName());
+        if (index > -1) {
             System.out.println("Error: There is a farm with that name already");
-        }else{
+        } else {
             farms.add(farm);
         }
     }
@@ -34,11 +34,11 @@ public class FarmList extends AbstractList {
     public void display() {
         System.out.println();
         System.out.println("list of all farms");
-        for (int i=0; i<this.farms.size();i++) {
-            if(i==this.defaultFarmIndex){
-                System.out.println("\t"+this.farms.get(i).getFarmName()+ "(Default)");
-            }else{
-                System.out.println("\t"+this.farms.get(i).getFarmName());
+        for (int i = 0; i < this.farms.size(); i++) {
+            if (i == this.defaultFarmIndex) {
+                System.out.println("\t" + this.farms.get(i).getFarmName() + "(Default)");
+            } else {
+                System.out.println("\t" + this.farms.get(i).getFarmName());
             }
         }
     }
@@ -46,11 +46,11 @@ public class FarmList extends AbstractList {
     public void displayWithIndex() {
         System.out.println();
         System.out.println("list of all farms");
-        for (int i=0; i<this.farms.size();i++) {
-            if(i==this.defaultFarmIndex){
-                System.out.println("\t"+i+") "+this.farms.get(i).getFarmName()+ "(Default)");
-            }else{
-                System.out.println("\t"+i+") "+this.farms.get(i).getFarmName());
+        for (int i = 0; i < this.farms.size(); i++) {
+            if (i == this.defaultFarmIndex) {
+                System.out.println("\t" + i + ") " + this.farms.get(i).getFarmName() + "(Default)");
+            } else {
+                System.out.println("\t" + i + ") " + this.farms.get(i).getFarmName());
             }
         }
     }
@@ -60,10 +60,11 @@ public class FarmList extends AbstractList {
     }
 
     public void setDefaultFarmIndex(int index) {
-        if (0<=index && index<this.farms.size()){
+        if (0 <= index && index < this.farms.size()) {
             this.defaultFarmIndex = index;
-        }else{
-            Main.LOGGER.error("FarmIndexOutOfBounds");
+        } else {
+            //Posibility for another exception
+            Main.LOGGER.error("FarmIndex Out Of Bounds");
         }
 
     }
@@ -71,7 +72,8 @@ public class FarmList extends AbstractList {
     public int getDefaultFarmIndex() {
         return defaultFarmIndex;
     }
-    public Farm getDefaultFarm(){
+
+    public Farm getDefaultFarm() {
         return this.farms.get(this.defaultFarmIndex);
     }
 }

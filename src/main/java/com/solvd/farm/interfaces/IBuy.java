@@ -5,6 +5,12 @@ import com.solvd.farm.abstracts.Account;
 
 public interface IBuy {
 
+    float getPrice();
+    String getName();
+    String getCurrency();
+    float getQuantity();
+    void addToFarm(Farm farm);
+
     static boolean buy(IBuy item, Account account) {
         float price = item.getPrice();
         float quantity = item.getQuantity();
@@ -27,9 +33,4 @@ public interface IBuy {
         }
     }
 
-    float getPrice();
-    String getName();
-    String getCurrency();
-    float getQuantity();
-    void addToFarm(Farm farm);
 }

@@ -1,18 +1,13 @@
-/* Last update 07/Aug/2025
-I created packages, so the classes and files would be a little more organized
-The interfaces could be improved, I think Buy it's well implemented, but the
-other interfaces just check if the classes have the respective methods.
+/* Last update 14/Aug/2025
+I restructured the project, and implemented the interfaces.
+I added Log4j and exception handling.
 
-I hope to implement a user menu.Menu using Scanner
-(a menu.Menu that is useful and not to complicated)
-
-I'll continue working on the code, so far I haven't implemented all
-changes and suggestions (from the last time), but still I wanted to
-share the progress so far.
+I started the implementation of a user menu using Scanner
  */
 
 package com.solvd.farm;
 
+import com.solvd.farm.exceptions.InvalidOptionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,17 +30,24 @@ public class Main {
 
 //        LOGGER.info("This is info message");
 
-
         AllMenus menu = new AllMenus();
 
         Scanner scanner=menu.getScanner();
-        menu.getMainMenu().run();
-
+        try {
+            menu.getMainMenu().run();
+        }catch (InvalidOptionException e){
+            LOGGER.warn("invalid option input.");
+        }
         scanner.close();
 
     }
 
+    /* This method is just an example of the functionality if the code,
+    right now it's not called in main.
+    Maybe later it could be implemented in an automated test or something similar
+     */
     public static void example(){
+
         Farm farm = new Farm();
         BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
         FarmAccount account = new FarmAccount(farm,bankAccount);

@@ -10,8 +10,8 @@ public class AnimalList extends AbstractList {
     If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i = 0; i< animals.size(); i++){
-            if (animals.get(i).getName().equals(name)){
+        for (int i = 0; i < animals.size(); i++) {
+            if (animals.get(i).getName().equals(name)) {
                 return i;
             }
         }
@@ -19,10 +19,10 @@ public class AnimalList extends AbstractList {
     }
 
     public void add(FarmAnimals animal) {
-        int index=indexOfName(animal.getName());
-        if (index>-1){
+        int index = indexOfName(animal.getName());
+        if (index > -1) {
             animals.get(index).addQuantity(animal.getQuantity());
-        }else{
+        } else {
             animals.add(animal);
         }
     }
