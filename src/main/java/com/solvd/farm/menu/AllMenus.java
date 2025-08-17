@@ -5,6 +5,7 @@ import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IMenuAction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -41,6 +42,8 @@ public class AllMenus {
         MenuAction adminAnimalsMenu = new MenuAction( "ADMIN FARM ANIMALS");
         MenuAction sellMenu = new MenuAction( "SELL PRODUCTS");
 
+        MenuAction buyAnimalMenu = new MenuAction( "BUY ANIMALS");
+
         //Now, define each menu, with the options and the actions
 
         //Main Menu
@@ -76,10 +79,19 @@ public class AllMenus {
         buyMenu.add("Back to previous menu",adminFarmMenu);
         buyMenu.add("Buy Tool",AllActions::buyTool);
         //buyMenu.add("*Buy Animal Feed ",AllActions::buyAnimalFeed);
-        buyMenu.add("Buy Animal",AllActions::buyAnimal);
+        buyMenu.add("Buy Animal",buyAnimalMenu);
         buyMenu.add("Display all tools",AllActions::displayTools);
         //buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
         buyMenu.add("Display all animals",AllActions::displayAnimals);
+
+        //Buy Animal Menu
+        Object[] params = new Object[5];
+        buyAnimalMenu.add("Back to previous menu",buyMenu);
+        buyAnimalMenu.add("Aquaculture", AllActions::newAquaculture);
+        buyAnimalMenu.add("Equines",buyAnimalMenu);
+        buyAnimalMenu.add("Livestock",AllActions::displayTools);
+        buyAnimalMenu.add("Others",AllActions::displayAnimals);
+
 
         //syntax of  lambda expression: (params) -> AllActions.addAnimal(params)
 

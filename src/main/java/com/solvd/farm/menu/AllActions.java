@@ -7,6 +7,7 @@ import com.solvd.farm.exceptions.InvalidIntException;
 import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
 import com.solvd.farm.exceptions.InvalidNameException;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.interfaces.IMenuAction;
 
 public class AllActions {
     //static Scanner scanner;
@@ -103,7 +104,7 @@ public class AllActions {
     //Syntax reminders ;)
     //AnimalFeed chickenFeed = new AnimalFeed("chicken feed", 0.9F, 0.1F, "kg");
     public static Object[] buyAnimalFeed(Object[] params) {
-        AllMenus.farmAccount.getFarm().getAnimals().displayAllFeed();
+        AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
 
         String feedName = inputName("Please type the name of the animal feed:");
         String feedUnit = inputName("Please type the unit of " + feedName + " :");
@@ -121,7 +122,7 @@ public class AllActions {
     //Syntax reminders ;)
     //AnimalFood milk = new AnimalFood("milk", 0, 20, "liters");
     //FarmAnimals chickens = new Poultry("chickens", 10, egg, chickenFeed);
-    public static Object[] buyAnimal(Object[] params) {
+    public static void buyAnimal(FarmAnimals animal) {
         //displayAnimals(null);
 
         String animalName = inputName("Please type the name of the animal to buy:");
@@ -135,9 +136,46 @@ public class AllActions {
         animalFood.setQuantity(10);
 
         //Temporary implementation, the animal it's created as LiveStock, it needs to change be able to add it as the respective class.
-        Livestock animal = new Livestock(animalName, quantity, animalFood, animalFeed);
+        animal.setAnimal(animalName, quantity, animalFood, animalFeed);
         animal.setPrice(price);
         AllMenus.farmAccount.buyItem(animal);
+
+    }
+
+    public static <T extends FarmAnimals> T createAnimal(Class<T> animalClass){
+        //Temporary implementation, uses default animalFeed and animalFood it needs to change.
+        AnimalFeed animalFeed = new AnimalFeed();
+        animalFeed.setQuantity(10);
+        AnimalFood animalFood = new AnimalFood();
+        animalFood.setQuantity(10);
+
+        try {
+            //creations of the new animal
+            return animalClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Animal not created"+e.getMessage(),e);
+        }
+    }
+
+    public static Object[] newAnimal(Object[] params){
+        FarmAnimals animal;
+        if(params.equals("Aquaculture")){
+            animal=createAnimal(Aquaculture.class);
+            AllMenus.farmAccount.getFarm().addAnimal(animal);
+            System.out.println("ensayo");
+            //buyAnimal(animal);
+        }
+
+
+        return null;
+    }
+
+    public static Object[] newAquaculture(Object[] params){
+        FarmAnimals animal;
+        animal=createAnimal(Aquaculture.class);
+        //AllMenus.farmAccount.getFarm().addAnimal(animal);
+        System.out.println("ensayo");
+        buyAnimal(animal);
 
         return null;
     }
@@ -148,12 +186,12 @@ public class AllActions {
     }
 
     public static Object[] displayAnimalFeed(Object[] params) {
-        AllMenus.farmAccount.getFarm().getAnimals().displayAllFeed();
+        AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
         return null;
     }
 
     public static Object[] displayAnimals(Object[] params) {
-        AllMenus.farmAccount.getFarm().getAnimals().display();
+        AllMenus.farmAccount.getFarm().getAllAnimals().display();
         return null;
     }
 

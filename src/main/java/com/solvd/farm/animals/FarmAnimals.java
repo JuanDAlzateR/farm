@@ -52,6 +52,12 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     public void setAnimalFeed(AnimalFeed Percentage) {
         this.animalFeed = Percentage;
     }
+    public void setAnimal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
+        this.setName(name);
+        this.setQuantity(quantity);
+        this.animalFood=animalFood;
+        this.animalFeed = animalFeed;
+    }
 
     public AnimalFood getAnimalFood() {
         return this.animalFood;

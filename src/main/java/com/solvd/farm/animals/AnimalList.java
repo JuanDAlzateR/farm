@@ -1,10 +1,11 @@
 package com.solvd.farm.animals;
 
 import com.solvd.farm.abstracts.AbstractList;
+
 import java.util.ArrayList;
 
-public class AnimalList extends AbstractList {
-    private ArrayList<FarmAnimals> animals = new ArrayList<>();
+public class AnimalList<T extends FarmAnimals>extends AbstractList {
+    private ArrayList<T> animals = new ArrayList<>();
 
     /* Looks in the array for the index of item with that name
     If it doesn't find it, it returns -1  */
@@ -18,7 +19,7 @@ public class AnimalList extends AbstractList {
         return -1;
     }
 
-    public void add(FarmAnimals animal) {
+    public void add(T animal) {
         int index = indexOfName(animal.getName());
         if (index > -1) {
             animals.get(index).addQuantity(animal.getQuantity());
@@ -29,20 +30,50 @@ public class AnimalList extends AbstractList {
 
     public void display() {
         System.out.println();
-        System.out.println("list of all animals in the farm");
-        for (FarmAnimals animal : animals) {
+        System.out.println("list of "+getNameOfClass()+" animals in the farm");
+
+        for (T animal : animals) {
             System.out.println(animal);
         }
     }
 
     public void displayAllFeed() {
-        for (FarmAnimals animal : animals) {
+        for (T animal : animals) {
             System.out.println(animal.getAnimalFeed());
         }
     }
 
-    public ArrayList<FarmAnimals> getList() {
+    public ArrayList<T> getList() {
         return this.animals;
+    }
+
+    public String getNameOfClass(){
+
+        if (animals.size()>0){
+            if (animals.get(0) instanceof Livestock){
+               return "Livestock";
+            }
+            if (animals.get(0) instanceof Aquaculture){
+                return "Aquaculture";
+            }
+            if (animals.get(0) instanceof Equines){
+                return "Equines";
+            }
+            if (animals.get(0) instanceof Poultry){
+                return "Poultry";
+            }
+            if (animals.get(0) instanceof Others){
+                return "Others";
+            }
+        }
+        return "Undefinied";
+
+    }
+
+    public void passTime(int days){
+        for (FarmAnimals animal : animals) {
+            animal.passTime(days);
+        }
     }
 
 }

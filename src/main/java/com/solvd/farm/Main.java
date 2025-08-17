@@ -33,6 +33,7 @@ public class Main {
         AllMenus menu = new AllMenus();
 
         Scanner scanner=menu.getScanner();
+
         try {
             menu.getMainMenu().run();
         }catch (InvalidOptionException e){
