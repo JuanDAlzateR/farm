@@ -341,4 +341,14 @@ public class AllActions {
         return validateInput;
     }
 
+    public static <T extends FarmAnimals> IMenuAction createAction(Class<T> animalClass){
+                IMenuAction Act = (args) -> {
+                FarmAnimals animal;
+                animal=createAnimal(animalClass);
+                buyAnimal(animal);
+                return null;
+                };
+                return Act;
+    }
+
 }

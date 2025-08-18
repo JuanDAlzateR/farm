@@ -1,5 +1,6 @@
 package com.solvd.farm.menu;
 
+import com.solvd.farm.animals.*;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IMenuAction;
@@ -85,12 +86,11 @@ public class AllMenus {
         buyMenu.add("Display all animals",AllActions::displayAnimals);
 
         //Buy Animal Menu
-        Object[] params = new Object[5];
         buyAnimalMenu.add("Back to previous menu",buyMenu);
-        buyAnimalMenu.add("Aquaculture", AllActions::newAquaculture);
-        buyAnimalMenu.add("Equines",buyAnimalMenu);
-        buyAnimalMenu.add("Livestock",AllActions::displayTools);
-        buyAnimalMenu.add("Others",AllActions::displayAnimals);
+        buyAnimalMenu.add("Aquaculture", AllActions.createAction(Aquaculture.class));
+        buyAnimalMenu.add("Equines",AllActions.createAction(Equines.class));
+        buyAnimalMenu.add("Livestock",AllActions.createAction(Livestock.class));
+        buyAnimalMenu.add("Others",AllActions.createAction(Others.class));
 
 
         //syntax of  lambda expression: (params) -> AllActions.addAnimal(params)
