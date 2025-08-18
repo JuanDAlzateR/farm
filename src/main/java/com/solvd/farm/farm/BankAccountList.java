@@ -57,6 +57,23 @@ public class BankAccountList {
         }
     }
 
+    public void displayWithBalance() {
+        System.out.println();
+        System.out.println("list of all bank accounts");
+        for (int i = 0; i < this.bankAccounts.size(); i++) {
+            int accountNumber = this.bankAccounts.get(i).getAccountNumber();
+            String bankName = this.bankAccounts.get(i).getBankName();
+            float balance= this.bankAccounts.get(i).getBalance();
+            if (i == this.defaultAccountIndex) {
+                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
+                        "- Balance: "+ balance + " (Default Account)");
+            } else {
+                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
+                        "- Balance: "+ balance);
+            }
+        }
+    }
+
     public ArrayList<BankAccount> getList() {
         return this.bankAccounts;
     }

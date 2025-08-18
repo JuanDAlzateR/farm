@@ -9,6 +9,12 @@ public interface IBuy {
     String getName();
     String getCurrency();
     float getQuantity();
+
+    void setPrice(float price);
+    void setName(String name);
+    void setCurrency(String currency);
+    void setQuantity(float quantity);
+
     void addToFarm(Farm farm);
 
     static boolean buy(IBuy item, Account account) {

@@ -26,7 +26,7 @@ public abstract class Purchasable extends Countable{
         this.currency="usd";
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(float price) {
         this.pricePer1Unit = price;
     }
     public void setCurrency(String currency) {

@@ -66,7 +66,7 @@ public class AnimalList<T extends FarmAnimals>extends AbstractList {
                 return "Others";
             }
         }
-        return "Undefinied";
+        return "(Empty List)";
 
     }
 

@@ -7,6 +7,7 @@ import com.solvd.farm.exceptions.InvalidIntException;
 import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
 import com.solvd.farm.exceptions.InvalidNameException;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
 
 public class AllActions {
@@ -90,6 +91,11 @@ public class AllActions {
         return null;
     }
 
+    public static Object[] displayAccountsBalance(Object[] params) {
+        AllMenus.bankAccountList.displayWithBalance();
+        return null;
+    }
+
     public static Object[] buyTool(Object[] params) {
         AllMenus.farmAccount.getBankAccount().display();
 
@@ -99,6 +105,38 @@ public class AllActions {
         AllMenus.farmAccount.buyItem(tool);
 
         return null;
+    }
+
+    public static void buyItem(IBuy item) {
+        AllMenus.farmAccount.getBankAccount().display();
+
+        String itemName = inputName("Please type the name of the item to buy:");
+        float quantity = inputFloat("Please type how many " + itemName + " you want to buy :");
+        float price = inputFloat("Please type the price of" + itemName + "for 1 unit :");
+        item.setName(itemName);
+        item.setQuantity(quantity);
+        item.setPrice(price);
+        AllMenus.farmAccount.buyItem(item);
+
+    }
+
+    public static <T extends IBuy> IMenuAction buyItemAction(Class<T> itemClass){
+        IMenuAction Act = (args) -> {
+            T item=createItem(itemClass);
+            buyItem(item);
+            return null;
+        };
+        return Act;
+    }
+
+    public static <T extends IBuy> T createItem(Class<T> itemClass){
+
+        try {
+            //creations of the new animal
+            return itemClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Item not created"+e.getMessage(),e);
+        }
     }
 
     //Syntax reminders ;)
@@ -157,27 +195,14 @@ public class AllActions {
         }
     }
 
-    public static Object[] newAnimal(Object[] params){
-        FarmAnimals animal;
-        if(params.equals("Aquaculture")){
-            animal=createAnimal(Aquaculture.class);
-            AllMenus.farmAccount.getFarm().addAnimal(animal);
-            System.out.println("ensayo");
-            //buyAnimal(animal);
-        }
-
-
-        return null;
-    }
-
-    public static Object[] newAquaculture(Object[] params){
-        FarmAnimals animal;
-        animal=createAnimal(Aquaculture.class);
-        //AllMenus.farmAccount.getFarm().addAnimal(animal);
-        System.out.println("ensayo");
-        buyAnimal(animal);
-
-        return null;
+    public static <T extends FarmAnimals> IMenuAction buyAnimalAction(Class<T> animalClass){
+        IMenuAction Act = (args) -> {
+            FarmAnimals animal;
+            animal=createAnimal(animalClass);
+            buyAnimal(animal);
+            return null;
+        };
+        return Act;
     }
 
     public static Object[] displayTools(Object[] params) {
@@ -205,14 +230,14 @@ public class AllActions {
         return null;
     }
 
-    public static Object[] editarAnimal(Object[] params) {
-        System.out.println("Editando animal...");
+    public static Object[] editAnimal(Object[] params) {
+        System.out.println("Edit animal...");
         // lógica aquí
         return null;
     }
 
-    public static Object[] eliminarAnimal(Object[] params) {
-        System.out.println("Eliminando animal...");
+    public static Object[] eliminateAnimal(Object[] params) {
+        System.out.println("Eliminate animal...");
         // lógica aquí
         return null;
     }
@@ -341,14 +366,5 @@ public class AllActions {
         return validateInput;
     }
 
-    public static <T extends FarmAnimals> IMenuAction createAction(Class<T> animalClass){
-                IMenuAction Act = (args) -> {
-                FarmAnimals animal;
-                animal=createAnimal(animalClass);
-                buyAnimal(animal);
-                return null;
-                };
-                return Act;
-    }
 
 }

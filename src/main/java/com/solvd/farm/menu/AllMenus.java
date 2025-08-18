@@ -1,14 +1,13 @@
 package com.solvd.farm.menu;
 
 import com.solvd.farm.animals.*;
+import com.solvd.farm.crops.Grain;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IMenuAction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class AllMenus {
     static Scanner scanner;
@@ -66,6 +65,7 @@ public class AllMenus {
         adminAccountsMenu.add("Choose Default Bank Account",AllActions::setDefaultBankAccount);
         adminAccountsMenu.add("Edit Bank Account",AllActions::editBankAccount);
         adminAccountsMenu.add("Display all bank accounts",AllActions::displayBankAccounts);
+        adminAccountsMenu.add("Display accounts balance",AllActions::displayAccountsBalance);
 
         //Admin Farm Menu
         adminFarmMenu.add("Back to previous menu",mainMenu);
@@ -78,22 +78,21 @@ public class AllMenus {
 
         //Buy Items Menu
         buyMenu.add("Back to previous menu",adminFarmMenu);
-        buyMenu.add("Buy Tool",AllActions::buyTool);
+        buyMenu.add("Buy Tool",AllActions.buyItemAction(Tool.class));
         //buyMenu.add("*Buy Animal Feed ",AllActions::buyAnimalFeed);
         buyMenu.add("Buy Animal",buyAnimalMenu);
+        buyMenu.add("Buy Grain",AllActions.buyItemAction(Grain.class));
         buyMenu.add("Display all tools",AllActions::displayTools);
         //buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
         buyMenu.add("Display all animals",AllActions::displayAnimals);
 
         //Buy Animal Menu
         buyAnimalMenu.add("Back to previous menu",buyMenu);
-        buyAnimalMenu.add("Aquaculture", AllActions.createAction(Aquaculture.class));
-        buyAnimalMenu.add("Equines",AllActions.createAction(Equines.class));
-        buyAnimalMenu.add("Livestock",AllActions.createAction(Livestock.class));
-        buyAnimalMenu.add("Others",AllActions.createAction(Others.class));
-
-
-        //syntax of  lambda expression: (params) -> AllActions.addAnimal(params)
+        buyAnimalMenu.add("Aquaculture", AllActions.buyAnimalAction(Aquaculture.class));
+        buyAnimalMenu.add("Equines",AllActions.buyAnimalAction(Equines.class));
+        buyAnimalMenu.add("Livestock",AllActions.buyAnimalAction(Livestock.class));
+        buyAnimalMenu.add("Poultry",AllActions.buyAnimalAction(Poultry.class));
+        buyAnimalMenu.add("Others",AllActions.buyAnimalAction(Others.class));
 
     }
 
