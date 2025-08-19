@@ -1,10 +1,14 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.Account;
 import com.solvd.farm.interfaces.IDisplay;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BankAccount extends Account implements IDisplay {
 
+    public static final Logger LOGGER = LogManager.getLogger(BankAccount.class);
     private String bankName;
     private int accountNumber;
 
@@ -21,15 +25,15 @@ public class BankAccount extends Account implements IDisplay {
     }
 
     public void display() {
-        System.out.println("Account Nickname: " + this.getNickname());
-        System.out.println("Bank:" + this.bankName + "   Account Number: " + this.accountNumber);
-        System.out.printf("Balance: %.2f " + this.getCurrency() + "%n", this.getBalance());
-        System.out.println("-------");
+        LOGGER.info("Account Nickname: " + this.getNickname());
+        LOGGER.info("Bank:" + this.bankName + "   Account Number: " + this.accountNumber);
+        LOGGER.info(String.format("Balance: %.2f " + this.getCurrency() + "%n", this.getBalance()));
+        LOGGER.info("-------");
     }
 
     public void shortDisplay() {
-        System.out.printf("Account #: " + this.accountNumber + "  Balance: %.2f " + this.getCurrency() + "%n", this.getBalance());
-        System.out.println("-------");
+        LOGGER.info(String.format("Account #: " + this.accountNumber + "  Balance: %.2f " + this.getCurrency() + "%n", this.getBalance()));
+        LOGGER.info("-------");
     }
 
     public void setBankName(String bankName) {

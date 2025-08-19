@@ -1,11 +1,15 @@
 package com.solvd.farm.crops;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.abstracts.Purchasable;
 import com.solvd.farm.farm.Farm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Grain extends Purchasable implements IBuy {
 
+    public static final Logger LOGGER = LogManager.getLogger(Grain.class);
     public Grain(String name, float quantity) {
         super(name,quantity);
     }
@@ -43,9 +47,9 @@ public class Grain extends Purchasable implements IBuy {
             this.addQuantity(-quantity);
         } else if (quantity >= 0) {
             this.setQuantity(0);
-            System.out.println("All seeds sown. Quantity of " + this.getName() + " set to 0.");
+            LOGGER.info("All seeds sown. Quantity of " + this.getName() + " set to 0.");
         } else {
-            System.out.println("Error, you can't sow a negative amount");
+            LOGGER.info("Error, you can't sow a negative amount");
         }
     }
 

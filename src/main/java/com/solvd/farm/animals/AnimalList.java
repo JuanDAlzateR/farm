@@ -1,10 +1,14 @@
 package com.solvd.farm.animals;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class AnimalList<T extends FarmAnimals>extends AbstractList {
+    public static final Logger LOGGER = LogManager.getLogger(AnimalList.class);
     private ArrayList<T> animals = new ArrayList<>();
 
     /* Looks in the array for the index of item with that name
@@ -29,17 +33,17 @@ public class AnimalList<T extends FarmAnimals>extends AbstractList {
     }
 
     public void display() {
-        System.out.println();
-        System.out.println("list of "+getNameOfClass()+" animals in the farm");
+        LOGGER.info("");
+        LOGGER.info("list of "+getNameOfClass()+" animals in the farm");
 
         for (T animal : animals) {
-            System.out.println(animal);
+            LOGGER.info(animal);
         }
     }
 
     public void displayAllFeed() {
         for (T animal : animals) {
-            System.out.println(animal.getAnimalFeed());
+            LOGGER.info(animal.getAnimalFeed());
         }
     }
 

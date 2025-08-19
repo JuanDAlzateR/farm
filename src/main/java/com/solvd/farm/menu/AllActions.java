@@ -9,10 +9,12 @@ import com.solvd.farm.exceptions.InvalidNameException;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AllActions {
-    //static Scanner scanner;
 
+    public static final Logger LOGGER = LogManager.getLogger(AllActions.class);
 
     // Methods for the menu actions
     public static Object[] addFarm(Object[] params) {
@@ -222,7 +224,7 @@ public class AllActions {
 
 
     public static Object[] addAnimal(Object[] params) {
-        System.out.println("Adding animal...");
+        LOGGER.info("Adding animal...");
         if ((params[0] instanceof Farm) && (params[1] instanceof FarmAnimals)) {
             ((Farm) params[0]).addAnimal((FarmAnimals) params[1]);
         }
@@ -231,25 +233,25 @@ public class AllActions {
     }
 
     public static Object[] editAnimal(Object[] params) {
-        System.out.println("Edit animal...");
+        LOGGER.info("Edit animal...");
         // lógica aquí
         return null;
     }
 
     public static Object[] eliminateAnimal(Object[] params) {
-        System.out.println("Eliminate animal...");
+        LOGGER.info("Eliminate animal...");
         // lógica aquí
         return null;
     }
 
     public static Object[] exit(Object[] params) {
-        System.out.println("Closing...");
+        LOGGER.info("Closing...");
         System.exit(0);
         return null;
     }
 
     public static String inputString(String message) {
-        System.out.println(message);
+        LOGGER.info(message);
         String input = AllMenus.scanner.nextLine();
         return input;
     }
@@ -259,7 +261,7 @@ public class AllActions {
         Boolean validateInput = false;
         while (!validateInput) {
             try {
-                System.out.println(message);
+                LOGGER.info(message);
                 input = AllMenus.scanner.nextLine();
                 if (!input.matches("[a-zA-Z ]+")) {
                     throw new InvalidNameException();
@@ -270,7 +272,7 @@ public class AllActions {
                 Main.LOGGER.warn("Invalid name input.");
             }
         }
-        Main.LOGGER.info(input + " input name validated");
+        Main.LOGGER.debug(input + " input name validated");
         return input;
     }
 
@@ -279,7 +281,7 @@ public class AllActions {
         Boolean validateInput = false;
         while (!validateInput) {
             try {
-                System.out.println(message);
+                LOGGER.info(message);
                 if (!AllMenus.scanner.hasNextInt()) {
                     throw new InvalidIntException();
                 }
@@ -293,7 +295,7 @@ public class AllActions {
             }
 
         }
-        Main.LOGGER.info(input + " input int validated");
+        Main.LOGGER.debug(input + " input int validated");
         return input;
     }
 
@@ -302,7 +304,7 @@ public class AllActions {
         Boolean validateInput = false;
         while (!validateInput) {
             try {
-                System.out.println(message);
+                LOGGER.info(message);
                 if (!AllMenus.scanner.hasNextFloat()) {
                     throw new InvalidFloatException();
                 }
@@ -316,7 +318,7 @@ public class AllActions {
             }
 
         }
-        Main.LOGGER.info(input + " input float validated");
+        Main.LOGGER.debug(input + " input float validated");
         return input;
     }
 
@@ -325,7 +327,7 @@ public class AllActions {
         Boolean validateInput = false;
         while (!validateInput) {
             try {
-                System.out.println(message);
+                LOGGER.info(message);
                 input = AllMenus.scanner.nextLine();
                 if (validateMeasurementUnit(input)) {
                     throw new InvalidMeasurementUnitException();
@@ -336,7 +338,7 @@ public class AllActions {
                 Main.LOGGER.warn("Invalid measurement unit input.");
             }
         }
-        Main.LOGGER.info(input + " input measurement unit validated");
+        Main.LOGGER.debug(input + " input measurement unit validated");
         return input;
     }
 

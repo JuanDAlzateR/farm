@@ -1,5 +1,6 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.Purchasable;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IPassTime;

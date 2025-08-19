@@ -10,7 +10,6 @@ public class AllAnimals {
     private AnimalList<Others> othersAnimalList;
     private AnimalList<Poultry> poultryAnimalList;
 
-
     public AllAnimals(){
         this.aquacultureAnimalList=new AnimalList<>();
         this.equinesAnimalList=new AnimalList<>();

@@ -1,10 +1,14 @@
 package com.solvd.farm.crops;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class GrainList extends AbstractList {
+    public static final Logger LOGGER = LogManager.getLogger(GrainList.class);
     private ArrayList<Grain> grains = new ArrayList<>();
 
     /* Looks in the array for the index of item with that name
@@ -30,7 +34,7 @@ public class GrainList extends AbstractList {
 
     public void printAll() {
         for (Grain grain : grains) {
-            System.out.println(grain);
+            LOGGER.info(grain);
         }
     }
 

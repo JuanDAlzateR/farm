@@ -1,11 +1,15 @@
 package com.solvd.farm.animals;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.*;
 import com.solvd.farm.farm.Farm;
 import com.solvd.farm.interfaces.IBuy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AnimalFeed extends Purchasable implements IBuy {
 
+    public static final Logger LOGGER = LogManager.getLogger(AnimalFeed.class);
     private float consumptionRatePerDay;
     private String feedUnit;
 
@@ -60,8 +64,8 @@ public class AnimalFeed extends Purchasable implements IBuy {
     public  void consume(int days) {
         this.addQuantity(-consumptionRatePerDay *days);
         if (this.getQuantity()<0){
-            System.out.println("Warning: Not enough "+ getName());
-            System.out.println(this);
+            LOGGER.info("Warning: Not enough "+ getName());
+            LOGGER.info(this);
             this.setQuantity(0);
         }
     }

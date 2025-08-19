@@ -3,6 +3,8 @@ package com.solvd.farm.menu;
 import com.solvd.farm.Main;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.interfaces.IMenuAction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MenuAction implements IMenuAction {
+
+    public static final Logger LOGGER = LogManager.getLogger(MenuAction.class);
     private String menuName = "New Menu";
     private Map<Integer, IMenuAction> actions = new HashMap<>();
     private ArrayList<String> options = new ArrayList<>();
@@ -60,10 +64,10 @@ public class MenuAction implements IMenuAction {
     }
 
     public void displayMenu() {
-        System.out.println("===== " + menuName + " =====");
+        LOGGER.info("===== " + menuName + " =====");
         int i = 0;
         for (String option : this.options) {
-            System.out.println(i + ") " + option);
+            LOGGER.info(i + ") " + option);
             i++;
         }
     }
@@ -77,7 +81,7 @@ public class MenuAction implements IMenuAction {
     public Object[] run(Object... args) throws InvalidOptionException {
         int opcion;
         do {
-            System.out.println(" ");
+            LOGGER.info(" ");
             displayMenu();
 
             opcion = AllActions.inputInt("Type an option: ");
@@ -90,7 +94,7 @@ public class MenuAction implements IMenuAction {
                 Main.LOGGER.warn("Invalid input option in " + this.menuName + " menu");
                 this.run(args);
                 throw new InvalidOptionException();
-                //System.out.println("Invalid option.");
+                //LOGGER.info("Invalid option.");
             }
         } while (opcion != 0);
         return null;

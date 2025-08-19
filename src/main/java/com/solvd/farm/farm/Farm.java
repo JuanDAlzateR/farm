@@ -1,15 +1,19 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
 import com.solvd.farm.interfaces.IPassTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Farm implements IPassTime, IDisplay {
 
+    public static final Logger LOGGER = LogManager.getLogger(Farm.class);
     private String farmName;
     private GrainList grains;
     private ArrayList<Product> products;
@@ -60,51 +64,51 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void display() {
-        System.out.println("Date: " + this.date);
-        System.out.println("Number of types of grains: " + this.grains.getList().toArray().length);
-        System.out.println("Number of types of crops: " + this.crops.toArray().length);
-        System.out.println("Number of types of products: " + this.products.toArray().length);
-        System.out.println("Number of types of animals: " + this.allAnimals.size());
-        System.out.println("Number of tools: " + this.tools.toArray().length);
+        LOGGER.info("Date: " + this.date);
+        LOGGER.info("Number of types of grains: " + this.grains.getList().toArray().length);
+        LOGGER.info("Number of types of crops: " + this.crops.toArray().length);
+        LOGGER.info("Number of types of products: " + this.products.toArray().length);
+        LOGGER.info("Number of types of animals: " + this.allAnimals.size());
+        LOGGER.info("Number of tools: " + this.tools.toArray().length);
     }
 
     public void displayGrains() {
-        System.out.println("Date:" + getDate() + " - Grains in stock:");
+        LOGGER.info("Date:" + getDate() + " - Grains in stock:");
         for (Grain grain : grains.getList()) {
-            System.out.println(grain);
+            LOGGER.info(grain);
         }
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
     public void displayAnimals() {
-        System.out.println("Date:" + getDate() + " - Animals in farm:");
+        LOGGER.info("Date:" + getDate() + " - Animals in farm:");
         allAnimals.display();
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
     public void displayCrops() {
-        System.out.println("Date:" + getDate() + " - Crops in stock:");
+        LOGGER.info("Date:" + getDate() + " - Crops in stock:");
         for (Crop crop : crops) {
-            System.out.println(crop);
+            LOGGER.info(crop);
         }
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
     public void displayProducts() {
-        System.out.println("Date:" + getDate() + " - Products in stock:");
+        LOGGER.info("Date:" + getDate() + " - Products in stock:");
         for (Product product : products) {
-            System.out.println(product);
+            LOGGER.info(product);
         }
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
     public void displayTools() {
-        System.out.println("");
-        System.out.println("Date:" + getDate() + " - Tools in farm:");
+        LOGGER.info("");
+        LOGGER.info("Date:" + getDate() + " - Tools in farm:");
         for (Tool tool : tools) {
-            System.out.println(tool);
+            LOGGER.info(tool);
         }
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
 
@@ -229,19 +233,19 @@ public class Farm implements IPassTime, IDisplay {
     public Float sell(Product product, int quantity) {
         Product foundProduct = findProduct(product);
         if (foundProduct.equals(null)) {
-            System.out.println("crops.Product " + product.getName() + " not in stock");
+            LOGGER.info("crops.Product " + product.getName() + " not in stock");
             return 0F;
         } else if (foundProduct.getQuantity() < quantity) {
-            System.out.println("crops.Product " + product.getName() + " without enough stock");
-            System.out.println("Only " + product.getQuantity() + " in stock, unable to sell " + quantity);
+            LOGGER.info("crops.Product " + product.getName() + " without enough stock");
+            LOGGER.info("Only " + product.getQuantity() + " in stock, unable to sell " + quantity);
             return 0F;
         } else if (foundProduct.getRottenPercentage() >= 100) {
-            System.out.println("crops.Product " + product.getName() + " it's rotten, unable to sell.");
-            System.out.println("The product will be automatically removed from the system.");
+            LOGGER.info("crops.Product " + product.getName() + " it's rotten, unable to sell.");
+            LOGGER.info("The product will be automatically removed from the system.");
             products.remove(foundProduct);
             return 0F;
         } else {
-            System.out.println(product.getName() + " successfully sold for " + product.getSellPrice() * quantity);
+            LOGGER.info(product.getName() + " successfully sold for " + product.getSellPrice() * quantity);
             product.addQuantity(-quantity);
             return product.getSellPrice() * quantity;
         }

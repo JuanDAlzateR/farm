@@ -1,10 +1,14 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IDisplay;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FarmAccount implements IDisplay {
 
+    public static final Logger LOGGER = LogManager.getLogger(FarmAccount.class);
     private BankAccount account;
     private Farm farm;
 
@@ -14,11 +18,11 @@ public class FarmAccount implements IDisplay {
     }
 
     public void display() {
-        System.out.println("BANK ACCOUNT:");
+        LOGGER.info("BANK ACCOUNT:");
         account.display();
-        System.out.println("FARM INFO:");
+        LOGGER.info("FARM INFO:");
         farm.display();
-        System.out.println("-------");
+        LOGGER.info("-------");
     }
 
     public void setBankAccount(BankAccount account) {
@@ -36,7 +40,7 @@ public class FarmAccount implements IDisplay {
     }
 
     public void buyItem(IBuy item) {
-        System.out.println(farm.getDate());
+        LOGGER.info(farm.getDate());
         if (IBuy.buy(item, this.account)) {
             item.addToFarm(this.farm);
             account.shortDisplay();

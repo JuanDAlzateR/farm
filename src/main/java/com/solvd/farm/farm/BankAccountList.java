@@ -1,10 +1,15 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class BankAccountList {
+
+    public static final Logger LOGGER = LogManager.getLogger(BankAccountList.class);
     private ArrayList<BankAccount> bankAccounts = new ArrayList<>();
     int defaultAccountIndex = 0;
 
@@ -23,52 +28,52 @@ public class BankAccountList {
     public void add(BankAccount bankAccount) {
         int index = indexOf(bankAccount.getAccountNumber());
         if (index > -1) {
-            System.out.println("Error: There is an account with the same account number");
+            LOGGER.info("Error: There is an account with the same account number");
         } else {
             bankAccounts.add(bankAccount);
         }
     }
 
     public void display() {
-        System.out.println();
-        System.out.println("list of all bank accounts");
+        LOGGER.info("");
+        LOGGER.info("list of all bank accounts");
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
             if (i == this.defaultAccountIndex) {
-                System.out.println("\t" + bankName + " - Account #: " + accountNumber + " (Default Account)");
+                LOGGER.info("\t" + bankName + " - Account #: " + accountNumber + " (Default Account)");
             } else {
-                System.out.println("\t" + bankName + " - Account #: " + accountNumber);
+                LOGGER.info("\t" + bankName + " - Account #: " + accountNumber);
             }
         }
     }
 
     public void displayWithIndex() {
-        System.out.println();
-        System.out.println("list of all bank accounts");
+        LOGGER.info("");
+        LOGGER.info("list of all bank accounts");
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
             if (i == this.defaultAccountIndex) {
-                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber + "(Default)");
+                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber + "(Default)");
             } else {
-                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber);
+                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber);
             }
         }
     }
 
     public void displayWithBalance() {
-        System.out.println();
-        System.out.println("list of all bank accounts");
+        LOGGER.info("");
+        LOGGER.info("list of all bank accounts");
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
             float balance= this.bankAccounts.get(i).getBalance();
             if (i == this.defaultAccountIndex) {
-                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
+                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
                         "- Balance: "+ balance + " (Default Account)");
             } else {
-                System.out.println("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
+                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
                         "- Balance: "+ balance);
             }
         }

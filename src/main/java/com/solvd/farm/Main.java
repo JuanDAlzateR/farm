@@ -6,7 +6,7 @@ I started the implementation of a user menu using Scanner
  */
 
 package com.solvd.farm;
-//ensayo
+
 import com.solvd.farm.exceptions.InvalidOptionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,7 @@ public class Main {
 
     }
 
-    /* This method is just an example of the functionality if the code,
+    /* This method is just an example of the functionality in the code,
     right now it's not called in main.
     Maybe later it could be implemented in an automated test or something similar
      */
@@ -56,14 +56,15 @@ public class Main {
 
         Tool tool =new Tool("Pitchfork",40);
         account.buyItem(tool);
-        System.out.println(tool);
-        System.out.println("-------");
+        LOGGER.info(tool);
+        LOGGER.info(tool);
+        LOGGER.info("-------");
 
         Grain carrotSeeds = new Grain("Carrots", 100,0.1F);
         account.buyItem(carrotSeeds);
 
         farm.sowAllGrains();
-        System.out.println("Date:" + farm.getDate() + " carrots sown");
+        LOGGER.info("Date:" + farm.getDate() + " carrots sown");
         farm.passTime(30);
 
         Grain cornSeed = new Grain("Corn", 200, 0.2F);
@@ -71,8 +72,8 @@ public class Main {
         account.buyItem(cornSeed);
         account.buyItem(riceSeed);
         farm.sowAllGrains();
-        System.out.println("Date:" + farm.getDate() + " corn and rice sown");
-        System.out.println("-------");
+        LOGGER.info("Date:" + farm.getDate() + " corn and rice sown");
+        LOGGER.info("-------");
 
         farm.passTime(10);
         farm.displayCrops();
@@ -81,18 +82,18 @@ public class Main {
         farm.displayCrops();
 
         farm.harvestAllCrops();
-        System.out.println("HARVEST");
+        LOGGER.info("HARVEST");
         farm.displayCrops();
         farm.displayProducts();
 
         farm.passTime(20);
         farm.harvestAllCrops();
-        System.out.println("HARVEST");
+        LOGGER.info("HARVEST");
         farm.displayCrops();
         farm.displayProducts();
 
-        System.out.println("SELL PRODUCTS");
-        System.out.println("30 carrots sold.");
+        LOGGER.info("SELL PRODUCTS");
+        LOGGER.info("30 carrots sold.");
         Product product = farm.getProducts().get(0);
         product.setSellPrice(1F);
         float cash = farm.sell(product, 30);
@@ -100,7 +101,7 @@ public class Main {
         bankAccount.shortDisplay();
         farm.displayProducts();
 
-        System.out.println("ANIMALS ACQUIRED");
+        LOGGER.info("ANIMALS ACQUIRED");
         AnimalFeed chickenFeed = new AnimalFeed("chicken feed", 0.9F, 0.1F, "kg");
         AnimalFeed cowFeed = new AnimalFeed("cattle feed", 1000, 15F, "kg");
         AnimalFood egg = new AnimalFood("egg", 0, 1, "units");
@@ -119,8 +120,8 @@ public class Main {
         farm.displayProducts();
 
         farm.passTime(5);
-        System.out.println("Date:" + farm.getDate());
-        System.out.println(tool);
+        LOGGER.info("Date:" + farm.getDate());
+        LOGGER.info(tool);
 
     }
 }

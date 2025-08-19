@@ -2,11 +2,15 @@ package com.solvd.farm.farm;
 
 import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.util.ArrayList;
 
 public class FarmList extends AbstractList {
+
+    public static final Logger LOGGER = LogManager.getLogger(FarmList.class);
     private ArrayList<Farm> farms = new ArrayList<>();
     private int defaultFarmIndex = 0;
 
@@ -25,32 +29,32 @@ public class FarmList extends AbstractList {
     public void add(Farm farm) {
         int index = indexOfName(farm.getFarmName());
         if (index > -1) {
-            System.out.println("Error: There is a farm with that name already");
+            LOGGER.info("Error: There is a farm with that name already");
         } else {
             farms.add(farm);
         }
     }
 
     public void display() {
-        System.out.println();
-        System.out.println("list of all farms");
+        LOGGER.info("");
+        LOGGER.info("list of all farms");
         for (int i = 0; i < this.farms.size(); i++) {
             if (i == this.defaultFarmIndex) {
-                System.out.println("\t" + this.farms.get(i).getFarmName() + "(Default)");
+                LOGGER.info("\t" + this.farms.get(i).getFarmName() + "(Default)");
             } else {
-                System.out.println("\t" + this.farms.get(i).getFarmName());
+                LOGGER.info("\t" + this.farms.get(i).getFarmName());
             }
         }
     }
 
     public void displayWithIndex() {
-        System.out.println();
-        System.out.println("list of all farms");
+        LOGGER.info("");
+        LOGGER.info("list of all farms");
         for (int i = 0; i < this.farms.size(); i++) {
             if (i == this.defaultFarmIndex) {
-                System.out.println("\t" + i + ") " + this.farms.get(i).getFarmName() + "(Default)");
+                LOGGER.info("\t" + i + ") " + this.farms.get(i).getFarmName() + "(Default)");
             } else {
-                System.out.println("\t" + i + ") " + this.farms.get(i).getFarmName());
+                LOGGER.info("\t" + i + ") " + this.farms.get(i).getFarmName());
             }
         }
     }
