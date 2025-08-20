@@ -17,39 +17,39 @@ public class AllActions {
     public static final Logger LOGGER = LogManager.getLogger(AllActions.class);
 
     // Methods for the menu actions
-    public static Object[] addFarm(Object[] params) {
+    public static void addFarm() {
         String farmName = inputString("Please type the name of the farm");
         Farm farm = new Farm(farmName);
         AllMenus.farmList.add(farm);
-        return null;
+
     }
 
-    public static Object[] setDefaultFarm(Object[] params) {
+    public static void setDefaultFarm() {
         AllMenus.farmList.displayWithIndex();
         int index = inputInt("Please type the number of the farm to set as default");
         AllMenus.farmList.setDefaultFarmIndex(index);
         Farm defaultFarm = AllMenus.farmList.getDefaultFarm();
         AllMenus.farmAccount.setFarm(defaultFarm);
         AllMenus.farmList.displayWithIndex();
-        return null;
+        
     }
 
-    public static Object[] editFarm(Object[] params) {
+    public static void editFarm() {
         AllMenus.farmList.displayWithIndex();
         int index = inputInt("Please type the number of the farm to edit");
         Farm farm = AllMenus.farmList.getList().get(index);
         String farmName = inputString("Please type the new name of the farm");
         farm.setFarmName(farmName);
-        return null;
+        
     }
 
-    public static Object[] displayFarms(Object[] params) {
+    public static void displayFarms() {
         AllMenus.farmList.display();
-        return null;
+        
     }
 
     // Methods for the bank account menu
-    public static Object[] addBankAccount(Object[] params) {
+    public static void addBankAccount() {
         String bankName = inputName("Please type the name of the bank");
         int accountNumber = inputInt("Please type the account number");
         float balance = inputFloat("Please type the account balance");
@@ -57,19 +57,19 @@ public class AllActions {
 
         BankAccount bankAccount = new BankAccount(bankName, accountNumber, balance, nickName);
         AllMenus.bankAccountList.add(bankAccount);
-        return null;
+        
     }
 
-    public static Object[] setDefaultBankAccount(Object[] params) {
+    public static void setDefaultBankAccount() {
         AllMenus.bankAccountList.display(true);
         int index = inputInt("Please type the option number of the bank account to set as default");
         AllMenus.bankAccountList.setDefaultAccountIndex(index);
         BankAccount defaultAccount = AllMenus.bankAccountList.getList().get(index);
         AllMenus.farmAccount.setBankAccount(defaultAccount);
-        return null;
+        
     }
 
-    public static Object[] editBankAccount(Object[] params) {
+    public static void editBankAccount() {
         AllMenus.bankAccountList.display(true);
 
         int index = inputInt("Please type the option number of the bank account to edit");
@@ -85,17 +85,16 @@ public class AllActions {
         bankAccount.setBalance(balance);
         bankAccount.setNickname(nickName);
 
-        return null;
     }
 
-    public static Object[] displayBankAccounts(Object[] params) {
+    public static void displayBankAccounts() {
         AllMenus.bankAccountList.display(false);
-        return null;
+        
     }
 
-    public static Object[] displayAccountsBalance(Object[] params) {
+    public static void displayAccountsBalance() {
         AllMenus.bankAccountList.displayWithBalance();
-        return null;
+        
     }
 
     public static void buyItem(IBuy item) {
@@ -112,12 +111,12 @@ public class AllActions {
     }
 
     public static <T extends IBuy> IMenuAction buyItemAction(Class<T> itemClass){
-        IMenuAction Act = (args) -> {
+        IMenuAction act = () -> {
             T item=createItem(itemClass);
             buyItem(item);
-            return null;
+            
         };
-        return Act;
+        return act;
     }
 
     public static <T extends IBuy> T createItem(Class<T> itemClass){
@@ -130,11 +129,11 @@ public class AllActions {
         }
     }
 
-    public static Object[] buyAnimalFeed(Object[] params) {
+    public static void buyAnimalFeed() {
         AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
 
         String feedName = inputName("Please type the name of the animal feed:");
-        String feedUnit = inputName("Please type the unit of " + feedName + " :");
+        String feedUnit = inputMeasurementUnit("Please type the unit of " + feedName + " :");
         float quantity = inputFloat("Please type how many " + feedUnit + " you want to buy :");
         float price = inputFloat("Please type the price of" + feedName + "for 1" + feedUnit + " :");
         float consumptionRate = inputFloat("What is the consumption of" + feedName + "for an animal per day:");
@@ -143,7 +142,6 @@ public class AllActions {
         animalFeed.setPrice(price);
         AllMenus.farmAccount.buyItem(animalFeed);
 
-        return null;
     }
 
     public static void buyAnimal(FarmAnimals animal) {
@@ -182,47 +180,45 @@ public class AllActions {
     }
 
     public static <T extends FarmAnimals> IMenuAction buyAnimalAction(Class<T> animalClass){
-        IMenuAction Act = (args) -> {
+        IMenuAction act = () -> {
             FarmAnimals animal;
             animal=createAnimal(animalClass);
             buyAnimal(animal);
-            return null;
+            
         };
-        return Act;
+        return act;
     }
 
-    public static Object[] displayTools(Object[] params) {
+    public static void displayTools() {
         AllMenus.farmAccount.getFarm().displayTools();
-        return null;
+        
     }
 
-    public static Object[] displayAnimalFeed(Object[] params) {
+    public static void displayAnimalFeed() {
         AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
-        return null;
+        
     }
 
-    public static Object[] displayAnimals(Object[] params) {
+    public static void displayAnimals() {
         AllMenus.farmAccount.getFarm().getAllAnimals().display();
-        return null;
+        
     }
 
 
-    public static Object[] editAnimal(Object[] params) {
-        LOGGER.info("Edit animal...");
-        // lógica aquí
-        return null;
-    }
+//    public static void editAnimal() {
+//        LOGGER.info("Edit animal...");
+//
+//    }
+//
+//    public static void eliminateAnimal() {
+//        LOGGER.info("Eliminate animal...");
+//
+//    }
 
-    public static Object[] eliminateAnimal(Object[] params) {
-        LOGGER.info("Eliminate animal...");
-        // lógica aquí
-        return null;
-    }
-
-    public static Object[] exit(Object[] params) {
+    public static void exit() {
         LOGGER.info("Closing...");
         System.exit(0);
-        return null;
+        
     }
 
     public static String inputString(String message) {
@@ -233,7 +229,7 @@ public class AllActions {
 
     public static String inputName(String message) {
         String input = "";
-        Boolean validateInput = false;
+        boolean validateInput = false;
         while (!validateInput) {
             try {
                 LOGGER.info(message);
@@ -253,7 +249,7 @@ public class AllActions {
 
     public static int inputInt(String message) {
         int input = 0;
-        Boolean validateInput = false;
+        boolean validateInput = false;
         while (!validateInput) {
             try {
                 LOGGER.info(message);
@@ -276,7 +272,7 @@ public class AllActions {
 
     public static float inputFloat(String message) {
         float input = 0;
-        Boolean validateInput = false;
+        boolean validateInput = false;
         while (!validateInput) {
             try {
                 LOGGER.info(message);
@@ -299,7 +295,7 @@ public class AllActions {
 
     public static String inputMeasurementUnit(String message) {
         String input = "";
-        Boolean validateInput = false;
+        boolean validateInput = false;
         while (!validateInput) {
             try {
                 LOGGER.info(message);
@@ -317,7 +313,7 @@ public class AllActions {
         return input;
     }
 
-    public static Boolean validateMeasurementUnit(String input) {
+    public static boolean validateMeasurementUnit(String input) {
         String[][] units = {
                 {"kilogram", "kg"},
                 {"gram", "g"},

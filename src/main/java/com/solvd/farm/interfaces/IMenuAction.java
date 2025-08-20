@@ -4,5 +4,5 @@ import com.solvd.farm.exceptions.InvalidOptionException;
 
 @FunctionalInterface
 public interface IMenuAction {
-    Object[] run(Object...arg) throws InvalidOptionException;
+    void run() throws InvalidOptionException;
 }

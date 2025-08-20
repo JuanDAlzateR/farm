@@ -73,11 +73,11 @@ public class MenuAction implements IMenuAction {
 
     public void add(String option, IMenuAction action) {
         this.options.add(option);
-        int lenght = actions.size();
-        actions.put(lenght, action);
+        int length = actions.size();
+        actions.put(length, action);
     }
 
-    public Object[] run(Object... args) throws InvalidOptionException {
+    public void run() throws InvalidOptionException {
         int opcion;
         do {
             LOGGER.info(" ");
@@ -88,14 +88,14 @@ public class MenuAction implements IMenuAction {
             IMenuAction action = actions.get(opcion);
 
             if (action != null) {
-                action.run(args);
+                action.run();
             } else {
                 LOGGER.warn("Invalid input option in " + this.menuName + " menu");
-                this.run(args);
+                this.run();
                 throw new InvalidOptionException();
             }
         } while (opcion != 0);
-        return null;
+
     }
 
 }
