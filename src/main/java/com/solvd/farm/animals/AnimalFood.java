@@ -25,14 +25,13 @@ public class AnimalFood extends Countable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof AnimalFood)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof AnimalFood)) {
             return false;
-        } else if (((AnimalFood) o).getName().equals(this.getName())) {
-            return true;
         } else {
-            return false;
+            return (((AnimalFood) object).getName().equals(this.getName()));
         }
+
     }
 
     @Override

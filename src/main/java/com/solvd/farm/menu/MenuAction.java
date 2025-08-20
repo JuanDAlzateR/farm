@@ -24,21 +24,21 @@ public class MenuAction implements IMenuAction {
         this.menuName = menuName;
     }
 
-    public MenuAction(ArrayList<String> options, ArrayList<IMenuAction> actions) {
-        this.options = options;
-        for (int i = 0; i < actions.size(); i++) {
-            this.actions.put(i, actions.get(i));
-        }
-    }
-
-    public MenuAction(String menuName, ArrayList<String> options, ArrayList<IMenuAction> actions) {
-
-        this.menuName = menuName;
-        this.options = options;
-        for (int i = 0; i < actions.size(); i++) {
-            this.actions.put(i, actions.get(i));
-        }
-    }
+//    public MenuAction(ArrayList<String> options, ArrayList<IMenuAction> actions) {
+//        this.options = options;
+//        for (int i = 0; i < actions.size(); i++) {
+//            this.actions.put(i, actions.get(i));
+//        }
+//    }
+//
+//    public MenuAction(String menuName, ArrayList<String> options, ArrayList<IMenuAction> actions) {
+//
+//        this.menuName = menuName;
+//        this.options = options;
+//        for (int i = 0; i < actions.size(); i++) {
+//            this.actions.put(i, actions.get(i));
+//        }
+//    }
 
     public String getMenuName() {
         return menuName;

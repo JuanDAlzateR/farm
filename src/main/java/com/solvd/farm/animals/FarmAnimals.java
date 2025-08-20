@@ -31,14 +31,13 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof FarmAnimals)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof FarmAnimals)) {
             return false;
-        } else if (((FarmAnimals) o).getName().equals(this.getName())) {
-            return true;
         } else {
-            return false;
+            return (((FarmAnimals) object).getName().equals(this.getName()));
         }
+
     }
 
     @Override

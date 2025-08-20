@@ -18,8 +18,7 @@ public class AllMenus {
     public AllMenus() {
         Farm farm = new Farm();
         BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
-        FarmAccount account = new FarmAccount(farm, bankAccount);
-        farmAccount = account;
+        farmAccount = new FarmAccount(farm, bankAccount);
         farmList.add(farm);
         bankAccountList.add(bankAccount);
 
