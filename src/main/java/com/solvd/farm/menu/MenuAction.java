@@ -1,6 +1,5 @@
 package com.solvd.farm.menu;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.interfaces.IMenuAction;
 import org.apache.logging.log4j.LogManager;

@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public interface IBuy {
 
-    public static final Logger LOGGER = LogManager.getLogger(IBuy.class);
+    Logger LOGGER = LogManager.getLogger(IBuy.class);
 
     float getPrice();
     String getName();
