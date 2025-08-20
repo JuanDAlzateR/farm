@@ -1,6 +1,5 @@
 package com.solvd.farm.crops;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.abstracts.Purchasable;
 import com.solvd.farm.farm.Farm;
@@ -30,13 +29,12 @@ public class Grain extends Purchasable implements IBuy {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Grain)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof Grain)) {
             return false;
-        } else if (((Grain) o).getName().equals(this.getName())) {
-            return true;
         } else {
-            return false;
+            return (((Grain) object).getName().equals(this.getName()));
+            }
         }
     }
 
