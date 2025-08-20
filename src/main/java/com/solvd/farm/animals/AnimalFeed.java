@@ -1,6 +1,5 @@
 package com.solvd.farm.animals;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.*;
 import com.solvd.farm.farm.Farm;
 import com.solvd.farm.interfaces.IBuy;
@@ -32,13 +31,11 @@ public class AnimalFeed extends Purchasable implements IBuy {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof AnimalFeed)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof AnimalFeed)) {
             return false;
-        } else if (((AnimalFeed) o).getName().equals(this.getName())) {
-            return true;
         } else {
-            return false;
+            return (((AnimalFeed) object).getName().equals(this.getName()));
         }
     }
 

@@ -38,18 +38,20 @@ public class Main {
         } catch (InvalidOptionException e) {
             LOGGER.warn("invalid option input.");
         }
+
         scanner.close();
+        FarmAccount farmAccount=menu.getFarmAccount();
+        example(farmAccount.getFarm(),farmAccount.getBankAccount());
+
+
 
     }
 
-    /* This method is just an example of the functionality in the code,
-    right now it's not called in main.
-    Maybe later it could be implemented in an automated test or something similar
+    /* This method is just an example of the functionality in the code.
+    Maybe later it could be implemented in an automated test or something similar.
      */
-    public static void example() {
+    public static void example(Farm farm,BankAccount bankAccount) {
 
-        Farm farm = new Farm();
-        BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
         FarmAccount account = new FarmAccount(farm, bankAccount);
         account.display();
 

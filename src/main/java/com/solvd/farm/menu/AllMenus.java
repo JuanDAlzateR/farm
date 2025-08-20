@@ -95,15 +95,16 @@ public class AllMenus {
     public Scanner getScanner() {
         return scanner;
     }
-
     public MenuAction getMainMenu() {
         return mainMenu;
+    }
+    public FarmAccount getFarmAccount() {
+        return farmAccount;
     }
 
     public static void setScanner(Scanner scanner) {
         AllMenus.scanner = scanner;
     }
-
     public static void setMainMenu(MenuAction mainMenu) {
         AllMenus.mainMenu = mainMenu;
     }
