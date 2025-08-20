@@ -36,7 +36,7 @@ public class Grain extends Purchasable implements IBuy {
             return (((Grain) object).getName().equals(this.getName()));
             }
         }
-    }
+
 
     @Override
     public int hashCode() {
