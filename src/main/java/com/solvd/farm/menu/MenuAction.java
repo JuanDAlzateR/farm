@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class MenuAction implements IMenuAction {
 
@@ -91,10 +90,9 @@ public class MenuAction implements IMenuAction {
             if (action != null) {
                 action.run(args);
             } else {
-                Main.LOGGER.warn("Invalid input option in " + this.menuName + " menu");
+                LOGGER.warn("Invalid input option in " + this.menuName + " menu");
                 this.run(args);
                 throw new InvalidOptionException();
-                //LOGGER.info("Invalid option.");
             }
         } while (opcion != 0);
         return null;

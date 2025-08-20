@@ -1,6 +1,5 @@
 package com.solvd.farm.farm;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IDisplay;
 import org.apache.logging.log4j.LogManager;
@@ -17,14 +16,6 @@ public class FarmAccount implements IDisplay {
         this.farm = farm;
     }
 
-    public void display() {
-        LOGGER.info("BANK ACCOUNT:");
-        account.display();
-        LOGGER.info("FARM INFO:");
-        farm.display();
-        LOGGER.info("-------");
-    }
-
     public void setBankAccount(BankAccount account) {
         this.account = account;
     }
@@ -37,6 +28,14 @@ public class FarmAccount implements IDisplay {
     }
     public Farm getFarm() {
         return this.farm;
+    }
+
+    public void display() {
+        LOGGER.info("BANK ACCOUNT:");
+        account.display();
+        LOGGER.info("FARM INFO:");
+        farm.display();
+        LOGGER.info("-------");
     }
 
     public void buyItem(IBuy item) {

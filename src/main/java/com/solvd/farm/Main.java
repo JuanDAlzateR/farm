@@ -35,7 +35,8 @@ public class Main {
         Scanner scanner=menu.getScanner();
 
         try {
-            menu.getMainMenu().run();
+            //menu.getMainMenu().run();
+            menu.runMainMenu();
         }catch (InvalidOptionException e){
             LOGGER.warn("invalid option input.");
         }

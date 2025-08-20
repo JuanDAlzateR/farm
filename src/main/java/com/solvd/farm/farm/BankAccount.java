@@ -1,6 +1,5 @@
 package com.solvd.farm.farm;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.Account;
 import com.solvd.farm.interfaces.IDisplay;
 import org.apache.logging.log4j.LogManager;

@@ -1,6 +1,5 @@
 package com.solvd.farm.farm;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
@@ -20,7 +19,6 @@ public class Farm implements IPassTime, IDisplay {
     private ArrayList<Crop> crops;
     private ArrayList<Tool> tools;
     private LocalDate date;
-    //private AnimalList animals;
     private AllAnimals allAnimals;
 
     public Farm() {
@@ -61,6 +59,50 @@ public class Farm implements IPassTime, IDisplay {
         this.date = date;
         this.allAnimals = new AllAnimals();
         this.farmName = "New Farm";
+    }
+
+    public void setFarmName(String farmName) {
+        this.farmName = farmName;
+    }
+    public void setGrains(GrainList grains) {
+        this.grains = grains;
+    }
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+    public void setCrops(ArrayList<Crop> crops) {
+        this.crops = crops;
+    }
+    public void setTools(ArrayList<Tool> tools) {
+        this.tools = tools;
+    }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+    public void setAnimals(AllAnimals allAnimals) {
+        this.allAnimals = allAnimals;
+    }
+
+    public String getFarmName() {
+        return farmName;
+    }
+    public GrainList getGrains() {
+        return this.grains;
+    }
+    public ArrayList<Product> getProducts() {
+        return this.products;
+    }
+    public ArrayList<Crop> getCrops() {
+        return this.crops;
+    }
+    public ArrayList<Tool> getTools() {
+        return this.tools;
+    }
+    public LocalDate getDate() {
+        return this.date;
+    }
+    public AllAnimals getAllAnimals() {
+        return this.allAnimals;
     }
 
     public void display() {
@@ -109,51 +151,6 @@ public class Farm implements IPassTime, IDisplay {
             LOGGER.info(tool);
         }
         LOGGER.info("-------");
-    }
-
-
-    public void setFarmName(String farmName) {
-        this.farmName = farmName;
-    }
-    public void setGrains(GrainList grains) {
-        this.grains = grains;
-    }
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-    public void setCrops(ArrayList<Crop> crops) {
-        this.crops = crops;
-    }
-    public void setTools(ArrayList<Tool> tools) {
-        this.tools = tools;
-    }
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-    public void setAnimals(AllAnimals allAnimals) {
-        this.allAnimals = allAnimals;
-    }
-
-    public String getFarmName() {
-        return farmName;
-    }
-    public GrainList getGrains() {
-        return this.grains;
-    }
-    public ArrayList<Product> getProducts() {
-        return this.products;
-    }
-    public ArrayList<Crop> getCrops() {
-        return this.crops;
-    }
-    public ArrayList<Tool> getTools() {
-        return this.tools;
-    }
-    public LocalDate getDate() {
-        return this.date;
-    }
-    public AllAnimals getAllAnimals() {
-        return this.allAnimals;
     }
 
     public void addGrain(Grain grain) {

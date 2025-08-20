@@ -105,9 +105,9 @@ public class AllMenus {
 
     public void runMainMenu() throws InvalidOptionException{
         try {
-            this.mainMenu.run(this.scanner);
+            this.mainMenu.run();
         } catch (InvalidOptionException e) {
-            this.mainMenu.run(this.scanner);
+            this.mainMenu.run();
         }
     }
 

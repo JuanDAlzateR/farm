@@ -61,7 +61,7 @@ public class AllActions {
     }
 
     public static Object[] setDefaultBankAccount(Object[] params) {
-        AllMenus.bankAccountList.displayWithIndex();
+        AllMenus.bankAccountList.display(true);
         int index = inputInt("Please type the option number of the bank account to set as default");
         AllMenus.bankAccountList.setDefaultAccountIndex(index);
         BankAccount defaultAccount = AllMenus.bankAccountList.getList().get(index);
@@ -70,7 +70,7 @@ public class AllActions {
     }
 
     public static Object[] editBankAccount(Object[] params) {
-        AllMenus.bankAccountList.displayWithIndex();
+        AllMenus.bankAccountList.display(true);
 
         int index = inputInt("Please type the option number of the bank account to edit");
         BankAccount bankAccount = AllMenus.bankAccountList.getList().get(index);
@@ -89,23 +89,12 @@ public class AllActions {
     }
 
     public static Object[] displayBankAccounts(Object[] params) {
-        AllMenus.bankAccountList.display();
+        AllMenus.bankAccountList.display(false);
         return null;
     }
 
     public static Object[] displayAccountsBalance(Object[] params) {
         AllMenus.bankAccountList.displayWithBalance();
-        return null;
-    }
-
-    public static Object[] buyTool(Object[] params) {
-        AllMenus.farmAccount.getBankAccount().display();
-
-        String toolName = inputString("Please type the name of the tool:");
-        float price = inputFloat("Please type the price of the tool:");
-        Tool tool = new Tool(toolName, price);
-        AllMenus.farmAccount.buyItem(tool);
-
         return null;
     }
 
@@ -141,8 +130,6 @@ public class AllActions {
         }
     }
 
-    //Syntax reminders ;)
-    //AnimalFeed chickenFeed = new AnimalFeed("chicken feed", 0.9F, 0.1F, "kg");
     public static Object[] buyAnimalFeed(Object[] params) {
         AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
 
@@ -159,9 +146,6 @@ public class AllActions {
         return null;
     }
 
-    //Syntax reminders ;)
-    //AnimalFood milk = new AnimalFood("milk", 0, 20, "liters");
-    //FarmAnimals chickens = new Poultry("chickens", 10, egg, chickenFeed);
     public static void buyAnimal(FarmAnimals animal) {
         //displayAnimals(null);
 
@@ -222,15 +206,6 @@ public class AllActions {
         return null;
     }
 
-
-    public static Object[] addAnimal(Object[] params) {
-        LOGGER.info("Adding animal...");
-        if ((params[0] instanceof Farm) && (params[1] instanceof FarmAnimals)) {
-            ((Farm) params[0]).addAnimal((FarmAnimals) params[1]);
-        }
-        // lógica aquí
-        return null;
-    }
 
     public static Object[] editAnimal(Object[] params) {
         LOGGER.info("Edit animal...");
@@ -367,6 +342,5 @@ public class AllActions {
         }
         return validateInput;
     }
-
 
 }

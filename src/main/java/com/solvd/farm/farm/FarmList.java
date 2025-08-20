@@ -2,10 +2,9 @@ package com.solvd.farm.farm;
 
 import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
 import java.util.ArrayList;
 
 public class FarmList extends AbstractList {
@@ -13,6 +12,25 @@ public class FarmList extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(FarmList.class);
     private ArrayList<Farm> farms = new ArrayList<>();
     private int defaultFarmIndex = 0;
+
+    public ArrayList<Farm> getList() {
+        return this.farms;
+    }
+    public int getDefaultFarmIndex() {
+        return defaultFarmIndex;
+    }
+    public Farm getDefaultFarm() {
+        return this.farms.get(this.defaultFarmIndex);
+    }
+
+    public void setDefaultFarmIndex(int index) {
+        if (0 <= index && index < this.farms.size()) {
+            this.defaultFarmIndex = index;
+        } else {
+            //Posibility for another exception
+            Main.LOGGER.error("FarmIndex Out Of Bounds");
+        }
+    }
 
     /* Looks in the array for the index of item with that name
         If it doesn't find it, it returns -1  */
@@ -59,25 +77,4 @@ public class FarmList extends AbstractList {
         }
     }
 
-    public ArrayList<Farm> getList() {
-        return this.farms;
-    }
-
-    public void setDefaultFarmIndex(int index) {
-        if (0 <= index && index < this.farms.size()) {
-            this.defaultFarmIndex = index;
-        } else {
-            //Posibility for another exception
-            Main.LOGGER.error("FarmIndex Out Of Bounds");
-        }
-
-    }
-
-    public int getDefaultFarmIndex() {
-        return defaultFarmIndex;
-    }
-
-    public Farm getDefaultFarm() {
-        return this.farms.get(this.defaultFarmIndex);
-    }
 }

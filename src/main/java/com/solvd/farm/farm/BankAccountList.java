@@ -1,7 +1,5 @@
 package com.solvd.farm.farm;
 
-import com.solvd.farm.Main;
-import com.solvd.farm.abstracts.AbstractList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,30 +32,18 @@ public class BankAccountList {
         }
     }
 
-    public void display() {
+    public void display(Boolean displayIndex) {
         LOGGER.info("");
         LOGGER.info("list of all bank accounts");
+        String indexString="";
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
+            if (displayIndex){indexString=i+") ";}
             if (i == this.defaultAccountIndex) {
-                LOGGER.info("\t" + bankName + " - Account #: " + accountNumber + " (Default Account)");
+                LOGGER.info("\t" + indexString + bankName + " - Account #: " + accountNumber + " (Default Account)");
             } else {
-                LOGGER.info("\t" + bankName + " - Account #: " + accountNumber);
-            }
-        }
-    }
-
-    public void displayWithIndex() {
-        LOGGER.info("");
-        LOGGER.info("list of all bank accounts");
-        for (int i = 0; i < this.bankAccounts.size(); i++) {
-            int accountNumber = this.bankAccounts.get(i).getAccountNumber();
-            String bankName = this.bankAccounts.get(i).getBankName();
-            if (i == this.defaultAccountIndex) {
-                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber + "(Default)");
-            } else {
-                LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber);
+                LOGGER.info("\t" + indexString + bankName + " - Account #: " + accountNumber);
             }
         }
     }
