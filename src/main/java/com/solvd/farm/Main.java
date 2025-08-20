@@ -32,9 +32,11 @@ public class Main {
         AllMenus menu = new AllMenus();
 
         Scanner scanner = menu.getScanner();
-
-        AnimalSet animalSet=new AnimalSet();
-        animalSet.display();
+        try {
+            menu.runMainMenu();
+        } catch (InvalidOptionException e) {
+            LOGGER.warn("error");
+        }
     }
 
     /* This method is just an example of the functionality in the code.

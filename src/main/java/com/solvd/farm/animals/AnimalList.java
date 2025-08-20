@@ -62,24 +62,9 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
 
     public String getNameOfClass() {
 
-        if (animals.size() > 0) {
-            if (animals.get(0) instanceof Livestock) {
-                return "Livestock";
-            }
-            if (animals.get(0) instanceof Aquaculture) {
-                return "Aquaculture";
-            }
-            if (animals.get(0) instanceof Equines) {
-                return "Equines";
-            }
-            if (animals.get(0) instanceof Poultry) {
-                return "Poultry";
-            }
-            if (animals.get(0) instanceof Others) {
-                return "Others";
-            }
-        }
-        return "(Empty List)";
+        String[] stringList=getFarmAnimalClass().toString().split("\\.");
+        int length=stringList.length;
+        return stringList[length-1];
 
     }
 

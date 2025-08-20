@@ -126,7 +126,7 @@ public class AllActions {
     }
 
     public static void buyAnimalFeed() {
-        AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
+        AllMenus.farmAccount.getFarm().getAnimalSet().displayAllFeed();
 
         String feedName = inputName("Please type the name of the animal feed:");
         String feedUnit = inputMeasurementUnit("Please type the unit of " + feedName + " :");
@@ -191,12 +191,12 @@ public class AllActions {
     }
 
     public static void displayAnimalFeed() {
-        AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
+        AllMenus.farmAccount.getFarm().getAnimalSet().displayAllFeed();
 
     }
 
     public static void displayAnimals() {
-        AllMenus.farmAccount.getFarm().getAllAnimals().display();
+        AllMenus.farmAccount.getFarm().getAnimalSet().display();
 
     }
 

@@ -19,7 +19,7 @@ public class Farm implements IPassTime, IDisplay {
     private ArrayList<Crop> crops;
     private ArrayList<Tool> tools;
     private LocalDate date;
-    private AllAnimals allAnimals;
+    private AnimalSet animalSet;
 
     public Farm() {
         GrainList grains = new GrainList();
@@ -31,7 +31,7 @@ public class Farm implements IPassTime, IDisplay {
         this.crops = crops;
         this.tools = tools;
         this.date = LocalDate.now();
-        this.allAnimals = new AllAnimals();
+        this.animalSet = new AnimalSet();
         this.farmName = "New Farm";
     }
 
@@ -44,7 +44,7 @@ public class Farm implements IPassTime, IDisplay {
         this.products = products;
         this.crops = crops;
         this.date = LocalDate.now();
-        this.allAnimals = new AllAnimals();
+        this.animalSet = new AnimalSet();
         this.farmName = farmName;
     }
 
@@ -57,7 +57,7 @@ public class Farm implements IPassTime, IDisplay {
         this.products = products;
         this.crops = crops;
         this.date = date;
-        this.allAnimals = new AllAnimals();
+        this.animalSet = new AnimalSet();
         this.farmName = "New Farm";
     }
 
@@ -85,8 +85,8 @@ public class Farm implements IPassTime, IDisplay {
         this.date = date;
     }
 
-    public void setAnimals(AllAnimals allAnimals) {
-        this.allAnimals = allAnimals;
+    public void setAnimals(AnimalSet animalSet) {
+        this.animalSet = animalSet;
     }
 
     public String getFarmName() {
@@ -113,8 +113,8 @@ public class Farm implements IPassTime, IDisplay {
         return this.date;
     }
 
-    public AllAnimals getAllAnimals() {
-        return this.allAnimals;
+    public AnimalSet getAnimalSet() {
+        return this.animalSet;
     }
 
     public void display() {
@@ -122,7 +122,7 @@ public class Farm implements IPassTime, IDisplay {
         LOGGER.info("Number of types of grains: " + this.grains.getList().toArray().length);
         LOGGER.info("Number of types of crops: " + this.crops.toArray().length);
         LOGGER.info("Number of types of products: " + this.products.toArray().length);
-        LOGGER.info("Number of types of animals: " + this.allAnimals.size());
+        LOGGER.info("Number of types of animals: " + this.animalSet.size());
         LOGGER.info("Number of tools: " + this.tools.toArray().length);
     }
 
@@ -136,7 +136,7 @@ public class Farm implements IPassTime, IDisplay {
 
     public void displayAnimals() {
         LOGGER.info("Date:" + getDate() + " - Animals in farm:");
-        allAnimals.display();
+        animalSet.display();
         LOGGER.info("-------");
     }
 
@@ -178,7 +178,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void addAnimal(FarmAnimals animal) {
-        this.allAnimals.addAnimal(animal);
+        this.animalSet.addAnimal(animal);
     }
 
     public void addTool(Tool tool) {
@@ -198,7 +198,7 @@ public class Farm implements IPassTime, IDisplay {
         for (Tool tool : tools) {
             tool.passTime(days);
         }
-        allAnimals.passTime(days);
+        animalSet.passTime(days);
     }
 
     public void sowAllGrains() {
