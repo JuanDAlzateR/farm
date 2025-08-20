@@ -5,11 +5,6 @@ public abstract class Countable {
     private float quantity;
     private String name;
 
-    public Countable() {
-        this.name = "New name";
-        this.quantity = 0;
-    }
-
     public Countable(String name, float quantity) {
         this.name = name;
         this.quantity = quantity;

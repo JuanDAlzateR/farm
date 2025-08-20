@@ -1,6 +1,5 @@
 package com.solvd.farm.animals;
 
-import com.solvd.farm.Main;
 import com.solvd.farm.abstracts.AbstractList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
