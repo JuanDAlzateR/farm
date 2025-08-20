@@ -11,11 +11,11 @@ public class AllAnimals {
     private AnimalList<Poultry> poultryAnimalList;
 
     public AllAnimals() {
-        this.aquacultureAnimalList = new AnimalList<>();
-        this.equinesAnimalList = new AnimalList<>();
-        this.livestockAnimalList = new AnimalList<>();
-        this.othersAnimalList = new AnimalList<>();
-        this.poultryAnimalList = new AnimalList<>();
+        this.aquacultureAnimalList = new AnimalList<>(Aquaculture.class);
+        this.equinesAnimalList = new AnimalList<>(Equines.class);
+        this.livestockAnimalList = new AnimalList<>(Livestock.class);
+        this.othersAnimalList = new AnimalList<>(Others.class);
+        this.poultryAnimalList = new AnimalList<>(Poultry.class);
 
     }
 

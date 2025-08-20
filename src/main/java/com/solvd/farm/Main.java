@@ -15,7 +15,8 @@ import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.menu.*;
-
+//ensayo
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 //TIP To <b>interfaces.Run</b> code, press <shortcut actionId="interfaces.Run"/> or
@@ -32,19 +33,8 @@ public class Main {
 
         Scanner scanner = menu.getScanner();
 
-        try {
-            //menu.getMainMenu().run();
-            menu.runMainMenu();
-        } catch (InvalidOptionException e) {
-            LOGGER.warn("invalid option input.");
-        }
-
-        scanner.close();
-        FarmAccount farmAccount=menu.getFarmAccount();
-        example(farmAccount.getFarm(),farmAccount.getBankAccount());
-
-
-
+        AnimalSet animalSet=new AnimalSet();
+        animalSet.display();
     }
 
     /* This method is just an example of the functionality in the code.

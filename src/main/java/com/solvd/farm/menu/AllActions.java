@@ -2,10 +2,7 @@ package com.solvd.farm.menu;
 
 import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
-import com.solvd.farm.exceptions.InvalidFloatException;
-import com.solvd.farm.exceptions.InvalidIntException;
-import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
-import com.solvd.farm.exceptions.InvalidNameException;
+import com.solvd.farm.exceptions.*;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
@@ -114,7 +111,6 @@ public class AllActions {
         IMenuAction act = () -> {
             T item = createItem(itemClass);
             buyItem(item);
-
         };
         return act;
     }
@@ -223,8 +219,8 @@ public class AllActions {
 
     public static String inputString(String message) {
         LOGGER.info(message);
-        String input = AllMenus.scanner.nextLine();
-        return input;
+        return AllMenus.scanner.nextLine();
+
     }
 
     public static String inputName(String message) {

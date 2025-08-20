@@ -1,6 +1,7 @@
 package com.solvd.farm.animals;
 
 import com.solvd.farm.abstracts.AbstractList;
+import com.solvd.farm.crops.Grain;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,9 +10,18 @@ import java.util.ArrayList;
 public class AnimalList<T extends FarmAnimals> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(AnimalList.class);
     private ArrayList<T> animals = new ArrayList<>();
+    private Class<T> farmAnimalClass;
+
+    public AnimalList(Class<T> farmAnimalClass){
+        this.farmAnimalClass=farmAnimalClass;
+    }
+
+    public Class<T> getFarmAnimalClass() {
+        return farmAnimalClass;
+    }
 
     /* Looks in the array for the index of item with that name
-    If it doesn't find it, it returns -1  */
+        If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
         for (int i = 0; i < animals.size(); i++) {
@@ -78,5 +88,20 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
             animal.passTime(days);
         }
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof AnimalList<?>)) {
+            return false;
+        } else {
+            return (((AnimalList) object).getFarmAnimalClass().equals(this.getFarmAnimalClass()));
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getFarmAnimalClass().hashCode();
+    }
+
 
 }
