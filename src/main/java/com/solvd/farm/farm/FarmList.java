@@ -5,6 +5,7 @@ import com.solvd.farm.abstracts.AbstractList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 
 public class FarmList extends AbstractList {
@@ -16,9 +17,11 @@ public class FarmList extends AbstractList {
     public ArrayList<Farm> getList() {
         return this.farms;
     }
+
     public int getDefaultFarmIndex() {
         return defaultFarmIndex;
     }
+
     public Farm getDefaultFarm() {
         return this.farms.get(this.defaultFarmIndex);
     }

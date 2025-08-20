@@ -38,6 +38,7 @@ public class BankAccount extends Account implements IDisplay {
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
+
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
@@ -45,6 +46,7 @@ public class BankAccount extends Account implements IDisplay {
     public String getBankName() {
         return this.bankName;
     }
+
     public int getAccountNumber() {
         return this.accountNumber;
     }

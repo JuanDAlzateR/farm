@@ -17,6 +17,7 @@ import com.solvd.farm.farm.*;
 import com.solvd.farm.menu.*;
 
 import java.util.Scanner;
+
 //TIP To <b>interfaces.Run</b> code, press <shortcut actionId="interfaces.Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -29,12 +30,12 @@ public class Main {
 
         AllMenus menu = new AllMenus();
 
-        Scanner scanner=menu.getScanner();
+        Scanner scanner = menu.getScanner();
 
         try {
             //menu.getMainMenu().run();
             menu.runMainMenu();
-        }catch (InvalidOptionException e){
+        } catch (InvalidOptionException e) {
             LOGGER.warn("invalid option input.");
         }
         scanner.close();
@@ -45,20 +46,20 @@ public class Main {
     right now it's not called in main.
     Maybe later it could be implemented in an automated test or something similar
      */
-    public static void example(){
+    public static void example() {
 
         Farm farm = new Farm();
         BankAccount bankAccount = new BankAccount("Bank", 1234, 2000F, "Income");
-        FarmAccount account = new FarmAccount(farm,bankAccount);
+        FarmAccount account = new FarmAccount(farm, bankAccount);
         account.display();
 
-        Tool tool =new Tool("Pitchfork",40);
+        Tool tool = new Tool("Pitchfork", 40);
         account.buyItem(tool);
         LOGGER.info(tool);
         LOGGER.info(tool);
         LOGGER.info("-------");
 
-        Grain carrotSeeds = new Grain("Carrots", 100,0.1F);
+        Grain carrotSeeds = new Grain("Carrots", 100, 0.1F);
         account.buyItem(carrotSeeds);
 
         farm.sowAllGrains();

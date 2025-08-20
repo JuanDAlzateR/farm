@@ -43,7 +43,7 @@ public class Farm implements IPassTime, IDisplay {
         this.grains = grains;
         this.products = products;
         this.crops = crops;
-        this.date = date;
+        this.date = LocalDate.now();
         this.allAnimals = new AllAnimals();
         this.farmName = farmName;
     }
@@ -64,21 +64,27 @@ public class Farm implements IPassTime, IDisplay {
     public void setFarmName(String farmName) {
         this.farmName = farmName;
     }
+
     public void setGrains(GrainList grains) {
         this.grains = grains;
     }
+
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
+
     public void setCrops(ArrayList<Crop> crops) {
         this.crops = crops;
     }
+
     public void setTools(ArrayList<Tool> tools) {
         this.tools = tools;
     }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
     public void setAnimals(AllAnimals allAnimals) {
         this.allAnimals = allAnimals;
     }
@@ -86,21 +92,27 @@ public class Farm implements IPassTime, IDisplay {
     public String getFarmName() {
         return farmName;
     }
+
     public GrainList getGrains() {
         return this.grains;
     }
+
     public ArrayList<Product> getProducts() {
         return this.products;
     }
+
     public ArrayList<Crop> getCrops() {
         return this.crops;
     }
+
     public ArrayList<Tool> getTools() {
         return this.tools;
     }
+
     public LocalDate getDate() {
         return this.date;
     }
+
     public AllAnimals getAllAnimals() {
         return this.allAnimals;
     }
@@ -156,15 +168,19 @@ public class Farm implements IPassTime, IDisplay {
     public void addGrain(Grain grain) {
         this.grains.add(grain);
     }
+
     public void addCrop(Crop crop) {
         this.crops.add(crop);
     }
+
     public void addProduct(Product product) {
         this.products.add(product);
     }
+
     public void addAnimal(FarmAnimals animal) {
         this.allAnimals.addAnimal(animal);
     }
+
     public void addTool(Tool tool) {
         this.tools.add(tool);
     }

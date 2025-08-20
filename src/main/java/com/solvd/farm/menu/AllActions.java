@@ -31,7 +31,7 @@ public class AllActions {
         Farm defaultFarm = AllMenus.farmList.getDefaultFarm();
         AllMenus.farmAccount.setFarm(defaultFarm);
         AllMenus.farmList.displayWithIndex();
-        
+
     }
 
     public static void editFarm() {
@@ -40,12 +40,12 @@ public class AllActions {
         Farm farm = AllMenus.farmList.getList().get(index);
         String farmName = inputString("Please type the new name of the farm");
         farm.setFarmName(farmName);
-        
+
     }
 
     public static void displayFarms() {
         AllMenus.farmList.display();
-        
+
     }
 
     // Methods for the bank account menu
@@ -57,7 +57,7 @@ public class AllActions {
 
         BankAccount bankAccount = new BankAccount(bankName, accountNumber, balance, nickName);
         AllMenus.bankAccountList.add(bankAccount);
-        
+
     }
 
     public static void setDefaultBankAccount() {
@@ -66,7 +66,7 @@ public class AllActions {
         AllMenus.bankAccountList.setDefaultAccountIndex(index);
         BankAccount defaultAccount = AllMenus.bankAccountList.getList().get(index);
         AllMenus.farmAccount.setBankAccount(defaultAccount);
-        
+
     }
 
     public static void editBankAccount() {
@@ -89,12 +89,12 @@ public class AllActions {
 
     public static void displayBankAccounts() {
         AllMenus.bankAccountList.display(false);
-        
+
     }
 
     public static void displayAccountsBalance() {
         AllMenus.bankAccountList.displayWithBalance();
-        
+
     }
 
     public static void buyItem(IBuy item) {
@@ -110,22 +110,22 @@ public class AllActions {
 
     }
 
-    public static <T extends IBuy> IMenuAction buyItemAction(Class<T> itemClass){
+    public static <T extends IBuy> IMenuAction buyItemAction(Class<T> itemClass) {
         IMenuAction act = () -> {
-            T item=createItem(itemClass);
+            T item = createItem(itemClass);
             buyItem(item);
-            
+
         };
         return act;
     }
 
-    public static <T extends IBuy> T createItem(Class<T> itemClass){
+    public static <T extends IBuy> T createItem(Class<T> itemClass) {
 
         try {
             //creations of the new animal
             return itemClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Item not created"+e.getMessage(),e);
+            throw new RuntimeException("Item not created" + e.getMessage(), e);
         }
     }
 
@@ -164,7 +164,7 @@ public class AllActions {
 
     }
 
-    public static <T extends FarmAnimals> T createAnimal(Class<T> animalClass){
+    public static <T extends FarmAnimals> T createAnimal(Class<T> animalClass) {
         //Temporary implementation, uses default animalFeed and animalFood it needs to change.
         AnimalFeed animalFeed = new AnimalFeed();
         animalFeed.setQuantity(10);
@@ -175,33 +175,33 @@ public class AllActions {
             //creations of the new animal
             return animalClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Animal not created"+e.getMessage(),e);
+            throw new RuntimeException("Animal not created" + e.getMessage(), e);
         }
     }
 
-    public static <T extends FarmAnimals> IMenuAction buyAnimalAction(Class<T> animalClass){
+    public static <T extends FarmAnimals> IMenuAction buyAnimalAction(Class<T> animalClass) {
         IMenuAction act = () -> {
             FarmAnimals animal;
-            animal=createAnimal(animalClass);
+            animal = createAnimal(animalClass);
             buyAnimal(animal);
-            
+
         };
         return act;
     }
 
     public static void displayTools() {
         AllMenus.farmAccount.getFarm().displayTools();
-        
+
     }
 
     public static void displayAnimalFeed() {
         AllMenus.farmAccount.getFarm().getAllAnimals().displayAllFeed();
-        
+
     }
 
     public static void displayAnimals() {
         AllMenus.farmAccount.getFarm().getAllAnimals().display();
-        
+
     }
 
 
@@ -218,7 +218,7 @@ public class AllActions {
     public static void exit() {
         LOGGER.info("Closing...");
         System.exit(0);
-        
+
     }
 
     public static String inputString(String message) {

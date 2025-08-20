@@ -19,6 +19,7 @@ public class FarmAccount implements IDisplay {
     public void setBankAccount(BankAccount account) {
         this.account = account;
     }
+
     public void setFarm(Farm farm) {
         this.farm = farm;
     }
@@ -26,6 +27,7 @@ public class FarmAccount implements IDisplay {
     public BankAccount getBankAccount() {
         return this.account;
     }
+
     public Farm getFarm() {
         return this.farm;
     }

@@ -14,7 +14,7 @@ public class AnimalFeed extends Purchasable implements IBuy {
     private String feedUnit;
 
     public AnimalFeed() {
-        super("New animal feed",0);
+        super("New animal feed", 0);
         this.consumptionRatePerDay = 0.5F;
         this.feedUnit = "new unit";
     }
@@ -23,12 +23,12 @@ public class AnimalFeed extends Purchasable implements IBuy {
         super(name, quantity);
         this.consumptionRatePerDay = consumptionRatePerDay;
         this.feedUnit = feedUnit;
-        }
+    }
 
     @Override
-    public String toString(){
-        String line= (this.getName() + " | quantity %.2f " + this.feedUnit+" | " + this.consumptionRatePerDay + " consume per day%n");
-        return String.format(line,this.getQuantity());
+    public String toString() {
+        String line = (this.getName() + " | quantity %.2f " + this.feedUnit + " | " + this.consumptionRatePerDay + " consume per day%n");
+        return String.format(line, this.getQuantity());
     }
 
     @Override
@@ -37,19 +37,20 @@ public class AnimalFeed extends Purchasable implements IBuy {
             return false;
         } else if (((AnimalFeed) o).getName().equals(this.getName())) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return this.getName().hashCode();
     }
 
     public void setConsumptionRatePerDay(Float Rate) {
         this.consumptionRatePerDay = Rate;
     }
+
     public void setFeedUnit(String Percentage) {
         this.feedUnit = Percentage;
     }
@@ -57,14 +58,15 @@ public class AnimalFeed extends Purchasable implements IBuy {
     public float getConsumptionRatePerDay() {
         return this.consumptionRatePerDay;
     }
+
     public String getFeedUnit() {
         return this.feedUnit;
     }
 
-    public  void consume(int days) {
-        this.addQuantity(-consumptionRatePerDay *days);
-        if (this.getQuantity()<0){
-            LOGGER.info("Warning: Not enough "+ getName());
+    public void consume(int days) {
+        this.addQuantity(-consumptionRatePerDay * days);
+        if (this.getQuantity() < 0) {
+            LOGGER.info("Warning: Not enough " + getName());
             LOGGER.info(this);
             this.setQuantity(0);
         }
@@ -74,5 +76,6 @@ public class AnimalFeed extends Purchasable implements IBuy {
     AnimalFeed will be added to the Farm, when a FarmAnimal it's added.
     */
     @Override
-    public void addToFarm(Farm farm){     }
+    public void addToFarm(Farm farm) {
+    }
 }

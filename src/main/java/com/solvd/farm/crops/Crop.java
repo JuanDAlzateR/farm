@@ -11,14 +11,14 @@ public class Crop extends Countable implements IPassTime {
     private float growthPerDay;
 
     public Crop() {
-        super("new crop",0);
+        super("new crop", 0);
         this.germinationRate = 0.5F;
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
     }
 
     public Crop(Grain grain) {
-        super(grain.getName(),grain.getQuantity());
+        super(grain.getName(), grain.getQuantity());
         this.germinationRate = 0.5F;
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
@@ -26,16 +26,18 @@ public class Crop extends Countable implements IPassTime {
     }
 
     @Override
-    public String toString(){
-        return (this.getName() + " | expected quantity " + getExpectedQuantity()+ " | " + this.growthPercentage + "% of growth");
+    public String toString() {
+        return (this.getName() + " | expected quantity " + getExpectedQuantity() + " | " + this.growthPercentage + "% of growth");
     }
 
     public void setGerminationRate(Float Rate) {
         this.germinationRate = Rate;
     }
+
     public void setGrowthPercentage(Float Percentage) {
         this.growthPercentage = Percentage;
     }
+
     public void setGrowthPerDay(Float growthPerDay) {
         this.growthPerDay = growthPerDay;
     }
@@ -43,14 +45,17 @@ public class Crop extends Countable implements IPassTime {
     public float getGerminationRate() {
         return this.germinationRate;
     }
+
     public float getGrowthPercentage() {
         return this.growthPercentage;
     }
+
     public float getGrowthPerDay() {
         return this.growthPerDay;
     }
-    public  int getExpectedQuantity() {
-        return (int) (this.getQuantity()*this.germinationRate);
+
+    public int getExpectedQuantity() {
+        return (int) (this.getQuantity() * this.germinationRate);
     }
 
     @Override
@@ -64,7 +69,7 @@ public class Crop extends Countable implements IPassTime {
         }
     }
 
-    public void addToFarm(Farm farm){
+    public void addToFarm(Farm farm) {
         farm.addCrop(this);
     }
 }

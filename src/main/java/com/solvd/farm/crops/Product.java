@@ -32,9 +32,11 @@ public class Product extends Purchasable implements IPassTime, IBuy {
     public void setRottenPercentage(Float Percentage) {
         this.rottenPercentage = Percentage;
     }
+
     public void setRotPerDay(Float rotPerDay) {
         this.rotPerDay = rotPerDay;
     }
+
     public void setSellPrice(Float sellPrice) {
         this.sellPrice = sellPrice;
     }
@@ -42,9 +44,11 @@ public class Product extends Purchasable implements IPassTime, IBuy {
     public float getRottenPercentage() {
         return this.rottenPercentage;
     }
+
     public float getRottenPerDay() {
         return this.rotPerDay;
     }
+
     public float getSellPrice() {
         return this.sellPrice;
     }

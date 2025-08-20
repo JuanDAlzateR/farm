@@ -29,6 +29,7 @@ public class Tool extends Purchasable implements IPassTime, IBuy {
     public void setRottenPercentage(Float Percentage) {
         this.wearAndTearPercentage = Percentage;
     }
+
     public void setWearAndTearPerDay(Float wearAndTearPerDay) {
         this.wearAndTearPerDay = wearAndTearPerDay;
     }
@@ -36,6 +37,7 @@ public class Tool extends Purchasable implements IPassTime, IBuy {
     public float getRottenPercentage() {
         return this.wearAndTearPercentage;
     }
+
     public float getRottenPerDay() {
         return this.wearAndTearPerDay;
     }

@@ -10,15 +10,18 @@ import org.apache.logging.log4j.Logger;
 public class Grain extends Purchasable implements IBuy {
 
     public static final Logger LOGGER = LogManager.getLogger(Grain.class);
+
     public Grain(String name, float quantity) {
-        super(name,quantity);
+        super(name, quantity);
     }
-    public Grain(String name, float quantity, float price){
-        super(name,quantity,price);
+
+    public Grain(String name, float quantity, float price) {
+        super(name, quantity, price);
 
     }
+
     public Grain() {
-        super("New grain",0);
+        super("New grain", 0);
     }
 
     @Override
@@ -38,7 +41,7 @@ public class Grain extends Purchasable implements IBuy {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return this.getName().hashCode();
     }
 
@@ -54,7 +57,7 @@ public class Grain extends Purchasable implements IBuy {
     }
 
     @Override
-    public void addToFarm(Farm farm){
+    public void addToFarm(Farm farm) {
         farm.addGrain(this);
     }
 }

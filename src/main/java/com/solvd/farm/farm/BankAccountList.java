@@ -35,11 +35,13 @@ public class BankAccountList {
     public void display(Boolean displayIndex) {
         LOGGER.info("");
         LOGGER.info("list of all bank accounts");
-        String indexString="";
+        String indexString = "";
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
-            if (displayIndex){indexString=i+") ";}
+            if (displayIndex) {
+                indexString = i + ") ";
+            }
             if (i == this.defaultAccountIndex) {
                 LOGGER.info("\t" + indexString + bankName + " - Account #: " + accountNumber + " (Default Account)");
             } else {
@@ -54,13 +56,13 @@ public class BankAccountList {
         for (int i = 0; i < this.bankAccounts.size(); i++) {
             int accountNumber = this.bankAccounts.get(i).getAccountNumber();
             String bankName = this.bankAccounts.get(i).getBankName();
-            float balance= this.bankAccounts.get(i).getBalance();
+            float balance = this.bankAccounts.get(i).getBalance();
             if (i == this.defaultAccountIndex) {
                 LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
-                        "- Balance: "+ balance + " (Default Account)");
+                        "- Balance: " + balance + " (Default Account)");
             } else {
                 LOGGER.info("\t" + i + ") " + bankName + " - Account #: " + accountNumber +
-                        "- Balance: "+ balance);
+                        "- Balance: " + balance);
             }
         }
     }
@@ -68,6 +70,7 @@ public class BankAccountList {
     public ArrayList<BankAccount> getList() {
         return this.bankAccounts;
     }
+
     public void setDefaultAccountIndex(int defaultAccountIndex) {
         this.defaultAccountIndex = defaultAccountIndex;
     }
@@ -75,6 +78,7 @@ public class BankAccountList {
     public int getDefaultAccountIndex() {
         return defaultAccountIndex;
     }
+
     public BankAccount setDefaultAccount() {
         return this.bankAccounts.get(this.defaultAccountIndex);
     }

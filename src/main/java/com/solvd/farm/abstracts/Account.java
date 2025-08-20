@@ -13,32 +13,33 @@ public abstract class Account {
     }
 
     public Account() {
-        this.balance=0F;
-        this.accountNickname="New Account";
-        this.currency="usd";
+        this.balance = 0F;
+        this.accountNickname = "New Account";
+        this.currency = "usd";
     }
 
-    public  void setNickname(String name) {
-        this.accountNickname=name;
+    public void setNickname(String name) {
+        this.accountNickname = name;
     }
-    public  void setBalance( Float balance) {
-        this.balance=balance;
+    public void setBalance(Float balance) {
+        this.balance = balance;
     }
-    public  void setCurrency(String currency) {
-        this.currency =currency;
-    }
-    public  void addBalance( Float balance) {
-        this.balance+=balance;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
-    public  String getNickname( ) {
+    public void addBalance(Float balance) {
+        this.balance += balance;
+    }
+
+    public String getNickname() {
         return this.accountNickname;
     }
-    public  Float getBalance(  ) {
+    public Float getBalance() {
         return this.balance;
     }
-    public  String getCurrency( ) {
-        return this.currency ;
+    public String getCurrency() {
+        return this.currency;
     }
 
 }

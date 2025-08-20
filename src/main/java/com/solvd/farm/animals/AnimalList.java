@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class AnimalList<T extends FarmAnimals>extends AbstractList {
+public class AnimalList<T extends FarmAnimals> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(AnimalList.class);
     private ArrayList<T> animals = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class AnimalList<T extends FarmAnimals>extends AbstractList {
 
     public void display() {
         LOGGER.info("");
-        LOGGER.info("list of "+getNameOfClass()+" animals in the farm");
+        LOGGER.info("list of " + getNameOfClass() + " animals in the farm");
 
         for (T animal : animals) {
             LOGGER.info(animal);
@@ -51,22 +51,22 @@ public class AnimalList<T extends FarmAnimals>extends AbstractList {
         return this.animals;
     }
 
-    public String getNameOfClass(){
+    public String getNameOfClass() {
 
-        if (animals.size()>0){
-            if (animals.get(0) instanceof Livestock){
-               return "Livestock";
+        if (animals.size() > 0) {
+            if (animals.get(0) instanceof Livestock) {
+                return "Livestock";
             }
-            if (animals.get(0) instanceof Aquaculture){
+            if (animals.get(0) instanceof Aquaculture) {
                 return "Aquaculture";
             }
-            if (animals.get(0) instanceof Equines){
+            if (animals.get(0) instanceof Equines) {
                 return "Equines";
             }
-            if (animals.get(0) instanceof Poultry){
+            if (animals.get(0) instanceof Poultry) {
                 return "Poultry";
             }
-            if (animals.get(0) instanceof Others){
+            if (animals.get(0) instanceof Others) {
                 return "Others";
             }
         }
@@ -74,7 +74,7 @@ public class AnimalList<T extends FarmAnimals>extends AbstractList {
 
     }
 
-    public void passTime(int days){
+    public void passTime(int days) {
         for (FarmAnimals animal : animals) {
             animal.passTime(days);
         }
