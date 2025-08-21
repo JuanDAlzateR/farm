@@ -15,17 +15,17 @@ public class Farm implements IPassTime, IDisplay {
     public static final Logger LOGGER = LogManager.getLogger(Farm.class);
     private String farmName;
     private GenericList<Grain> grains;
-    private ArrayList<Product> products;
-    private ArrayList<Crop> crops;
-    private ArrayList<Tool> tools;
+    private GenericList<Product> products;
+    private GenericList<Crop> crops;
+    private GenericList<Tool> tools;
     private LocalDate date;
     private AnimalSet animalSet;
 
     public Farm() {
         GenericList<Grain> grains = new GenericList();
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Crop> crops = new ArrayList<>();
-        ArrayList<Tool> tools = new ArrayList<>();
+        GenericList<Product> products = new GenericList<>();
+        GenericList<Crop> crops = new GenericList<>();
+        GenericList<Tool> tools = new GenericList<>();
         this.grains = grains;
         this.products = products;
         this.crops = crops;
@@ -36,29 +36,13 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Farm(String farmName) {
-        GenericList<Grain> grains = new GenericList();
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Crop> crops = new ArrayList<>();
-        ArrayList<Tool> tools = new ArrayList<>();
-        this.grains = grains;
-        this.products = products;
-        this.crops = crops;
-        this.date = LocalDate.now();
-        this.animalSet = new AnimalSet();
+        this();
         this.farmName = farmName;
     }
 
     public Farm(LocalDate date) {
-        GenericList<Grain> grains = new GenericList();
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Crop> crops = new ArrayList<>();
-        ArrayList<Tool> tools = new ArrayList<>();
-        this.grains = grains;
-        this.products = products;
-        this.crops = crops;
+        this();
         this.date = date;
-        this.animalSet = new AnimalSet();
-        this.farmName = "New Farm";
     }
 
     public void setFarmName(String farmName) {
@@ -69,15 +53,15 @@ public class Farm implements IPassTime, IDisplay {
         this.grains = grains;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(GenericList<Product> products) {
         this.products = products;
     }
 
-    public void setCrops(ArrayList<Crop> crops) {
+    public void setCrops(GenericList<Crop> crops) {
         this.crops = crops;
     }
 
-    public void setTools(ArrayList<Tool> tools) {
+    public void setTools(GenericList<Tool> tools) {
         this.tools = tools;
     }
 
@@ -97,15 +81,15 @@ public class Farm implements IPassTime, IDisplay {
         return this.grains;
     }
 
-    public ArrayList<Product> getProducts() {
+    public GenericList<Product> getProducts() {
         return this.products;
     }
 
-    public ArrayList<Crop> getCrops() {
+    public GenericList<Crop> getCrops() {
         return this.crops;
     }
 
-    public ArrayList<Tool> getTools() {
+    public GenericList<Tool> getTools() {
         return this.tools;
     }
 
@@ -120,10 +104,10 @@ public class Farm implements IPassTime, IDisplay {
     public void display() {
         LOGGER.info("Date: " + this.date);
         LOGGER.info("Number of types of grains: " + this.grains.getList().toArray().length);
-        LOGGER.info("Number of types of crops: " + this.crops.toArray().length);
-        LOGGER.info("Number of types of products: " + this.products.toArray().length);
+        LOGGER.info("Number of types of crops: " + this.crops.getList().toArray().length);
+        LOGGER.info("Number of types of products: " + this.products.getList().toArray().length);
         LOGGER.info("Number of types of animals: " + this.animalSet.size());
-        LOGGER.info("Number of tools: " + this.tools.toArray().length);
+        LOGGER.info("Number of tools: " + this.tools.getList().toArray().length);
     }
 
     public void displayGrains() {
@@ -142,7 +126,7 @@ public class Farm implements IPassTime, IDisplay {
 
     public void displayCrops() {
         LOGGER.info("Date:" + getDate() + " - Crops in stock:");
-        for (Crop crop : crops) {
+        for (Crop crop : crops.getList()) {
             LOGGER.info(crop);
         }
         LOGGER.info("-------");
@@ -150,7 +134,7 @@ public class Farm implements IPassTime, IDisplay {
 
     public void displayProducts() {
         LOGGER.info("Date:" + getDate() + " - Products in stock:");
-        for (Product product : products) {
+        for (Product product : products.getList()) {
             LOGGER.info(product);
         }
         LOGGER.info("-------");
@@ -159,7 +143,7 @@ public class Farm implements IPassTime, IDisplay {
     public void displayTools() {
         LOGGER.info("");
         LOGGER.info("Date:" + getDate() + " - Tools in farm:");
-        for (Tool tool : tools) {
+        for (Tool tool : tools.getList()) {
             LOGGER.info(tool);
         }
         LOGGER.info("-------");
@@ -189,13 +173,13 @@ public class Farm implements IPassTime, IDisplay {
     public void passTime(int days) {
         this.date = this.date.plusDays(days);
 
-        for (Crop crop : crops) {
+        for (Crop crop : crops.getList()) {
             crop.passTime(days);
         }
-        for (Product product : products) {
+        for (Product product : products.getList()) {
             product.passTime(days);
         }
-        for (Tool tool : tools) {
+        for (Tool tool : tools.getList()) {
             tool.passTime(days);
         }
         animalSet.passTime(days);
@@ -211,7 +195,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void harvestAllCrops() {
-        for (Crop crop : crops) {
+        for (Crop crop : crops.getList()) {
             if (crop.getGrowthPercentage() >= 100) {
                 Product product = new Product(crop);
                 addProduct(product);
@@ -229,7 +213,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Product findProduct(Product product1) {
-        for (Product product : products) {
+        for (Product product : products.getList()) {
             if (product.getName().equals(product1.getName())) {
                 return product;
             }
@@ -255,7 +239,7 @@ public class Farm implements IPassTime, IDisplay {
         } else if (foundProduct.getRottenPercentage() >= 100) {
             LOGGER.info("crops.Product " + product.getName() + " it's rotten, unable to sell.");
             LOGGER.info("The product will be automatically removed from the system.");
-            products.remove(foundProduct);
+            products.getList().remove(foundProduct);
             return 0F;
         } else {
             LOGGER.info(product.getName() + " successfully sold for " + product.getSellPrice() * quantity);

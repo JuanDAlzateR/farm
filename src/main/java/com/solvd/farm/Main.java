@@ -85,7 +85,7 @@ public class Main {
 
         LOGGER.info("SELL PRODUCTS");
         LOGGER.info("30 carrots sold.");
-        Product product = farm.getProducts().get(0);
+        Product product = farm.getProducts().getList().get(0);
         product.setSellPrice(1F);
         float cash = farm.sell(product, 30);
         bankAccount.addBalance(cash);
