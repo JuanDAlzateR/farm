@@ -1,9 +1,11 @@
-package com.solvd.farm.menu;
+package com.solvd.farm.input;
 
 import com.solvd.farm.Main;
 import com.solvd.farm.exceptions.InvalidFloatException;
 import com.solvd.farm.exceptions.InvalidIntException;
+import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
 import com.solvd.farm.exceptions.InvalidNameException;
+import com.solvd.farm.menu.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,14 +17,18 @@ import java.util.function.Supplier;
 
 public class Input {
     public static final Logger LOGGER = LogManager.getLogger(Input.class);
-    static List<Class<?>> classList = Arrays.asList(String.class, int.class, float.class);
+    static List<Class<?>> classList = Arrays.asList(String.class, int.class, float.class, NameString.class, UnitMeasureString.class);
+    static List<Class<?>> numberList = Arrays.asList(int.class, float.class);
     public static HashSet<Class<?>> classesSet = new HashSet<>(classList);
     public static HashMap<Class<?>, Supplier<Exception>> exceptions = new HashMap<>();
 
     static {
-        exceptions.put(String.class,() -> new InvalidNameException());
+        exceptions.put(String.class, () -> new Exception());
         exceptions.put(int.class, () -> new InvalidIntException());
         exceptions.put(float.class, () -> new InvalidFloatException());
+        exceptions.put(NameString.class, () -> new InvalidNameException());
+        exceptions.put(UnitMeasureString.class, () -> new InvalidMeasurementUnitException());
+
     }
     //Create a NameClass and UnitMeasureClass, to handle their own exceptions.
 
@@ -39,10 +45,11 @@ public class Input {
                 input = nextInput(inputClass);
                 validateInput = true;
 
+
             } catch (Exception e) {
-                Main.LOGGER.warn("Invalid " + inputClass + " input.");
+                Main.LOGGER.warn("Invalid " + inputClass + " input...");
             } finally {
-                if (classesSet.contains(inputClass) && !(inputClass == String.class)) {
+                if (numberList.contains(inputClass)) {
                     AllMenus.scanner.nextLine();
                 }
             }
@@ -61,7 +68,7 @@ public class Input {
             } else if (inputClass == float.class) {
                 out = AllMenus.scanner.hasNextFloat();
 
-            } else if (inputClass == String.class) {
+            } else {
                 out = true;
 
             }
@@ -83,9 +90,17 @@ public class Input {
                 float input = AllMenus.scanner.nextFloat();
                 return (T) Float.valueOf(input);
 
-            } else if (inputClass == String.class) {
+            } else if (inputClass == String.class){
                 String input = AllMenus.scanner.nextLine();
                 return (T) input;
+
+            }else if (inputClass == NameString.class){
+                String input = AllMenus.scanner.nextLine();
+                return (T) new NameString(input);
+
+            }else if (inputClass == UnitMeasureString.class){
+                String input = AllMenus.scanner.nextLine();
+                return (T) new UnitMeasureString(input);
 
             }
         } else {

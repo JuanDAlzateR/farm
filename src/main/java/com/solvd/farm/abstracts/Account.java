@@ -21,9 +21,11 @@ public abstract class Account {
     public void setNickname(String name) {
         this.accountNickname = name;
     }
+
     public void setBalance(Float balance) {
         this.balance = balance;
     }
+
     public void setCurrency(String currency) {
         this.currency = currency;
     }
@@ -35,9 +37,11 @@ public abstract class Account {
     public String getNickname() {
         return this.accountNickname;
     }
+
     public Float getBalance() {
         return this.balance;
     }
+
     public String getCurrency() {
         return this.currency;
     }

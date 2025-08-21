@@ -4,6 +4,9 @@ import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.exceptions.*;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.input.Input;
+import com.solvd.farm.input.NameString;
+import com.solvd.farm.input.UnitMeasureString;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
 import org.apache.logging.log4j.LogManager;
@@ -221,53 +224,61 @@ public class AllActions {
 
     }
 
-    public static String inputName(String message) {
-        String input = "";
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                input = AllMenus.scanner.nextLine();
-                if (!input.matches("[a-zA-Z ]+")) {
-                    throw new InvalidNameException();
-                }
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid name input.");
-            }
-        }
-        Main.LOGGER.debug(input + " input name validated");
-        return input;
-    }
-
     public static int inputInt(String message) {
         return Input.input(int.class, message);
     }
 
     public static float inputFloat(String message) {
-        return Input.input(Float.class, message);
+        return Input.input(float.class, message);
+    }
+
+    public static String inputName(String message) {
+        return (Input.input(NameString.class,message)).getName();
     }
 
     public static String inputMeasurementUnit(String message) {
-        String input = "";
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                input = AllMenus.scanner.nextLine();
-                if (validateMeasurementUnit(input)) {
-                    throw new InvalidMeasurementUnitException();
-                }
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid measurement unit input.");
-            }
-        }
-        Main.LOGGER.debug(input + " input measurement unit validated");
-        return input;
+        return (Input.input(UnitMeasureString.class,message)).getUnitMeasure();
     }
+
+//    public static String inputName(String message) {
+//        String input = "";
+//        boolean validateInput = false;
+//        while (!validateInput) {
+//            try {
+//                LOGGER.info(message);
+//                input = AllMenus.scanner.nextLine();
+//                if (!input.matches("[a-zA-Z ]+")) {
+//                    throw new InvalidNameException();
+//                }
+//                validateInput = true;
+//
+//            } catch (Exception e) {
+//                Main.LOGGER.warn("Invalid name input.");
+//            }
+//        }
+//        Main.LOGGER.debug(input + " input name validated");
+//        return input;
+//    }
+//
+//    public static String inputMeasurementUnit(String message) {
+//        String input = "";
+//        boolean validateInput = false;
+//        while (!validateInput) {
+//            try {
+//                LOGGER.info(message);
+//                input = AllMenus.scanner.nextLine();
+//                if (validateMeasurementUnit(input)) {
+//                    throw new InvalidMeasurementUnitException();
+//                }
+//                validateInput = true;
+//
+//            } catch (Exception e) {
+//                Main.LOGGER.warn("Invalid measurement unit input.");
+//            }
+//        }
+//        Main.LOGGER.debug(input + " input measurement unit validated");
+//        return input;
+//    }
 
     public static boolean validateMeasurementUnit(String input) {
         String[][] units = {

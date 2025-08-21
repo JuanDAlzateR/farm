@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AllMenus {
 
-    static Scanner scanner;
+    public static Scanner scanner;
     static MenuAction mainMenu;
     static FarmList farmList = new FarmList();
     static BankAccountList bankAccountList = new BankAccountList();
