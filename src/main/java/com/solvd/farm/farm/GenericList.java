@@ -12,6 +12,10 @@ public class GenericList <T extends Countable> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(GenericList.class);
     private ArrayList<T> list = new ArrayList<>();
 
+    public ArrayList<T> getList() {
+        return this.list;
+    }
+
     /* Looks in the array for the index of item with that name
         If it doesn't find it, it returns -1  */
     @Override
@@ -39,8 +43,5 @@ public class GenericList <T extends Countable> extends AbstractList {
         }
     }
 
-    public ArrayList<T> getList() {
-        return this.list;
-    }
 
 }
