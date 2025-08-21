@@ -19,6 +19,7 @@ public class Input {
     public static final Logger LOGGER = LogManager.getLogger(Input.class);
     static List<Class<?>> classList = Arrays.asList(String.class, int.class, float.class, NameString.class, UnitMeasureString.class);
     static List<Class<?>> numberList = Arrays.asList(int.class, float.class);
+    static List<Class<?>> validateList = Arrays.asList(NameString.class, UnitMeasureString.class);
     public static HashSet<Class<?>> classesSet = new HashSet<>(classList);
     public static HashMap<Class<?>, Supplier<Exception>> exceptions = new HashMap<>();
 
@@ -43,6 +44,12 @@ public class Input {
                     //first get the supplier, then get the new exception provided by the supplier
                 }
                 input = nextInput(inputClass);
+                //validate the String inputs for the constructor of the class.
+                if(validateList.contains(inputClass)){
+                    if (input.toString().equals("")){
+                        throw exceptions.get(inputClass).get();
+                    }
+                }
                 validateInput = true;
 
 

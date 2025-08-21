@@ -45,4 +45,9 @@ public class UnitMeasureString {
         return validateInput;
     }
 
+    @Override
+    public String toString() {
+        return this.getUnitMeasure();
+    }
+
 }
