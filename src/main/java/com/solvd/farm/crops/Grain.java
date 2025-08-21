@@ -34,8 +34,8 @@ public class Grain extends Purchasable implements IBuy {
             return false;
         } else {
             return (((Grain) object).getName().equals(this.getName()));
-            }
         }
+    }
 
 
     @Override

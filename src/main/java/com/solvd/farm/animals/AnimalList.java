@@ -12,8 +12,8 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
     private ArrayList<T> animals = new ArrayList<>();
     private Class<T> farmAnimalClass;
 
-    public AnimalList(Class<T> farmAnimalClass){
-        this.farmAnimalClass=farmAnimalClass;
+    public AnimalList(Class<T> farmAnimalClass) {
+        this.farmAnimalClass = farmAnimalClass;
     }
 
     public Class<T> getFarmAnimalClass() {
@@ -62,9 +62,9 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
 
     public String getNameOfClass() {
 
-        String[] stringList=getFarmAnimalClass().toString().split("\\.");
-        int length=stringList.length;
-        return stringList[length-1];
+        String[] stringList = getFarmAnimalClass().toString().split("\\.");
+        int length = stringList.length;
+        return stringList[length - 1];
 
     }
 

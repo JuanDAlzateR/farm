@@ -42,7 +42,7 @@ public class Main {
     /* This method is just an example of the functionality in the code.
     Maybe later it could be implemented in an automated test or something similar.
      */
-    public static void example(Farm farm,BankAccount bankAccount) {
+    public static void example(Farm farm, BankAccount bankAccount) {
 
         FarmAccount account = new FarmAccount(farm, bankAccount);
         account.display();

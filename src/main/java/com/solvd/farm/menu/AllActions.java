@@ -118,7 +118,7 @@ public class AllActions {
     public static <T extends IBuy> T createItem(Class<T> itemClass) {
 
         try {
-            //creations of the new animal
+            //creations of the new item
             return itemClass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException("Item not created" + e.getMessage(), e);
@@ -144,8 +144,8 @@ public class AllActions {
         //displayAnimals(null);
 
         String animalName = inputName("Please type the name of the animal to buy:");
-        int quantity = inputInt("Please type how many " + animalName + " you want to buy :");
-        float price = inputFloat("Please type the price of " + animalName + " for only 1 animal :");
+        int quantity = Input.input(int.class, "Please type how many " + animalName + " you want to buy :");
+        float price = Input.input(float.class, "Please type the price of " + animalName + " for only 1 animal :");
 
         //Temporary implementation, uses default animalFeed and animalFood it needs to change.
         AnimalFeed animalFeed = new AnimalFeed();
@@ -153,7 +153,6 @@ public class AllActions {
         AnimalFood animalFood = new AnimalFood();
         animalFood.setQuantity(10);
 
-        //Temporary implementation, the animal it's created as LiveStock, it needs to change be able to add it as the respective class.
         animal.setAnimal(animalName, quantity, animalFood, animalFeed);
         animal.setPrice(price);
         AllMenus.farmAccount.buyItem(animal);
@@ -244,49 +243,11 @@ public class AllActions {
     }
 
     public static int inputInt(String message) {
-        int input = 0;
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                if (!AllMenus.scanner.hasNextInt()) {
-                    throw new InvalidIntException();
-                }
-                input = AllMenus.scanner.nextInt();
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid int input.");
-            } finally {
-                AllMenus.scanner.nextLine();
-            }
-
-        }
-        Main.LOGGER.debug(input + " input int validated");
-        return input;
+        return Input.input(int.class, message);
     }
 
     public static float inputFloat(String message) {
-        float input = 0;
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                if (!AllMenus.scanner.hasNextFloat()) {
-                    throw new InvalidFloatException();
-                }
-                input = AllMenus.scanner.nextFloat();
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid float input.");
-            } finally {
-                AllMenus.scanner.nextLine();
-            }
-
-        }
-        Main.LOGGER.debug(input + " input float validated");
-        return input;
+        return Input.input(Float.class, message);
     }
 
     public static String inputMeasurementUnit(String message) {
