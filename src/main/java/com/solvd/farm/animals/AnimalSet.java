@@ -2,7 +2,7 @@ package com.solvd.farm.animals;
 
 import java.util.LinkedHashSet;
 
-public class AnimalSet<T extends FarmAnimals> {
+public class AnimalSet {
 
     private LinkedHashSet<AnimalList> animalTypes = new LinkedHashSet<>();
 
@@ -31,7 +31,7 @@ public class AnimalSet<T extends FarmAnimals> {
         }
     }
 
-    public void addAnimal(FarmAnimals animal) {
+    public <T extends FarmAnimals> void addAnimal(FarmAnimals animal) {
         Class<T> animalClass = (Class<T>) animal.getClass();
 
         for (AnimalList animalList : animalTypes) {

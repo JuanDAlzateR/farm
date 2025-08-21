@@ -4,11 +4,11 @@ import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
 import com.solvd.farm.interfaces.IPassTime;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Farm implements IPassTime, IDisplay {
 
@@ -22,7 +22,7 @@ public class Farm implements IPassTime, IDisplay {
     private AnimalSet animalSet;
 
     public Farm() {
-        GenericList<Grain> grains = new GenericList();
+        GenericList<Grain> grains = new GenericList<>();
         GenericList<Product> products = new GenericList<>();
         GenericList<Crop> crops = new GenericList<>();
         GenericList<Tool> tools = new GenericList<>();
@@ -38,6 +38,7 @@ public class Farm implements IPassTime, IDisplay {
     public Farm(String farmName) {
         this();
         this.farmName = farmName;
+
     }
 
     public Farm(LocalDate date) {
@@ -110,42 +111,32 @@ public class Farm implements IPassTime, IDisplay {
         LOGGER.info("Number of tools: " + this.tools.getList().toArray().length);
     }
 
-    public void displayGrains() {
-        LOGGER.info("Date:" + getDate() + " - Grains in stock:");
-        for (Grain grain : grains.getList()) {
-            LOGGER.info(grain);
-        }
-        LOGGER.info("-------");
-    }
-
     public void displayAnimals() {
         LOGGER.info("Date:" + getDate() + " - Animals in farm:");
         animalSet.display();
         LOGGER.info("-------");
     }
 
+    public void displayGrains() {
+        displayList(grains,"grains in stock");
+    }
+
     public void displayCrops() {
-        LOGGER.info("Date:" + getDate() + " - Crops in stock:");
-        for (Crop crop : crops.getList()) {
-            LOGGER.info(crop);
-        }
-        LOGGER.info("-------");
+        displayList(products,"crops in farm");
     }
 
     public void displayProducts() {
-        LOGGER.info("Date:" + getDate() + " - Products in stock:");
-        for (Product product : products.getList()) {
-            LOGGER.info(product);
-        }
-        LOGGER.info("-------");
+        displayList(products,"products in stock");
     }
 
     public void displayTools() {
         LOGGER.info("");
-        LOGGER.info("Date:" + getDate() + " - Tools in farm:");
-        for (Tool tool : tools.getList()) {
-            LOGGER.info(tool);
-        }
+        displayList(tools,"Tools in farm");
+    }
+
+    public void displayList(GenericList list,String title) {
+        LOGGER.info("Date:" + getDate() + " - " + title);
+        list.display();
         LOGGER.info("-------");
     }
 
@@ -238,7 +229,7 @@ public class Farm implements IPassTime, IDisplay {
             return 0F;
         } else if (foundProduct.getRottenPercentage() >= 100) {
             LOGGER.info("crops.Product " + product.getName() + " it's rotten, unable to sell.");
-            LOGGER.info("The product will be automatically removed from the system.");
+            LOGGER.warn("The product will be automatically removed from the system.");
             products.getList().remove(foundProduct);
             return 0F;
         } else {
