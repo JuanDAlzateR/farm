@@ -189,17 +189,18 @@ public class AllActions {
 
     public static void displayTools() {
         AllMenus.farmAccount.getFarm().displayTools();
-
     }
 
     public static void displayAnimalFeed() {
         AllMenus.farmAccount.getFarm().getAnimalSet().displayAllFeed();
-
     }
 
     public static void displayAnimals() {
         AllMenus.farmAccount.getFarm().getAnimalSet().display();
+    }
 
+    public static void displayGrains() {
+        AllMenus.farmAccount.getFarm().getGrains().display();
     }
 
 //    public static void editAnimal() {
@@ -233,77 +234,12 @@ public class AllActions {
     }
 
     public static String inputName(String message) {
-        return (Input.input(NameString.class,message)).getName();
+        return (Input.input(NameString.class, message)).getName();
     }
 
     public static String inputMeasurementUnit(String message) {
-        return (Input.input(UnitMeasureString.class,message)).getUnitMeasure();
+        return (Input.input(UnitMeasureString.class, message)).getUnitMeasure();
     }
 
-//    public static String inputName(String message) {
-//        String input = "";
-//        boolean validateInput = false;
-//        while (!validateInput) {
-//            try {
-//                LOGGER.info(message);
-//                input = AllMenus.scanner.nextLine();
-//                if (!input.matches("[a-zA-Z ]+")) {
-//                    throw new InvalidNameException();
-//                }
-//                validateInput = true;
-//
-//            } catch (Exception e) {
-//                Main.LOGGER.warn("Invalid name input.");
-//            }
-//        }
-//        Main.LOGGER.debug(input + " input name validated");
-//        return input;
-//    }
-//
-//    public static String inputMeasurementUnit(String message) {
-//        String input = "";
-//        boolean validateInput = false;
-//        while (!validateInput) {
-//            try {
-//                LOGGER.info(message);
-//                input = AllMenus.scanner.nextLine();
-//                if (validateMeasurementUnit(input)) {
-//                    throw new InvalidMeasurementUnitException();
-//                }
-//                validateInput = true;
-//
-//            } catch (Exception e) {
-//                Main.LOGGER.warn("Invalid measurement unit input.");
-//            }
-//        }
-//        Main.LOGGER.debug(input + " input measurement unit validated");
-//        return input;
-//    }
-
-    public static boolean validateMeasurementUnit(String input) {
-        String[][] units = {
-                {"kilogram", "kg"},
-                {"gram", "g"},
-                {"milligram", "mg"},
-                {"ton", "t"},
-                {"pound", "lb"},
-                {"ounce", "oz"},
-                {"liter", "L"},
-                {"milliliter", "mL"},
-                {"gallon", "gal"},
-                {"pint", "pt"},
-                {"quart", "qt"},
-        };
-
-        boolean validateInput = false;
-
-        for (String[] unit : units) {
-            if (unit[0].equalsIgnoreCase(input) || unit[1].equalsIgnoreCase(input)) {
-                validateInput = true;
-                break;
-            }
-        }
-        return validateInput;
-    }
 
 }

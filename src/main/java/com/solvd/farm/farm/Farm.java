@@ -14,7 +14,7 @@ public class Farm implements IPassTime, IDisplay {
 
     public static final Logger LOGGER = LogManager.getLogger(Farm.class);
     private String farmName;
-    private GrainList grains;
+    private GenericList<Grain> grains;
     private ArrayList<Product> products;
     private ArrayList<Crop> crops;
     private ArrayList<Tool> tools;
@@ -22,7 +22,7 @@ public class Farm implements IPassTime, IDisplay {
     private AnimalSet animalSet;
 
     public Farm() {
-        GrainList grains = new GrainList();
+        GenericList<Grain> grains = new GenericList();
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Crop> crops = new ArrayList<>();
         ArrayList<Tool> tools = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Farm(String farmName) {
-        GrainList grains = new GrainList();
+        GenericList<Grain> grains = new GenericList();
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Crop> crops = new ArrayList<>();
         ArrayList<Tool> tools = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Farm(LocalDate date) {
-        GrainList grains = new GrainList();
+        GenericList<Grain> grains = new GenericList();
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Crop> crops = new ArrayList<>();
         ArrayList<Tool> tools = new ArrayList<>();
@@ -65,7 +65,7 @@ public class Farm implements IPassTime, IDisplay {
         this.farmName = farmName;
     }
 
-    public void setGrains(GrainList grains) {
+    public void setGrains(GenericList<Grain> grains) {
         this.grains = grains;
     }
 
@@ -93,7 +93,7 @@ public class Farm implements IPassTime, IDisplay {
         return farmName;
     }
 
-    public GrainList getGrains() {
+    public GenericList<Grain> getGrains() {
         return this.grains;
     }
 

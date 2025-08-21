@@ -80,6 +80,7 @@ public class AllMenus {
         buyMenu.add("Display all tools", AllActions::displayTools);
         //buyMenu.add("*Display all animal feed in stock",AllActions::displayBankAccounts);
         buyMenu.add("Display all animals", AllActions::displayAnimals);
+        buyMenu.add("Display all grains", AllActions::displayGrains);
 
         //Buy Animal Menu
         buyAnimalMenu.add("Back to previous menu", buyMenu);
