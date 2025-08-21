@@ -199,7 +199,6 @@ public class AllActions {
 
     }
 
-
 //    public static void editAnimal() {
 //        LOGGER.info("Edit animal...");
 //

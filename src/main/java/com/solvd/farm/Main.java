@@ -1,23 +1,20 @@
-/* Last update 14/Aug/2025
-I restructured the project, and implemented the interfaces.
-I added Log4j and exception handling.
+/* Last update 21/Aug/2025
+I changed all system.outs for logger
+I implemented generics and collections
 
-I started the implementation of a user menu using Scanner
  */
 
 package com.solvd.farm;
 
 import com.solvd.farm.exceptions.InvalidOptionException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.menu.*;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 //TIP To <b>interfaces.Run</b> code, press <shortcut actionId="interfaces.Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

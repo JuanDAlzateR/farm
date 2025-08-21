@@ -33,9 +33,9 @@ public class AllMenus {
         MenuAction adminFarmMenu = new MenuAction("ADMIN FARM");
 
         MenuAction buyMenu = new MenuAction("BUY ITEMS");
-        MenuAction adminCropsMenu = new MenuAction("ADMIN CROPS");
-        MenuAction adminAnimalsMenu = new MenuAction("ADMIN FARM ANIMALS");
-        MenuAction sellMenu = new MenuAction("SELL PRODUCTS");
+//        MenuAction adminCropsMenu = new MenuAction("ADMIN CROPS");
+//        MenuAction adminAnimalsMenu = new MenuAction("ADMIN FARM ANIMALS");
+//        MenuAction sellMenu = new MenuAction("SELL PRODUCTS");
 
         MenuAction buyAnimalMenu = new MenuAction("BUY ANIMALS");
 

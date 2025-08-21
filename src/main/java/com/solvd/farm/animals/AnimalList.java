@@ -1,7 +1,6 @@
 package com.solvd.farm.animals;
 
 import com.solvd.farm.abstracts.AbstractList;
-import com.solvd.farm.crops.Grain;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

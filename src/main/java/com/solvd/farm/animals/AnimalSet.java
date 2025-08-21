@@ -1,12 +1,6 @@
 package com.solvd.farm.animals;
 
-import com.solvd.farm.crops.Grain;
-
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.logging.Logger;
 
 public class AnimalSet<T extends FarmAnimals> {
 
