@@ -43,5 +43,4 @@ public class GenericList <T extends Countable> extends AbstractList {
         }
     }
 
-
 }
