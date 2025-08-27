@@ -1,6 +1,6 @@
 package com.solvd.farm.animals;
 
-//animals.Poultry → chickens, turkeys, ducks
+//animals.Poultry → chickens, turkeys, ducks, geese
 public class Poultry extends FarmAnimals {
     public Poultry() {
         super("New animal", 0, new AnimalFood(), new AnimalFeed());

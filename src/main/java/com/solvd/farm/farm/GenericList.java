@@ -30,10 +30,14 @@ public class GenericList <T extends Countable> extends AbstractList {
 
     public void add(T item) {
         int index = indexOfName(item.getName());
+        LOGGER.debug("item: "+item.getName()+"  index: "+ index);
         if (index > -1) {
             list.get(index).addQuantity(item.getQuantity());
         } else {
+            LOGGER.debug("list size: "+list.size());
             list.add(item);
+            LOGGER.debug(item+" added");
+            LOGGER.debug("new list size: "+list.size());
         }
     }
 
