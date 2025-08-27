@@ -117,8 +117,8 @@ public class Main {
         LOGGER.info("Date:" + farm.getDate());
         LOGGER.info(tool);
 
-        AllActions.buyAnimalFeed();
-        AllActions.displayAnimalFeed();
+//        AllActions.buyAnimalFeed();
+//        AllActions.displayAnimalFeed();
 
     }
 }
