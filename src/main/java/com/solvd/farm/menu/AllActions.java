@@ -241,5 +241,7 @@ public class AllActions {
         return (Input.input(UnitMeasureString.class, message)).getUnitMeasure();
     }
 
-
+    public static void testFarmMethods() {
+        Main.example(AllMenus.farmAccount);
+    }
 }

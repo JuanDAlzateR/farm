@@ -9,12 +9,14 @@ public class Crop extends Countable implements IPassTime {
     private float germinationRate;
     private float growthPercentage;
     private float growthPerDay;
+    private CropState cropState;
 
     public Crop() {
         super("new crop", 0);
         this.germinationRate = 0.5F;
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
+        this.cropState=CropState.PLANTED;
     }
 
     public Crop(Grain grain) {
@@ -23,11 +25,12 @@ public class Crop extends Countable implements IPassTime {
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
         grain.setQuantity(0);
+        this.cropState=CropState.PLANTED;
     }
 
     @Override
     public String toString() {
-        return (this.getName() + " | expected quantity " + getExpectedQuantity() + " | " + this.growthPercentage + "% of growth");
+        return (this.getName() + " | expected quantity " + getExpectedQuantity() + " | " + this.growthPercentage + "% of growth"+ " | " +this.cropState);
     }
 
     public void setGerminationRate(Float Rate) {
@@ -40,6 +43,10 @@ public class Crop extends Countable implements IPassTime {
 
     public void setGrowthPerDay(Float growthPerDay) {
         this.growthPerDay = growthPerDay;
+    }
+
+    public void setCropState(CropState cropState) {
+        this.cropState = cropState;
     }
 
     public float getGerminationRate() {
@@ -58,12 +65,25 @@ public class Crop extends Countable implements IPassTime {
         return (int) (this.getQuantity() * this.germinationRate);
     }
 
+    public CropState getCropState() {
+        return cropState;
+    }
+
+    public void advanceState(){
+        this.cropState=this.cropState.next();
+    }
+
     @Override
     public void passTime(int days) {
         if (this.getQuantity() > 0) {
             float newGrowth = this.growthPercentage + this.growthPerDay * days;
-            if (newGrowth >= 100) {
+            if (newGrowth<20){
+                setCropState(CropState.PLANTED);
+            } else if (newGrowth<100) {
+                setCropState(CropState.GROWING);
+            } else {
                 newGrowth = 100;
+                setCropState(CropState.READY_TO_HARVEST);
             }
             this.growthPercentage = newGrowth;
         }
