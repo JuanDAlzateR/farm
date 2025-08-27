@@ -21,6 +21,8 @@
         <maven.compiler.target>21</maven.compiler.target>
         <maven.surefire>3.2.5</maven.surefire>
         <log4jVersion>2.25.1</log4jVersion>
+        <commonsIOVersion>2.20.0</commonsIOVersion>
+        <commonsLang3Version>3.18.0</commonsLang3Version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -36,6 +38,18 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4jVersion}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commonsIOVersion}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commonsLang3Version}</version>
         </dependency>
     </dependencies>
 

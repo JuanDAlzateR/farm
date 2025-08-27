@@ -1,17 +1,17 @@
 package com.solvd.farm.input;
 
 public class UnitMeasureString {
-    public String unitMeasure="";
+    public String unitMeasure = "";
 
-    public UnitMeasureString(String unitMeasure){
-        if(validateMeasurementUnit(unitMeasure)){
-            this.unitMeasure=unitMeasure;
+    public UnitMeasureString(String unitMeasure) {
+        if (validateMeasurementUnit(unitMeasure)) {
+            this.unitMeasure = unitMeasure;
         }
     }
 
     public void setUnitMeasure(String unitMeasure) {
-        if(validateMeasurementUnit(unitMeasure)){
-            this.unitMeasure=unitMeasure;
+        if (validateMeasurementUnit(unitMeasure)) {
+            this.unitMeasure = unitMeasure;
         }
     }
 

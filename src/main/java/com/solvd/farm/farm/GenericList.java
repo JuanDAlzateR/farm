@@ -8,9 +8,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class GenericList <T extends Countable> extends AbstractList {
+public class GenericList<T extends Countable> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(GenericList.class);
-    private ArrayList<T> list = new ArrayList<>();
+    private final ArrayList<T> list = new ArrayList<>();
 
     public ArrayList<T> getList() {
         return this.list;
@@ -30,14 +30,14 @@ public class GenericList <T extends Countable> extends AbstractList {
 
     public void add(T item) {
         int index = indexOfName(item.getName());
-        LOGGER.debug("item: "+item.getName()+"  index: "+ index);
+        LOGGER.debug("item: " + item.getName() + "  index: " + index);
         if (index > -1) {
             list.get(index).addQuantity(item.getQuantity());
         } else {
-            LOGGER.debug("list size: "+list.size());
+            LOGGER.debug("list size: " + list.size());
             list.add(item);
-            LOGGER.debug(item+" added");
-            LOGGER.debug("new list size: "+list.size());
+            LOGGER.debug(item + " added");
+            LOGGER.debug("new list size: " + list.size());
         }
     }
 

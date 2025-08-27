@@ -12,8 +12,6 @@ import com.solvd.farm.crops.*;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.menu.*;
 
-import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +27,7 @@ public class Main {
 
         AllMenus menu = new AllMenus();
 
-        Scanner scanner = menu.getScanner();
+        //Scanner scanner = menu.getScanner();
 
         try {
             menu.runMainMenu();
@@ -42,10 +40,10 @@ public class Main {
     /* This method is just an example of the functionality in the code.
     It can be called in the main menu as EXAMPLE: TEST FARM METHODS
      */
-    public static void example( FarmAccount account) {
+    public static void example(FarmAccount account) {
 
-        Farm farm=account.getFarm();
-        BankAccount bankAccount=account.getBankAccount();
+        Farm farm = account.getFarm();
+        BankAccount bankAccount = account.getBankAccount();
         account.display();
 
         Tool tool = new Tool("Pitchfork", 40);
@@ -117,8 +115,8 @@ public class Main {
         LOGGER.info("Date:" + farm.getDate());
         LOGGER.info(tool);
 
-        AllActions.buyAnimalFeed();
-        AllActions.displayAnimalFeed();
+//        AllActions.buyAnimalFeed();
+//        AllActions.displayAnimalFeed();
 
     }
 }

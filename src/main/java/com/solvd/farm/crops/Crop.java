@@ -16,7 +16,7 @@ public class Crop extends Countable implements IPassTime {
         this.germinationRate = 0.5F;
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
-        this.cropState=CropState.PLANTED;
+        this.cropState = CropState.PLANTED;
     }
 
     public Crop(Grain grain) {
@@ -25,12 +25,12 @@ public class Crop extends Countable implements IPassTime {
         this.growthPercentage = 0;
         this.growthPerDay = 1F;
         grain.setQuantity(0);
-        this.cropState=CropState.PLANTED;
+        this.cropState = CropState.PLANTED;
     }
 
     @Override
     public String toString() {
-        return (this.getName() + " | expected quantity " + getExpectedQuantity() + " | " + this.growthPercentage + "% of growth"+ " | " +this.cropState);
+        return (this.getName() + " | expected quantity " + getExpectedQuantity() + " | " + this.growthPercentage + "% of growth" + " | " + this.cropState);
     }
 
     public void setGerminationRate(Float Rate) {
@@ -69,17 +69,17 @@ public class Crop extends Countable implements IPassTime {
         return cropState;
     }
 
-    public void advanceState(){
-        this.cropState=this.cropState.next();
+    public void advanceState() {
+        this.cropState = this.cropState.next();
     }
 
     @Override
     public void passTime(int days) {
         if (this.getQuantity() > 0) {
             float newGrowth = this.growthPercentage + this.growthPerDay * days;
-            if (newGrowth<20){
+            if (newGrowth < 20) {
                 setCropState(CropState.PLANTED);
-            } else if (newGrowth<100) {
+            } else if (newGrowth < 100) {
                 setCropState(CropState.GROWING);
             } else {
                 newGrowth = 100;
