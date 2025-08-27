@@ -30,19 +30,22 @@ public class Main {
         AllMenus menu = new AllMenus();
 
         Scanner scanner = menu.getScanner();
+
         try {
             menu.runMainMenu();
         } catch (InvalidOptionException e) {
             LOGGER.warn("error");
         }
+
     }
 
     /* This method is just an example of the functionality in the code.
-    Maybe later it could be implemented in an automated test or something similar.
+    It can be called in the main menu as EXAMPLE: TEST FARM METHODS
      */
-    public static void example(Farm farm, BankAccount bankAccount) {
+    public static void example( FarmAccount account) {
 
-        FarmAccount account = new FarmAccount(farm, bankAccount);
+        Farm farm=account.getFarm();
+        BankAccount bankAccount=account.getBankAccount();
         account.display();
 
         Tool tool = new Tool("Pitchfork", 40);

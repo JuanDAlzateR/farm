@@ -10,6 +10,7 @@ public abstract class FarmAnimals extends Purchasable implements IPassTime, IBuy
     private AnimalFood animalFood;
     private AnimalFeed animalFeed;
 
+
     public FarmAnimals() {
         super("New animal", 0);
         this.animalFood = new AnimalFood();

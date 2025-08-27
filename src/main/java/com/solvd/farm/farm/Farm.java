@@ -122,7 +122,7 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void displayCrops() {
-        displayList(products,"crops in farm");
+        displayList(crops,"crops in farm");
     }
 
     public void displayProducts() {
@@ -191,15 +191,17 @@ public class Farm implements IPassTime, IDisplay {
                 Product product = new Product(crop);
                 addProduct(product);
                 crop.setGrowthPercentage(0F);
+                crop.setCropState(CropState.HARVESTED);
             }
         }
     }
 
     public void harvestCrop(Crop crop, float price) {
-        if (crop.getGrowthPercentage() >= 100) {
+        if (crop.getCropState().equals(CropState.READY_TO_HARVEST)) {
             Product product = new Product(crop);
             product.setPrice(price);
             addProduct(product);
+            crop.advanceState();
         }
     }
 

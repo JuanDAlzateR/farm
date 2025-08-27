@@ -46,6 +46,7 @@ public class AllMenus {
         mainMenu.add("Create/Choose Farm", chooseFarmMenu);
         mainMenu.add("Create/Choose Bank Account", adminAccountsMenu);
         mainMenu.add("Admin Farm", adminFarmMenu);
+        mainMenu.add("EXAMPLE: TEST FARM METHODS", AllActions::testFarmMethods);
 
         //Choose Farm Menu
         chooseFarmMenu.add("Back to previous menu", mainMenu);
