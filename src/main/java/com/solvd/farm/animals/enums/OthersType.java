@@ -9,7 +9,7 @@ public enum OthersType {
     //synonym dictionary
     private static final Map<String, OthersType> lookup = new HashMap<>();
 
-        static {
+    static {
         // CHICKENS
         lookup.put("rabbit", RABBITS);
         lookup.put("rabbits", RABBITS);

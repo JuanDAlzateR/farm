@@ -1,11 +1,11 @@
 package com.solvd.farm.crops;
 
 public enum CropState {
-    READY_TO_PLANT,PLANTED, GROWING, READY_TO_HARVEST, HARVESTED;
+    READY_TO_PLANT, PLANTED, GROWING, READY_TO_HARVEST, HARVESTED;
 
-    public CropState next(){
-        CropState[] states=values();
-        int nextOrdinal=(this.ordinal()+1)% states.length;
+    public CropState next() {
+        CropState[] states = values();
+        int nextOrdinal = (this.ordinal() + 1) % states.length;
         return states[nextOrdinal];
     }
 
