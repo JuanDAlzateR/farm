@@ -24,11 +24,11 @@ public class Input {
     public static HashMap<Class<?>, Supplier<Exception>> exceptions = new HashMap<>();
 
     static {
-        exceptions.put(String.class, () -> new Exception());
-        exceptions.put(int.class, () -> new InvalidIntException());
-        exceptions.put(float.class, () -> new InvalidFloatException());
-        exceptions.put(NameString.class, () -> new InvalidNameException());
-        exceptions.put(UnitMeasureString.class, () -> new InvalidMeasurementUnitException());
+        exceptions.put(String.class, Exception::new);
+        exceptions.put(int.class, InvalidIntException::new);
+        exceptions.put(float.class, InvalidFloatException::new);
+        exceptions.put(NameString.class, InvalidNameException::new);
+        exceptions.put(UnitMeasureString.class, InvalidMeasurementUnitException::new);
 
     }
     //Create a NameClass and UnitMeasureClass, to handle their own exceptions.
@@ -45,8 +45,8 @@ public class Input {
                 }
                 input = nextInput(inputClass);
                 //validate the String inputs for the constructor of the class.
-                if(validateList.contains(inputClass)){
-                    if (input.toString().equals("")){
+                if (validateList.contains(inputClass)) {
+                    if (input.toString().isEmpty()) {
                         throw exceptions.get(inputClass).get();
                     }
                 }
@@ -97,15 +97,15 @@ public class Input {
                 float input = AllMenus.scanner.nextFloat();
                 return (T) Float.valueOf(input);
 
-            } else if (inputClass == String.class){
+            } else if (inputClass == String.class) {
                 String input = AllMenus.scanner.nextLine();
                 return (T) input;
 
-            }else if (inputClass == NameString.class){
+            } else if (inputClass == NameString.class) {
                 String input = AllMenus.scanner.nextLine();
                 return (T) new NameString(input);
 
-            }else if (inputClass == UnitMeasureString.class){
+            } else if (inputClass == UnitMeasureString.class) {
                 String input = AllMenus.scanner.nextLine();
                 return (T) new UnitMeasureString(input);
 

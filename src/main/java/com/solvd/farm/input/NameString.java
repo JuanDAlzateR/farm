@@ -1,13 +1,11 @@
 package com.solvd.farm.input;
 
-import javax.naming.InvalidNameException;
-
 public class NameString {
-    public String name="";
+    public String name = "";
 
     public NameString(String name) {
-        if(name.matches("[a-zA-Z ]+")){
-            this.name=name;
+        if (name.matches("[a-zA-Z ]+")) {
+            this.name = name;
         }
     }
 
@@ -16,8 +14,8 @@ public class NameString {
     }
 
     public void setName(String name) {
-        if(name.matches("[a-zA-Z ]+")){
-            this.name=name;
+        if (name.matches("[a-zA-Z ]+")) {
+            this.name = name;
         }
     }
 

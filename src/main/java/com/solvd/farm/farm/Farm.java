@@ -118,23 +118,23 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void displayGrains() {
-        displayList(grains,"grains in stock");
+        displayList(grains, "grains in stock");
     }
 
     public void displayCrops() {
-        displayList(crops,"crops in farm");
+        displayList(crops, "crops in farm");
     }
 
     public void displayProducts() {
-        displayList(products,"products in stock");
+        displayList(products, "products in stock");
     }
 
     public void displayTools() {
         LOGGER.info("");
-        displayList(tools,"Tools in farm");
+        displayList(tools, "Tools in farm");
     }
 
-    public void displayList(GenericList list,String title) {
+    public void displayList(GenericList list, String title) {
         LOGGER.info("Date:" + getDate() + " - " + title);
         list.display();
         LOGGER.info("-------");

@@ -1,0 +1,180 @@
+Maven
+Maven is a software tool for managing and building Java projects, created by Jason van Zyl of Sonatype in 2002. It is similar in functionality to Apache Ant (and to a lesser extent, PHP's PEAR and Perl's CPAN), but has a simpler build configuration model, based on an XML format. It was initially integrated within the Jakarta project but is now a top-level project of the Apache Software Foundation.
+
+Maven uses a Project Object Model (POM) to describe the software project to be built, its dependencies on other modules and external components, and the build order of the elements. It comes with predefined goals to perform certain clearly defined tasks, such as compiling code and packaging it.
+
+A key feature of Maven is that it is network-ready. The engine included in its core can dynamically download plugins from a repository, the same repository that provides access to many versions of different open-source Java projects from Apache and other organizations and developers. This repository and its reorganized successor, the Maven 2 repository, strive to be the de facto mechanism for distributing Java applications, but their adoption has been very slow. Maven provides support not only for retrieving files from its repository but also for uploading artifacts to the repository at the end of the application's build, making them accessible to all users. A local artifact cache acts as the first source to synchronize project output to a local system.
+
+Maven is built using a plugin-based architecture that allows it to use any application controllable through standard input. In theory, this could allow anyone to write plugins to interface with tools like compilers, unit testing tools, and so on, for any other language. In reality, support and use for languages other than Java is minimal. There is currently a plugin for .NET Framework and it is maintained, and a native C/C++ plugin was once maintained by Maven 1.
+
+Theory
+Convention over Configuration
+The general philosophy of Maven is to standardize builds by following the principle of Convention over Configuration, in order to use existing models in software production. This strategy necessarily restricts variability, which is reflected in Maven's encouragement to adhere to its project model. While Maven is suitable for new projects, complex existing projects may simply not be adaptable to use Maven. The lack of constraints in the project's layered convention was made somewhat more configurable with the release of Maven 2.
+
+Reusability
+Maven is built around the idea of reusability, and more specifically, the reusability of build logic. Since projects are generally built in similar patterns, a logical choice could be to reuse build processes. The main idea is not to reuse code or functionality (like Apache Ant), but to simply change the configuration or written code. This is the main difference between Apache Ant and Apache Maven: the former is a library of good and useful utilities and functions, while the other is a configurable and highly extensible framework.
+
+Although Maven is configurable, the Maven project has historically seriously emphasized that users should adhere to its concept of a standard project model as much as possible.
+
+Lifecycle
+The main lifecycle phases of a Maven project are:
+
+compile: Generates .class files by compiling the .java source files.
+
+test: Executes existing automatic JUnit tests, aborting the process if any of them fail.
+
+package: Generates the .jar file with the compiled .class files.
+
+install: Copies the .jar file to a directory on our computer where Maven stores all the .jar files. This way, those .jar files can be used in other Maven projects on the same computer.
+
+deploy: Copies the .jar file to a remote server, making it available to any Maven project with access to that remote server.
+
+When any of the Maven commands are executed, for example, if we run mvn install, Maven will verify all the lifecycle phases from the first one up to the command's phase, executing only those that have not been previously executed.
+
+There are also some goals that are outside the lifecycle and can be called, but Maven assumes these goals are not part of the default lifecycle (they don't always have to be performed). These goals are:
+
+clean: Deletes all generated .class and .jar files. After this command, a compilation can be started from scratch.
+
+assembly: Generates a .zip file with everything needed to install our Java program. It must be pre-configured in an XML file to specify what should be included in that zip.
+
+site: Generates a website with our project's information. This information must be written in the pom.xml file and separate .apt files.
+
+site-deploy: Uploads the website to the server we have configured.
+
+etc.
+
+But these goals can be added to the lifecycle through the Project Object Model (POM).
+
+The POM
+Introduction
+
+Simple examples and Super POM
+
+Schema
+
+Schema explanation
+
+POM Reference
+
+IDE Integration
+Maven replaces the integrated development environment (IDE), so integration with different IDEs is very important. There are Maven plugins to create IDE configuration files from POMs. Currently supported are:
+
+Eclipse
+
+Netbeans
+
+IntelliJ IDEA
+
+JDeveloper 11G (11.1.1.3)
+
+Assembly Descriptor
+Assembly descriptor
+
+Examples
+Maven projects are created with a command line of the following type:
+
+mvn archetype:generate -DgroupId="com.some.company" -DartifactId="some-project" -Dversion="0.0.1"
+
+Maven can create a project descriptor for Eclipse with the following command:
+
+mvn eclipse:eclipse
+
+Maven 1 and Maven 2
+In version 1, based on an XML configuration file (project.xml) and a series of extensions (plugins), this tool could compile the Java project, run unit tests, generate packages (jars, wars, ears or zip distributions), and generate a series of reports.
+
+Version 2 also uses an XML configuration file called pom.xml (Project Object Model). Its functionality is similar to Apache Ant, allowing for compilation, running tests, or making distributions, but with the difference that it automatically handles the dependencies of the project it manages.
+
+Available Plugins
+There are official plugins created by Maven and also third-party plugins, such as those available at FreeHEP. Some of them are:
+
+jar
+
+war
+
+ear
+
+JUnit
+
+Distribution: allows putting all project files into a zip file.
+
+PDF: generates project documentation in PDF format.
+
+Checkstyle: control of Java coding conventions.
+
+PMD: verification of coding rules.
+
+...
+
+Reports
+Javadoc
+
+Web-format sources
+
+Metrics
+
+Test results (in JUnit)
+
+Checkstyle results
+
+PMD results
+
+Pending tasks
+
+Changes between versions
+
+StatCVS: generates all kinds of statistics from information extracted from CVS.
+
+...
+
+For better management of Maven, you can use Mevenide, which has plugins for Eclipse, NetBeans, and JBuilder.
+
+References
+NET Maven Plugin - .NET Maven Plugin
+
+Maven Native Plugin - Maven Native Plug-in
+
+Maven - History of Maven
+
+What is Maven at apache.org
+
+External links
+Maven 3 home page
+
+Maven 2 home page
+
+Maven 1.x home page
+
+Getting started with Maven
+
+Maven Wiki
+
+Maven 2 plugins
+
+Maven 2 codehaus tutorial
+
+Maven 2 tutorial
+
+Some free Maven 2 books
+
+Free Maven 2 book
+
+Resources about Maven, the Project Object Model (POM), and the lifecycle
+
+Search the Maven Repository
+
+Search the Maven Repository 2
+
+Search several Maven repositories (using Lucene engine)
+
+Verify the dependencies in your POM
+
+Maven for PHP
+
+See also
+Apache Continuum, a continuous integration server that integrates with Maven.
+
+Apache Archiva, a repository manager developed by several core Maven developers.
+
+Apache Ant
+
+Nexus Maven Repository Manager
