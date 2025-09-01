@@ -52,7 +52,6 @@ public class Input {
                 }
                 validateInput = true;
 
-
             } catch (Exception e) {
                 Main.LOGGER.warn("Invalid " + inputClass + " input...");
             } finally {
