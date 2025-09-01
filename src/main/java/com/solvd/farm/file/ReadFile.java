@@ -21,14 +21,6 @@ public class ReadFile {
 
         Scanner scanner = new Scanner(System.in);
 
-        String text ="a b .jar c d";
-        String exp="(pom)";
-        boolean matches=exp.matches("\\w+");
-        LOGGER.info("word matches: "+matches);
-        String[] parts= StringUtils.split(text,".jar");
-        for (String part:parts) {
-            LOGGER.info(part);
-        }
         LOGGER.info("Please input the word to search in input.txt");
         String word = scanner.nextLine();
         int count = countWordRepeat(word);
@@ -56,8 +48,8 @@ public class ReadFile {
             String formatedContent = StringUtils.trim(content).toLowerCase();
             String[] lines = StringUtils.split(formatedContent, System.lineSeparator());
             count = 0;
-            boolean matches=searchedWord.matches("\\w+");
-            if (!matches) {
+            boolean simpleWord=searchedWord.matches("\\w+");
+            if (!simpleWord) {
                 count = countByRegex(searchedWord.toLowerCase(), formatedContent);
             } else {
                 for (String line : lines) {
@@ -103,23 +95,6 @@ public class ReadFile {
             count++;
         }
         return count;
-    }
-
-    /**
-     * Counts how many times a word it's repeated
-     * in the file input.txt
-     *
-     * @return true if the expression it's complex, for example: don't, C++, A/B.
-     * false if the expression it's a simple word.
-     */
-    public static boolean complexWord(String searchedWord) {
-
-        String[] parts = searchedWord.split("\\W+");
-        if (parts.length > 1) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
         public static void write (String string){
