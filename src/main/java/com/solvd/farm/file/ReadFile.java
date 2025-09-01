@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.solvd.farm.Main;
@@ -57,7 +58,7 @@ public class ReadFile {
             count = 0;
             boolean matches=searchedWord.matches("\\w+");
             if (!matches) {
-                count = countBySplit(searchedWord.toLowerCase(), formatedContent);
+                count = countByRegex(searchedWord.toLowerCase(), formatedContent);
             } else {
                 for (String line : lines) {
                     count += countWordRepeatLine(searchedWord.toLowerCase(), line);
@@ -84,11 +85,24 @@ public class ReadFile {
         return count;
     }
 
-    public static int countBySplit(String searchedWord, String content) {
-        String pattern= Pattern.quote(searchedWord);
-        LOGGER.debug(pattern);
-        String[] lines = content.split("\\b" + pattern + "\\b");
-        return lines.length - 1;
+    public static int countByRegex(String searchedWord, String content) {
+
+        if (searchedWord == null || searchedWord.isEmpty()) {
+            return 0;
+        }
+
+        String prefix = Character.isLetterOrDigit(searchedWord.charAt(0)) ? "\\b" : "";
+        String suffix = Character.isLetterOrDigit(searchedWord.charAt(searchedWord.length() - 1)) ? "\\b" : "";
+        String finalRegex = prefix + Pattern.quote(searchedWord) + suffix;
+
+        Pattern pattern = Pattern.compile(finalRegex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(content);
+
+        int count = 0;
+        while (matcher.find()) {
+            count++;
+        }
+        return count;
     }
 
     /**
