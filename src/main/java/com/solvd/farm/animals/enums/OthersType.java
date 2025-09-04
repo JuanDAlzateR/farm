@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum OthersType {
+public enum OthersType implements IAnimalType<OthersType> {
     OTHERS, RABBITS, BEES, ALPACAS;
 
     //synonym dictionary
@@ -24,11 +24,14 @@ public enum OthersType {
 
     }
 
-    public static OthersType fromString(String input) {
-        if (input == null) {
-            return OTHERS;
-        }
-        return lookup.getOrDefault(input.trim().toLowerCase(), OTHERS);
+    @Override
+    public OthersType getDefault() {
+        return OTHERS;
+    }
+
+    @Override
+    public Map<String, OthersType> getLookup() {
+        return lookup;
     }
 
 }

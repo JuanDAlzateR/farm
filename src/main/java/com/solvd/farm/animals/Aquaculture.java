@@ -4,15 +4,11 @@ import com.solvd.farm.animals.enums.AquacultureType;
 
 //animals.Aquaculture → fish, shellfish
 public class Aquaculture extends FarmAnimals {
-    AquacultureType type;
-
-    public Aquaculture() {
-        super("New animal", 0, new AnimalFood(), new AnimalFeed());
-    }
+    AquacultureType type = AquacultureType.UNDEFINED;
 
     public Aquaculture(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
-        type = AquacultureType.fromString(name);
+        type = type.enumFromString(name);
     }
 
     @Override
@@ -23,7 +19,7 @@ public class Aquaculture extends FarmAnimals {
     @Override
     public void setAnimal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super.setAnimal(name, quantity, animalFood, animalFeed);
-        type = AquacultureType.fromString(name);
+        type = type.enumFromString(name);
     }
 
 }

@@ -4,15 +4,11 @@ import com.solvd.farm.animals.enums.OthersType;
 
 //animals.Others → rabbits, bees, alpacas, others
 public class Others extends FarmAnimals {
-    OthersType type;
-
-    public Others() {
-        super("New animal", 0, new AnimalFood(), new AnimalFeed());
-    }
+    OthersType type = OthersType.OTHERS;
 
     public Others(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
-        type = OthersType.fromString(name);
+        type = type.enumFromString(name);
     }
 
     @Override
@@ -23,6 +19,6 @@ public class Others extends FarmAnimals {
     @Override
     public void setAnimal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super.setAnimal(name, quantity, animalFood, animalFeed);
-        type = OthersType.fromString(name);
+        type = type.enumFromString(name);
     }
 }

@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum AquacultureType {
+public enum AquacultureType implements IAnimalType<AquacultureType> {
     UNDEFINED, FISH, SHELLFISH;
 
     //synonym dictionary
@@ -20,11 +20,14 @@ public enum AquacultureType {
 
     }
 
-    public static AquacultureType fromString(String input) {
-        if (input == null) {
-            return UNDEFINED;
-        }
-        return lookup.getOrDefault(input.trim().toLowerCase(), UNDEFINED);
+    @Override
+    public AquacultureType getDefault() {
+        return UNDEFINED;
+    }
+
+    @Override
+    public Map<String, AquacultureType> getLookup() {
+        return lookup;
     }
 
 }
