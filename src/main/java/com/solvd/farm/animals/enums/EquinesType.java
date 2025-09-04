@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum EquinesType {
+public enum EquinesType implements IAnimalType<EquinesType> {
     UNDEFINED, HORSES, DONKEYS, MULES;
 
     //synonym dictionary
@@ -24,11 +24,14 @@ public enum EquinesType {
 
     }
 
-    public static EquinesType fromString(String input) {
-        if (input == null) {
-            return UNDEFINED;
-        }
-        return lookup.getOrDefault(input.trim().toLowerCase(), UNDEFINED);
+    @Override
+    public EquinesType getDefault() {
+        return UNDEFINED;
+    }
+
+    @Override
+    public Map<String, EquinesType> getLookup() {
+        return lookup;
     }
 
 }
