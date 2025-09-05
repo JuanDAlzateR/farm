@@ -35,14 +35,14 @@ public class Input {
 
     }
 
-    public static <T> T input(Class<T> tClass, String message) {
+    public static <T> T input(Class<T> tClass, String message) throws Exception {
         InputClass<T> inputClass = contains(tClass);
         if (!inputClass.equals(null)) {
             return inputClass.input(message);
         } else {
             LOGGER.warn("class " + tClass + " not admited");
+            throw inputClass.getSupplier().get();
         }
-        return null;
     }
 
     public static <T> InputClass contains(Class<T> tClass) {
