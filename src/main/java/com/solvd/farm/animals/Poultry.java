@@ -6,6 +6,7 @@ import com.solvd.farm.animals.enums.PoultryType;
 public class Poultry extends FarmAnimals {
     PoultryType type = PoultryType.UNDEFINED;
 
+    @SuppressWarnings("unused")
     public Poultry(){super();}
 
     public Poultry(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {

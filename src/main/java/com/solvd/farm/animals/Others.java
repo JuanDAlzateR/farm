@@ -6,6 +6,7 @@ import com.solvd.farm.animals.enums.OthersType;
 public class Others extends FarmAnimals {
     OthersType type = OthersType.OTHERS;
 
+    @SuppressWarnings("unused")
     public Others(){super();}
 
     public Others(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {

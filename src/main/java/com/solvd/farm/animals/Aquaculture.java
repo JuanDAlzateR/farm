@@ -6,8 +6,8 @@ import com.solvd.farm.animals.enums.AquacultureType;
 public class Aquaculture extends FarmAnimals {
     AquacultureType type = AquacultureType.UNDEFINED;
 
-    //inspite of warning of no usages, this constructor
-    //it's used in AllActions.createAnimal
+    //in spite of warning of no usages, this constructor it's used in AllActions.createAnimal
+    @SuppressWarnings("unused")
     public Aquaculture() {
         super();
     }
