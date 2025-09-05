@@ -12,6 +12,7 @@ public class Aquaculture extends FarmAnimals {
         super();
     }
 
+    @SuppressWarnings("unused")
     public Aquaculture(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);

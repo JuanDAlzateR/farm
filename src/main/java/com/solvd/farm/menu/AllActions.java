@@ -2,12 +2,8 @@ package com.solvd.farm.menu;
 
 import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
-import com.solvd.farm.exceptions.*;
 import com.solvd.farm.farm.*;
-import com.solvd.farm.input.IInputClass;
-import com.solvd.farm.input.Input;
-import com.solvd.farm.input.NameString;
-import com.solvd.farm.input.UnitMeasureString;
+import com.solvd.farm.input.*;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
 import org.apache.logging.log4j.LogManager;
@@ -226,40 +222,29 @@ public class AllActions {
 
     }
 
-    static{
-        IInputClass<Integer> integerIInputClass=(string)->{
-            try{
-                return Input.input(int.class,string);
-            } catch (Exception e) {
-                LOGGER.warn("input error");
-            }
-            return -1;
-        };
-    }
-
-    public static <T> T genericInput(Class<T> tClass,String string, Object defaul){
-        try{
-            return Input.input(tClass,string);
+    public static <T> T genericInput(Class<T> tClass, String string, Object defaul) {
+        try {
+            return Input.input(tClass, string);
         } catch (Exception e) {
-            LOGGER.warn("generic input error | class "+tClass+"| string "+string);
+            LOGGER.warn("generic input error | class " + tClass + "| string " + string);
         }
         return (T) defaul;
     }
 
     public static int inputInt(String message) {
-        return genericInput(int.class,message,-1);
+        return genericInput(int.class, message, -1);
     }
 
     public static float inputFloat(String message) {
-        return genericInput(float.class,message,-1);
+        return genericInput(float.class, message, -1);
     }
 
     public static String inputName(String message) {
-        return (genericInput(NameString.class,message,"")).getName();
+        return (genericInput(NameString.class, message, "")).getName();
     }
 
     public static String inputMeasurementUnit(String message) {
-        return (genericInput(UnitMeasureString.class,message,"")).getUnitMeasure();
+        return (genericInput(UnitMeasureString.class, message, "")).getUnitMeasure();
     }
 
     public static void testFarmMethods() {

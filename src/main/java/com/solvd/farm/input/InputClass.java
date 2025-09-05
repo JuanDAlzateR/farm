@@ -1,33 +1,32 @@
 package com.solvd.farm.input;
 
-import com.solvd.farm.Main;
-import com.solvd.farm.menu.AllMenus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 import java.util.function.Supplier;
 
 public class InputClass<T> implements IInputClass<T> {
     public static final Logger LOGGER = LogManager.getLogger(InputClass.class);
     private final Class<?> clazz; //the word class it's java reserved.
-    private final Supplier<Exception> supplier;
+    private final InputHandler<T> inputHandler;
     private boolean isNumeric = false;
     private boolean needsValidation = false;
-    private final IConstructor<T> constructor;
 
+    public InputClass(Class<?> clazz, InputHandler<T> inputHandler) {
+        this.clazz = clazz;
+        this.inputHandler = inputHandler;
+
+    }
 
     public InputClass(Class<?> clazz, Supplier<Exception> supplier) {
         this.clazz = clazz;
-        this.supplier = supplier;
 
-        this.constructor = (string) -> {
-            try {
-                return (T) this.clazz.getDeclaredConstructor(String.class).newInstance(string);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        };
+        IConstructor<T> iConstructor = createIConstructor(clazz);
+        Constructor<T> constructor = new Constructor<>(clazz + "Constructor", iConstructor, supplier);
+        InputHandler<T> inputHandler = new InputHandler<>(constructor);
+
+        this.inputHandler = inputHandler;
+
     }
 
     public void setIsNumeric(boolean numeric) {
@@ -42,10 +41,6 @@ public class InputClass<T> implements IInputClass<T> {
         return clazz;
     }
 
-    public Supplier<Exception> getSupplier() {
-        return supplier;
-    }
-
     public boolean isNeedsValidation() {
         return needsValidation;
     }
@@ -56,81 +51,30 @@ public class InputClass<T> implements IInputClass<T> {
 
     @Override
     public T input(String message) {
-        T input = null;
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                if (!hasNextInput()) {
-                    throw supplier.get();
-                    //first get the supplier, then get the new exception provided by the supplier
-                }
-                input = nextInput();
-
-                //validate the String inputs for the constructor of the class.
-                if (needsValidation) {
-                    if (input.toString().isEmpty()) {
-                        throw supplier.get();
-                    }
-                }
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid " + clazz + " input...");
-            } finally {
-                if (isNumeric) {
-                    AllMenus.scanner.nextLine();
-                }
-            }
-
-        }
-        Main.LOGGER.debug(input + " input " + clazz + " validated");
-        return input;
-    }
-
-    public boolean hasNextInput() {
-        if (isNumeric) {
-            if (clazz.equals(int.class)) {
-                return AllMenus.scanner.hasNextInt();
-            } else if (clazz.equals(float.class)) {
-                return AllMenus.scanner.hasNextFloat();
-            }
-        }
-        return true;
-    }
-
-    @SuppressWarnings("unchecked")
-    public T nextInput() {
-        if (isNumeric) {
-            if (clazz.equals(int.class)) {
-                int input = AllMenus.scanner.nextInt();
-                return (T) Integer.valueOf(input);
-            } else if (clazz.equals(float.class)) {
-                float input = AllMenus.scanner.nextFloat();
-                return (T) Float.valueOf(input);
-            }
-        }
-        String input = AllMenus.scanner.nextLine();
-        return this.constructor.construct(input);
-
-    }
-
-    @SuppressWarnings("unchecked")
-    public T construct(String string) {
-        if (isNumeric) {
-            if (clazz.equals(int.class)) {
-                return (T) Integer.valueOf(string);
-            } else if (clazz.equals(float.class)) {
-                return (T) Float.valueOf(string);
-            }
-        }
-        return this.constructor.construct(string);
+        return inputHandler.input(message);
     }
 
     public void display() {
         LOGGER.info("Class: " + clazz);
-        LOGGER.info("Supplier " + supplier);
-        LOGGER.info("Constructor " + constructor);
+        inputHandler.display();
+    }
+
+    public void throwException() throws Exception {
+        throw inputHandler.getConstructor().getSupplier().get();
+    }
+
+    public Exception exception() {
+        return inputHandler.getConstructor().getSupplier().get();
+    }
+
+
+    public IConstructor createIConstructor(Class<?> clazz) {
+        if (clazz.equals(int.class)) {
+            return (string) -> Integer.valueOf(string);
+        } else if (clazz.equals(float.class)) {
+            return (string) -> Float.valueOf(string);
+        } else
+            return (string) -> clazz.getDeclaredConstructor(String.class).newInstance(string);
     }
 
 }

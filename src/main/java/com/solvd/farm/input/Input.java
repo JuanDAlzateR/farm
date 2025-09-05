@@ -1,10 +1,6 @@
 package com.solvd.farm.input;
 
-
-import com.solvd.farm.exceptions.InvalidFloatException;
-import com.solvd.farm.exceptions.InvalidIntException;
-import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
-import com.solvd.farm.exceptions.InvalidNameException;
+import com.solvd.farm.exceptions.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +37,7 @@ public class Input {
             return inputClass.input(message);
         } else {
             LOGGER.warn("class " + tClass + " not admited");
-            throw inputClass.getSupplier().get();
+            throw inputClass.exception();
         }
     }
 

@@ -7,8 +7,11 @@ public class Equines extends FarmAnimals {
     EquinesType type = EquinesType.UNDEFINED;
 
     @SuppressWarnings("unused")
-    public Equines(){super();}
+    public Equines() {
+        super();
+    }
 
+    @SuppressWarnings("unused")
     public Equines(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);

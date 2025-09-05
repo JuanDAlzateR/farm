@@ -7,8 +7,11 @@ public class Others extends FarmAnimals {
     OthersType type = OthersType.OTHERS;
 
     @SuppressWarnings("unused")
-    public Others(){super();}
+    public Others() {
+        super();
+    }
 
+    @SuppressWarnings("unused")
     public Others(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);

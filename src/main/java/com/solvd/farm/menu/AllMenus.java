@@ -42,7 +42,7 @@ public class AllMenus {
         //Now, define each menu, with the options and the actions
 
         //Main Menu
-        mainMenu.add("Quit or Exit", ()->{AllActions.exit();});
+        mainMenu.add("Quit or Exit", AllActions::exit);
         mainMenu.add("Create/Choose Farm", chooseFarmMenu);
         mainMenu.add("Create/Choose Bank Account", adminAccountsMenu);
         mainMenu.add("Admin Farm", adminFarmMenu);

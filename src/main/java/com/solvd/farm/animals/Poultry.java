@@ -7,8 +7,11 @@ public class Poultry extends FarmAnimals {
     PoultryType type = PoultryType.UNDEFINED;
 
     @SuppressWarnings("unused")
-    public Poultry(){super();}
+    public Poultry() {
+        super();
+    }
 
+    @SuppressWarnings("unused")
     public Poultry(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);
