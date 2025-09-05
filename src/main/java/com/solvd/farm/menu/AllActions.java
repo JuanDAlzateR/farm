@@ -4,6 +4,7 @@ import com.solvd.farm.Main;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.exceptions.*;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.input.IInputClass;
 import com.solvd.farm.input.Input;
 import com.solvd.farm.input.NameString;
 import com.solvd.farm.input.UnitMeasureString;
@@ -134,7 +135,7 @@ public class AllActions {
         String feedName = inputName("Please type the name of the animal feed:");
         String feedUnit = inputMeasurementUnit("Please type the unit of " + feedName + " :");
         float quantity = inputFloat("Please type how many " + feedUnit + " you want to buy :");
-        float price = inputFloat("Please type the price of" + feedName + "for 1" + feedUnit + " :");
+        float price = inputFloat("Please type the price of" + feedName + " for 1 " + feedUnit + " :");
         float consumptionRate = inputFloat("What is the consumption of" + feedName + "for an animal per day:");
 
         AnimalFeed animalFeed = new AnimalFeed(feedName, quantity, consumptionRate, feedUnit);
@@ -147,8 +148,8 @@ public class AllActions {
         //displayAnimals(null);
 
         String animalName = inputName("Please type the name of the animal to buy:");
-        int quantity = Input.input(int.class, "Please type how many " + animalName + " you want to buy :");
-        float price = Input.input(float.class, "Please type the price of " + animalName + " for only 1 animal :");
+        int quantity = inputInt("Please type how many " + animalName + " you want to buy :");
+        float price = inputFloat("Please type the price of " + animalName + " for only 1 animal :");
 
         //Temporary implementation, uses default animalFeed and animalFood it needs to change.
         AnimalFeed animalFeed = new AnimalFeed();
@@ -225,20 +226,40 @@ public class AllActions {
 
     }
 
+    static{
+        IInputClass<Integer> integerIInputClass=(string)->{
+            try{
+                return Input.input(int.class,string);
+            } catch (Exception e) {
+                LOGGER.warn("input error");
+            }
+            return -1;
+        };
+    }
+
+    public static <T> T genericInput(Class<T> tClass,String string, Object defaul){
+        try{
+            return Input.input(tClass,string);
+        } catch (Exception e) {
+            LOGGER.warn("generic input error | class "+tClass+"| string "+string);
+        }
+        return (T) defaul;
+    }
+
     public static int inputInt(String message) {
-        return Input.input(int.class, message);
+        return genericInput(int.class,message,-1);
     }
 
     public static float inputFloat(String message) {
-        return Input.input(float.class, message);
+        return genericInput(float.class,message,-1);
     }
 
     public static String inputName(String message) {
-        return (Input.input(NameString.class, message)).getName();
+        return (genericInput(NameString.class,message,"")).getName();
     }
 
     public static String inputMeasurementUnit(String message) {
-        return (Input.input(UnitMeasureString.class, message)).getUnitMeasure();
+        return (genericInput(UnitMeasureString.class,message,"")).getUnitMeasure();
     }
 
     public static void testFarmMethods() {

@@ -42,6 +42,10 @@ public class InputClass<T> implements IInputClass<T> {
         return clazz;
     }
 
+    public Supplier<Exception> getSupplier() {
+        return supplier;
+    }
+
     public boolean isNeedsValidation() {
         return needsValidation;
     }
