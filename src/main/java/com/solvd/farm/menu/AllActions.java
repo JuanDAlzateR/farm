@@ -134,7 +134,7 @@ public class AllActions {
         String feedName = inputName("Please type the name of the animal feed:");
         String feedUnit = inputMeasurementUnit("Please type the unit of " + feedName + " :");
         float quantity = inputFloat("Please type how many " + feedUnit + " you want to buy :");
-        float price = inputFloat("Please type the price of" + feedName + "for 1" + feedUnit + " :");
+        float price = inputFloat("Please type the price of" + feedName + " for 1 " + feedUnit + " :");
         float consumptionRate = inputFloat("What is the consumption of" + feedName + "for an animal per day:");
 
         AnimalFeed animalFeed = new AnimalFeed(feedName, quantity, consumptionRate, feedUnit);
