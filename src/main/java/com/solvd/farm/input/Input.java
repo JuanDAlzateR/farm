@@ -1,31 +1,26 @@
 package com.solvd.farm.input;
 
-import com.solvd.farm.Main;
+
 import com.solvd.farm.exceptions.InvalidFloatException;
 import com.solvd.farm.exceptions.InvalidIntException;
 import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
 import com.solvd.farm.exceptions.InvalidNameException;
-import com.solvd.farm.menu.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.function.Supplier;
 
 public class Input {
     public static final Logger LOGGER = LogManager.getLogger(Input.class);
-    static List<InputClass> classList;
-    public static HashSet<InputClass> classesSet = new HashSet<>();
+    public static HashSet<InputClass<?>> classesSet = new HashSet<>();
 
     static {
-        InputClass<String> stringInputClass=new InputClass(String.class, Exception::new);
-        InputClass<Integer> integerInputClass=new InputClass(int.class, InvalidIntException::new);
-        InputClass<Float> floatInputClass=new InputClass(float.class, InvalidFloatException::new);
-        InputClass<NameString> nameStringInputClass=new InputClass(NameString.class, InvalidNameException::new);
-        InputClass<UnitMeasureString> unitMeasureInputClass=new InputClass(UnitMeasureString.class, InvalidMeasurementUnitException::new);
+        InputClass<String> stringInputClass = new InputClass<>(String.class, Exception::new);
+        InputClass<Integer> integerInputClass = new InputClass<>(int.class, InvalidIntException::new);
+        InputClass<Float> floatInputClass = new InputClass<>(float.class, InvalidFloatException::new);
+        InputClass<NameString> nameStringInputClass = new InputClass<>(NameString.class, InvalidNameException::new);
+        InputClass<UnitMeasureString> unitMeasureInputClass = new InputClass<>(UnitMeasureString.class, InvalidMeasurementUnitException::new);
 
         integerInputClass.setIsNumeric(true);
         floatInputClass.setIsNumeric(true);
@@ -40,19 +35,19 @@ public class Input {
 
     }
 
-    public static <T> T input(Class<T> tClass,String message){
-        InputClass inputClass=contains(tClass);
-        if(!inputClass.equals(null)){
-            return (T) inputClass.input(message);
-        }else{
-            LOGGER.warn("class "+tClass+" not admited");
+    public static <T> T input(Class<T> tClass, String message) {
+        InputClass<T> inputClass = contains(tClass);
+        if (!inputClass.equals(null)) {
+            return inputClass.input(message);
+        } else {
+            LOGGER.warn("class " + tClass + " not admited");
         }
         return null;
     }
 
-    public static <T> InputClass contains(Class<T> tClass){
-        for(InputClass inputClass:classesSet){
-            if (inputClass.getClazz().equals(tClass)){
+    public static <T> InputClass contains(Class<T> tClass) {
+        for (InputClass inputClass : classesSet) {
+            if (inputClass.getClazz().equals(tClass)) {
                 return inputClass;
             }
         }

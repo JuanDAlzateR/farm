@@ -6,6 +6,8 @@ import com.solvd.farm.animals.enums.EquinesType;
 public class Equines extends FarmAnimals {
     EquinesType type = EquinesType.UNDEFINED;
 
+    public Equines(){super();}
+
     public Equines(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);

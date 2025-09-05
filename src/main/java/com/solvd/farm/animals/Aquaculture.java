@@ -6,6 +6,12 @@ import com.solvd.farm.animals.enums.AquacultureType;
 public class Aquaculture extends FarmAnimals {
     AquacultureType type = AquacultureType.UNDEFINED;
 
+    //inspite of warning of no usages, this constructor
+    //it's used in AllActions.createAnimal
+    public Aquaculture() {
+        super();
+    }
+
     public Aquaculture(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
         type = type.enumFromString(name);

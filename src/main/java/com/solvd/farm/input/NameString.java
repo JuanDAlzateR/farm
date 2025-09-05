@@ -10,8 +10,8 @@ public class NameString {
     public NameString(String name) {
         if (name.matches("[a-zA-Z ]+")) {
             this.name = name;
-        }else{
-            LOGGER.warn("construct of NameString("+name+") failed");
+        } else {
+            LOGGER.warn("construct of NameString(" + name + ") failed");
         }
     }
 

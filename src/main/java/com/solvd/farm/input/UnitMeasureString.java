@@ -10,8 +10,8 @@ public class UnitMeasureString {
     public UnitMeasureString(String unitMeasure) {
         if (validateMeasurementUnit(unitMeasure)) {
             this.unitMeasure = unitMeasure;
-        }else{
-            LOGGER.warn("construct of UnitMeasureString("+unitMeasure+") failed");
+        } else {
+            LOGGER.warn("construct of UnitMeasureString(" + unitMeasure + ") failed");
         }
     }
 
