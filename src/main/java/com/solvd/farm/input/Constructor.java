@@ -9,9 +9,9 @@ import java.util.function.Supplier;
 public class Constructor<T> implements IConstructor<T> {
     public static final Logger LOGGER = LogManager.getLogger(Constructor.class);
     private Predicate<String> validator;
-    private IConstructor<T> constructor;
+    private final IConstructor<T> constructor;
     private final Supplier<Exception> supplier;
-    private String constructorName = "new constructor";
+    private String constructorName;
 
     public Constructor(String name, IConstructor<T> constructor, Supplier<Exception> supplier) {
         this.constructorName = name;
@@ -31,6 +31,10 @@ public class Constructor<T> implements IConstructor<T> {
         };
 
         this.validator = validator;
+    }
+
+    public Constructor(Class<?>clazz, Supplier<Exception> supplier) {
+        this(clazz+"Constructor",InputClass.createIConstructor(clazz),supplier);
     }
 
     public void setValidator(Predicate<String> validator) {

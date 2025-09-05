@@ -15,18 +15,13 @@ public class InputClass<T> implements IInputClass<T> {
     public InputClass(Class<?> clazz, InputHandler<T> inputHandler) {
         this.clazz = clazz;
         this.inputHandler = inputHandler;
-
     }
 
     public InputClass(Class<?> clazz, Supplier<Exception> supplier) {
         this.clazz = clazz;
 
-        IConstructor<T> iConstructor = createIConstructor(clazz);
-        Constructor<T> constructor = new Constructor<>(clazz + "Constructor", iConstructor, supplier);
-        InputHandler<T> inputHandler = new InputHandler<>(constructor);
-
-        this.inputHandler = inputHandler;
-
+        Constructor<T> constructor = new Constructor<>(clazz, supplier);
+        this.inputHandler = new InputHandler<>(constructor);
     }
 
     public void setIsNumeric(boolean numeric) {
@@ -68,13 +63,14 @@ public class InputClass<T> implements IInputClass<T> {
     }
 
 
-    public IConstructor createIConstructor(Class<?> clazz) {
+    public static IConstructor createIConstructor(Class<?> clazz) {
         if (clazz.equals(int.class)) {
-            return (string) -> Integer.valueOf(string);
+            return Integer::valueOf; //(s)->Integer.valueOf(s)
         } else if (clazz.equals(float.class)) {
-            return (string) -> Float.valueOf(string);
+            return Float::valueOf;
         } else
             return (string) -> clazz.getDeclaredConstructor(String.class).newInstance(string);
+
     }
 
 }
