@@ -1,11 +1,17 @@
 package com.solvd.farm.input;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class UnitMeasureString {
+    public static final Logger LOGGER = LogManager.getLogger(UnitMeasureString.class);
     public String unitMeasure = "";
 
     public UnitMeasureString(String unitMeasure) {
         if (validateMeasurementUnit(unitMeasure)) {
             this.unitMeasure = unitMeasure;
+        }else{
+            LOGGER.warn("construct of UnitMeasureString("+unitMeasure+") failed");
         }
     }
 

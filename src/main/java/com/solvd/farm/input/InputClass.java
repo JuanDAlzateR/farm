@@ -1,5 +1,6 @@
 package com.solvd.farm.input;
 
+import com.solvd.farm.Main;
 import com.solvd.farm.exceptions.*;
 import com.solvd.farm.menu.AllActions;
 import com.solvd.farm.menu.AllMenus;
@@ -9,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.function.Supplier;
 
-public class InputClass implements IInputClass{
+public class InputClass<T> implements IInputClass<T> {
     public static final Logger LOGGER = LogManager.getLogger(InputClass.class);
     private Class<?> clazz; //the word class it's java reserved.
     private Supplier<Exception> supplier;
@@ -62,9 +63,39 @@ public class InputClass implements IInputClass{
 
 
     @Override
-    public Object input() {
-        return null;
+    public T input(String message) {
+        T input = null;
+        boolean validateInput = false;
+        while (!validateInput) {
+            try {
+                LOGGER.info(message);
+                if (!hasNextInput()) {
+                    throw supplier.get();
+                    //first get the supplier, then get the new exception provided by the supplier
+                }
+                input=nextInput();
+
+                //validate the String inputs for the constructor of the class.
+                if (needsValidation) {
+                    if (input.toString().isEmpty()) {
+                        throw supplier.get();
+                    }
+                }
+                validateInput = true;
+
+            } catch (Exception e) {
+                Main.LOGGER.warn("Invalid " + clazz + " input...");
+            } finally {
+                if (isNumeric) {
+                    AllMenus.scanner.nextLine();
+                }
+            }
+
+        }
+        Main.LOGGER.debug(input + " input " + clazz + " validated");
+        return input;
     }
+
 
     public boolean hasNextInput(){
         if(isNumeric){
@@ -77,12 +108,22 @@ public class InputClass implements IInputClass{
         return true;
     }
 
-    public static <T> T nextInput() {
+    public  T nextInput() {
+        if(isNumeric){
+            if(clazz.equals(int.class)){
+                int input= AllMenus.scanner.nextInt();
+                return (T) Integer.valueOf(input);
+            } else if (clazz.equals(float.class)) {
+                float input= AllMenus.scanner.nextFloat();
+                return (T) Float.valueOf(input);
+            }
+        }
+        String input=AllMenus.scanner.nextLine();
+        return (T) this.constructor.construct(input);
 
-        return null;
     }
 
-    public <T> T construct(String string) {
+    public T construct(String string) {
         if(isNumeric){
             if(clazz.equals(int.class)){
                 return (T) Integer.valueOf(string);

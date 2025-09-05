@@ -34,12 +34,12 @@ public class Main {
 
         //Scanner scanner = menu.getScanner();
 
-        //IConstructor<UnitMeasureString> unitMeasureConstructor=(string)->{return new UnitMeasureString(string);};
-        InputClass unitMeasure=new InputClass(UnitMeasureString.class, InvalidMeasurementUnitException::new);
+
+        InputClass<UnitMeasureString> unitMeasure=new InputClass(UnitMeasureString.class, InvalidMeasurementUnitException::new);
         UnitMeasureString unit1=unitMeasure.construct("mg");
         LOGGER.info(unit1);
 
-        InputClass intObject=new InputClass(int.class, InvalidIntException::new);
+        InputClass<Integer> intObject=new InputClass(int.class, InvalidIntException::new);
         intObject.setIsNumeric(true);
         int unit2=intObject.construct("3");
         LOGGER.info(unit2);
