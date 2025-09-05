@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum LivestockType {
+public enum LivestockType  implements IAnimalType<LivestockType>{
     UNDEFINED, CATTLE, PIGS, SHEEP, GOATS;
 
     //synonym dictionary
@@ -28,11 +28,14 @@ public enum LivestockType {
         lookup.put("sheep", SHEEP);
     }
 
-    public static LivestockType fromString(String input) {
-        if (input == null) {
-            return UNDEFINED;
-        }
-        return lookup.getOrDefault(input.trim().toLowerCase(), UNDEFINED);
+    @Override
+    public LivestockType getDefault() {
+        return UNDEFINED;
+    }
+
+    @Override
+    public Map<String, LivestockType> getLookup() {
+        return lookup;
     }
 
 }

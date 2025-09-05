@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum PoultryType {
+public enum PoultryType  implements IAnimalType<PoultryType>{
     UNDEFINED, CHICKENS, TURKEYS, DUCKS, GEESE;
 
     //synonym dictionary
@@ -27,11 +27,14 @@ public enum PoultryType {
         lookup.put("geese", GEESE);
     }
 
-    public static PoultryType fromString(String input) {
-        if (input == null) {
-            return UNDEFINED;
-        }
-        return lookup.getOrDefault(input.trim().toLowerCase(), UNDEFINED);
+    @Override
+    public PoultryType getDefault() {
+        return UNDEFINED;
+    }
+
+    @Override
+    public Map<String, PoultryType> getLookup() {
+        return lookup;
     }
 
 }
