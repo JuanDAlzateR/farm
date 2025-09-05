@@ -4,11 +4,11 @@ import com.solvd.farm.animals.enums.PoultryType;
 
 //animals.Poultry → chickens, turkeys, ducks, geese
 public class Poultry extends FarmAnimals {
-    PoultryType type=PoultryType.UNDEFINED;
+    PoultryType type = PoultryType.UNDEFINED;
 
     public Poultry(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
-        type=type.enumFromString(name);
+        type = type.enumFromString(name);
     }
 
     @Override
@@ -19,6 +19,6 @@ public class Poultry extends FarmAnimals {
     @Override
     public void setAnimal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super.setAnimal(name, quantity, animalFood, animalFeed);
-        type=type.enumFromString(name);
+        type = type.enumFromString(name);
     }
 }

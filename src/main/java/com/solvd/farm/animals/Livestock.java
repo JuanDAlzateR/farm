@@ -8,7 +8,7 @@ public class Livestock extends FarmAnimals {
 
     public Livestock(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super(name, quantity, animalFood, animalFeed);
-        type=type.enumFromString(name);
+        type = type.enumFromString(name);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Livestock extends FarmAnimals {
     @Override
     public void setAnimal(String name, int quantity, AnimalFood animalFood, AnimalFeed animalFeed) {
         super.setAnimal(name, quantity, animalFood, animalFeed);
-        type=type.enumFromString(name);
+        type = type.enumFromString(name);
     }
 
 }

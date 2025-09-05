@@ -3,7 +3,7 @@ package com.solvd.farm.animals.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum LivestockType  implements IAnimalType<LivestockType>{
+public enum LivestockType implements IAnimalType<LivestockType> {
     UNDEFINED, CATTLE, PIGS, SHEEP, GOATS;
 
     //synonym dictionary
