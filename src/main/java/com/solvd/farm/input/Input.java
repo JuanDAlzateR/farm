@@ -17,100 +17,44 @@ import java.util.function.Supplier;
 
 public class Input {
     public static final Logger LOGGER = LogManager.getLogger(Input.class);
-    static List<Class<?>> classList = Arrays.asList(String.class, int.class, float.class, NameString.class, UnitMeasureString.class);
-    static List<Class<?>> numberList = Arrays.asList(int.class, float.class);
-    static List<Class<?>> validateList = Arrays.asList(NameString.class, UnitMeasureString.class);
-    public static HashSet<Class<?>> classesSet = new HashSet<>(classList);
-    public static HashMap<Class<?>, Supplier<Exception>> exceptions = new HashMap<>();
+    static List<InputClass> classList;
+    public static HashSet<InputClass> classesSet = new HashSet<>();
 
     static {
-        exceptions.put(String.class, Exception::new);
-        exceptions.put(int.class, InvalidIntException::new);
-        exceptions.put(float.class, InvalidFloatException::new);
-        exceptions.put(NameString.class, InvalidNameException::new);
-        exceptions.put(UnitMeasureString.class, InvalidMeasurementUnitException::new);
+        InputClass<String> stringInputClass=new InputClass(String.class, Exception::new);
+        InputClass<Integer> integerInputClass=new InputClass(int.class, InvalidIntException::new);
+        InputClass<Float> floatInputClass=new InputClass(float.class, InvalidFloatException::new);
+        InputClass<NameString> nameStringInputClass=new InputClass(NameString.class, InvalidNameException::new);
+        InputClass<UnitMeasureString> unitMeasureInputClass=new InputClass(UnitMeasureString.class, InvalidMeasurementUnitException::new);
+
+        integerInputClass.setIsNumeric(true);
+        floatInputClass.setIsNumeric(true);
+        nameStringInputClass.setNeedsValidation(true);
+        unitMeasureInputClass.setNeedsValidation(true);
+
+        classesSet.add(stringInputClass);
+        classesSet.add(integerInputClass);
+        classesSet.add(floatInputClass);
+        classesSet.add(nameStringInputClass);
+        classesSet.add(unitMeasureInputClass);
 
     }
-    //Create a NameClass and UnitMeasureClass, to handle their own exceptions.
 
-    public static <T> T input(Class<T> inputClass, String message) {
-        T input = null;
-        boolean validateInput = false;
-        while (!validateInput) {
-            try {
-                LOGGER.info(message);
-                if (!hasNextInput(inputClass)) {
-                    throw exceptions.get(inputClass).get();
-                    //first get the supplier, then get the new exception provided by the supplier
-                }
-                input = nextInput(inputClass);
-                //validate the String inputs for the constructor of the class.
-                if (validateList.contains(inputClass)) {
-                    if (input.toString().isEmpty()) {
-                        throw exceptions.get(inputClass).get();
-                    }
-                }
-                validateInput = true;
-
-            } catch (Exception e) {
-                Main.LOGGER.warn("Invalid " + inputClass + " input...");
-            } finally {
-                if (numberList.contains(inputClass)) {
-                    AllMenus.scanner.nextLine();
-                }
-            }
-
+    public static <T> T input(Class<T> tClass,String message){
+        InputClass inputClass=contains(tClass);
+        if(!inputClass.equals(null)){
+            return (T) inputClass.input(message);
+        }else{
+            LOGGER.warn("class "+tClass+" not admited");
         }
-        Main.LOGGER.debug(input + " input " + inputClass + " validated");
-        return input;
+        return null;
     }
 
-    public static boolean hasNextInput(Class<?> inputClass) {
-        boolean out = false;
-        if (classesSet.contains(inputClass)) {
-            if (inputClass == int.class) {
-                out = AllMenus.scanner.hasNextInt();
-
-            } else if (inputClass == float.class) {
-                out = AllMenus.scanner.hasNextFloat();
-
-            } else {
-                out = true;
-
+    public static <T> InputClass contains(Class<T> tClass){
+        for(InputClass inputClass:classesSet){
+            if (inputClass.getClazz().equals(tClass)){
+                return inputClass;
             }
-        } else {
-            LOGGER.warn("unsupported class");
-        }
-        return out;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T nextInput(Class<T> inputClass) {
-
-        if (classesSet.contains(inputClass)) {
-            if (inputClass == int.class) {
-                int input = AllMenus.scanner.nextInt();
-                return (T) Integer.valueOf(input);
-
-            } else if (inputClass == float.class) {
-                float input = AllMenus.scanner.nextFloat();
-                return (T) Float.valueOf(input);
-
-            } else if (inputClass == String.class) {
-                String input = AllMenus.scanner.nextLine();
-                return (T) input;
-
-            } else if (inputClass == NameString.class) {
-                String input = AllMenus.scanner.nextLine();
-                return (T) new NameString(input);
-
-            } else if (inputClass == UnitMeasureString.class) {
-                String input = AllMenus.scanner.nextLine();
-                return (T) new UnitMeasureString(input);
-
-            }
-        } else {
-            LOGGER.warn("unsupported class");
         }
         return null;
     }
