@@ -6,10 +6,15 @@ I implemented generics and collections
 
 package com.solvd.farm;
 
+import com.solvd.farm.exceptions.InvalidIntException;
+import com.solvd.farm.exceptions.InvalidMeasurementUnitException;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.input.IConstructor;
+import com.solvd.farm.input.InputClass;
+import com.solvd.farm.input.UnitMeasureString;
 import com.solvd.farm.menu.*;
 
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +33,17 @@ public class Main {
         AllMenus menu = new AllMenus();
 
         //Scanner scanner = menu.getScanner();
+
+        //IConstructor<UnitMeasureString> unitMeasureConstructor=(string)->{return new UnitMeasureString(string);};
+        InputClass unitMeasure=new InputClass(UnitMeasureString.class, InvalidMeasurementUnitException::new);
+        UnitMeasureString unit1=unitMeasure.construct("mg");
+        LOGGER.info(unit1);
+
+        InputClass intObject=new InputClass(int.class, InvalidIntException::new);
+        intObject.setIsNumeric(true);
+        int unit2=intObject.construct("3");
+        LOGGER.info(unit2);
+
 
         try {
             menu.runMainMenu();
