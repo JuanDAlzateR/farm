@@ -1,5 +1,6 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.abstracts.Countable;
 import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
@@ -160,19 +161,19 @@ public class Farm implements IPassTime, IDisplay {
         this.tools.add(tool);
     }
 
+    public <T extends Countable & IPassTime> void applyPassTime(GenericList<T> genericList, int days) {
+        genericList.getList().stream()
+                .forEach(item -> item.passTime(days));
+    }
+
     @Override
     public void passTime(int days) {
         this.date = this.date.plusDays(days);
 
-        for (Crop crop : crops.getList()) {
-            crop.passTime(days);
-        }
-        for (Product product : products.getList()) {
-            product.passTime(days);
-        }
-        for (Tool tool : tools.getList()) {
-            tool.passTime(days);
-        }
+        applyPassTime(crops,days);
+        applyPassTime(products,days);
+        applyPassTime(tools,days);
+
         animalSet.passTime(days);
     }
 

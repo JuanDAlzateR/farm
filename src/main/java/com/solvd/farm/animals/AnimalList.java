@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class AnimalList<T extends FarmAnimals> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(AnimalList.class);
@@ -23,12 +24,17 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i = 0; i < animals.size(); i++) {
-            if (animals.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
+//        for (int i = 0; i < animals.size(); i++) {
+//            if (animals.get(i).getName().equals(name)) {
+//                return i;
+//            }
+//        }
+        int index = IntStream.range(0, animals.size())
+                .filter(i -> animals.get(i).getName().equals(name))
+                .findFirst()
+                .orElse(-1);
+
+        return index;
     }
 
     public void add(T animal) {
@@ -50,9 +56,8 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
     }
 
     public void displayAllFeed() {
-        for (T animal : animals) {
-            LOGGER.info(animal.getAnimalFeed());
-        }
+        animals.stream()
+                .forEach(animal->LOGGER.info(animal.getAnimalFeed()));
     }
 
     public ArrayList<T> getList() {
@@ -68,9 +73,9 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
     }
 
     public void passTime(int days) {
-        for (FarmAnimals animal : animals) {
-            animal.passTime(days);
-        }
+        animals.stream()
+                .forEach(animal->animal.passTime(days));
+
     }
 
     @Override
@@ -86,6 +91,5 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
     public int hashCode() {
         return this.getFarmAnimalClass().hashCode();
     }
-
 
 }
