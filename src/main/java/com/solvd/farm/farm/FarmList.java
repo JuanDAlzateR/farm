@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class FarmList extends AbstractList {
 
     public static final Logger LOGGER = LogManager.getLogger(FarmList.class);
-    private ArrayList<Farm> farms = new ArrayList<>();
+    private final ArrayList<Farm> farms = new ArrayList<>();
     private int defaultFarmIndex = 0;
 
     public ArrayList<Farm> getList() {
@@ -40,13 +40,11 @@ public class FarmList extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-
-        int index = IntStream.range(0, farms.size())
+        return IntStream.range(0, farms.size())
                 .filter(i -> farms.get(i).getFarmName().equals(name))
                 .findFirst()
                 .orElse(-1);
 
-        return index;
     }
 
     public void add(Farm farm) {
@@ -62,9 +60,9 @@ public class FarmList extends AbstractList {
         LOGGER.info("");
         LOGGER.info("list of all farms");
 
-        IntStream.range(0,this.farms.size())
-                .forEach(i->{
-                    String farmName=this.farms.get(i).getFarmName();
+        IntStream.range(0, this.farms.size())
+                .forEach(i -> {
+                    String farmName = this.farms.get(i).getFarmName();
                     if (i == this.defaultFarmIndex) {
                         LOGGER.info("\t" + farmName + "(Default)");
                     } else {
@@ -77,13 +75,13 @@ public class FarmList extends AbstractList {
     public void displayWithIndex() {
         LOGGER.info("");
         LOGGER.info("list of all farms");
-        IntStream.range(0,this.farms.size())
-                .forEach(i->{
-                    String farmName=this.farms.get(i).getFarmName();
+        IntStream.range(0, this.farms.size())
+                .forEach(i -> {
+                    String farmName = this.farms.get(i).getFarmName();
                     if (i == this.defaultFarmIndex) {
-                        LOGGER.info("\t" +i+") "+ farmName + "(Default)");
+                        LOGGER.info("\t" + i + ") " + farmName + "(Default)");
                     } else {
-                        LOGGER.info("\t" +i+") " + farmName);
+                        LOGGER.info("\t" + i + ") " + farmName);
                     }
                 });
     }

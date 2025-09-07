@@ -2,6 +2,7 @@ package com.solvd.farm.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
@@ -52,9 +53,9 @@ public class ReadFile {
             if (!simpleWord) {
                 count = countByRegex(searchedWord.toLowerCase(), formatedContent);
             } else {
-                for (String line : lines) {
-                    count += countWordRepeatLine(searchedWord.toLowerCase(), line);
-                }
+                count += Arrays.stream(lines)
+                        .mapToInt(line -> countWordRepeatLine(searchedWord.toLowerCase(), line))
+                        .sum();
             }
 
         } catch (IOException e) {
@@ -67,14 +68,11 @@ public class ReadFile {
 
     public static int countWordRepeatLine(String searchedWord, String line) {
 
-        int count = 0;
         String[] words = line.split("\\W+");
 
-        for (String word : words) {
-            if (word.equals(searchedWord))
-                count++;
-        }
-        return count;
+        return (int) Arrays.stream(words)
+                .filter(word -> word.equals(searchedWord))
+                .count();
     }
 
     public static int countByRegex(String searchedWord, String content) {

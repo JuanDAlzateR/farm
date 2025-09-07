@@ -4,7 +4,7 @@ import java.util.LinkedHashSet;
 
 public class AnimalSet {
 
-    private LinkedHashSet<AnimalList> animalTypes = new LinkedHashSet<>();
+    private final LinkedHashSet<AnimalList> animalTypes = new LinkedHashSet<>();
 
     public AnimalSet() {
         AnimalList<Aquaculture> aquacultureAnimalList = new AnimalList<>(Aquaculture.class);
@@ -26,40 +26,32 @@ public class AnimalSet {
     }
 
     public void display() {
-        for (AnimalList animalList : animalTypes) {
-            animalList.display();
-        }
+        animalTypes.stream()
+                .forEach(AnimalList::display);
     }
 
     public <T extends FarmAnimals> void addAnimal(FarmAnimals animal) {
         Class<T> animalClass = (Class<T>) animal.getClass();
-
-        for (AnimalList animalList : animalTypes) {
-            if (animalList.getFarmAnimalClass().equals(animalClass)) {
-                animalList.add(animal);
-            }
-        }
+        animalTypes.stream()
+                .filter((animalList) -> animalList.getFarmAnimalClass().equals(animalClass))
+                .forEach(animalList -> animalList.add(animal));
 
     }
 
     public int size() {
-        int totalSize = 0;
-        for (AnimalList animalList : animalTypes) {
-            totalSize += animalList.getList().size();
-        }
-        return totalSize;
+        return animalTypes.stream()
+                .mapToInt(animalList -> animalList.getList().size())
+                .sum();
     }
 
     public void displayAllFeed() {
-        for (AnimalList animalList : animalTypes) {
-            animalList.displayAllFeed();
-        }
+        animalTypes.stream()
+                .forEach(AnimalList::displayAllFeed);
     }
 
     public void passTime(int days) {
-        for (AnimalList animalList : animalTypes) {
-            animalList.passTime(days);
-        }
+        animalTypes.stream()
+                .forEach(animalList -> animalList.passTime(days));
     }
 
 }

@@ -43,7 +43,7 @@ public class Input {
 
     public static <T> InputClass contains(Class<T> tClass) {
 
-        InputClass foundedClass=classesSet.stream()
+        InputClass foundedClass = classesSet.stream()
                 .filter(inputClass -> inputClass.getClazz().equals(tClass))
                 .findFirst()
                 .orElse(null);

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class GenericList<T extends Countable> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(GenericList.class);
@@ -20,12 +21,10 @@ public class GenericList<T extends Countable> extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
+        return IntStream.range(0, list.size())
+                .filter(i -> list.get(i).getName().equals(name))
+                .findFirst()
+                .orElse(-1);
     }
 
     public void add(T item) {
@@ -42,9 +41,8 @@ public class GenericList<T extends Countable> extends AbstractList {
     }
 
     public void display() {
-        for (T item : list) {
-            LOGGER.info(item);
-        }
+        list.stream()
+                .forEach(LOGGER::info);
     }
 
 }
