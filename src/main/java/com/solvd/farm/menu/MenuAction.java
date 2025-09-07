@@ -8,12 +8,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class MenuAction implements IMenuAction {
 
     public static final Logger LOGGER = LogManager.getLogger(MenuAction.class);
     private String menuName = "New Menu";
-    private Map<Integer, IMenuAction> actions = new HashMap<>();
+    private final Map<Integer, IMenuAction> actions = new HashMap<>();
     private ArrayList<String> options = new ArrayList<>();
 
     public MenuAction() {
@@ -54,20 +55,19 @@ public class MenuAction implements IMenuAction {
 
     public void setAndClear(ArrayList<String> options, ArrayList<IMenuAction> actions) {
         this.options = new ArrayList<>(options);
-        for (int i = 0; i < actions.size(); i++) {
-            this.actions.put(i, actions.get(i));
-        }
+
+        IntStream.range(0, actions.size())
+                .forEach(i -> this.actions.put(i, actions.get(i)));
+
         options.clear();
         actions.clear();
     }
 
     public void displayMenu() {
         LOGGER.info("===== " + menuName + " =====");
-        int i = 0;
-        for (String option : this.options) {
-            LOGGER.info(i + ") " + option);
-            i++;
-        }
+        IntStream.range(0, options.size())
+                .mapToObj(i -> i + ") " + options.get(i))
+                .forEach(LOGGER::info);
     }
 
     public void add(String option, IMenuAction action) {

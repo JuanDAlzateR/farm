@@ -3,6 +3,8 @@ package com.solvd.farm.input;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
+
 public class UnitMeasureString {
     public static final Logger LOGGER = LogManager.getLogger(UnitMeasureString.class);
     public String unitMeasure = "";
@@ -40,15 +42,19 @@ public class UnitMeasureString {
                 {"quart", "qt"},
         };
 
-        boolean validateInput = false;
+//        boolean validateInput = false;
+//        for (String[] unit : units) {
+//            if (unit[0].equalsIgnoreCase(input) || unit[1].equalsIgnoreCase(input)) {
+//                validateInput = true;
+//                break;
+//            }
+//        }
+//        return validateInput;
 
-        for (String[] unit : units) {
-            if (unit[0].equalsIgnoreCase(input) || unit[1].equalsIgnoreCase(input)) {
-                validateInput = true;
-                break;
-            }
-        }
-        return validateInput;
+        return Arrays.stream(units) // converts the array to a stream
+                .anyMatch(unit -> unit[0].equalsIgnoreCase(input) || unit[1].equalsIgnoreCase(input));
+
+
     }
 
     @Override

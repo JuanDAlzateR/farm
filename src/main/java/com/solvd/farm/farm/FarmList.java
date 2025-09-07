@@ -7,11 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class FarmList extends AbstractList {
 
     public static final Logger LOGGER = LogManager.getLogger(FarmList.class);
-    private ArrayList<Farm> farms = new ArrayList<>();
+    private final ArrayList<Farm> farms = new ArrayList<>();
     private int defaultFarmIndex = 0;
 
     public ArrayList<Farm> getList() {
@@ -39,12 +40,11 @@ public class FarmList extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-        for (int i = 0; i < farms.size(); i++) {
-            if (farms.get(i).getFarmName().equals(name)) {
-                return i;
-            }
-        }
-        return -1;
+        return IntStream.range(0, farms.size())
+                .filter(i -> farms.get(i).getFarmName().equals(name))
+                .findFirst()
+                .orElse(-1);
+
     }
 
     public void add(Farm farm) {
@@ -59,25 +59,31 @@ public class FarmList extends AbstractList {
     public void display() {
         LOGGER.info("");
         LOGGER.info("list of all farms");
-        for (int i = 0; i < this.farms.size(); i++) {
-            if (i == this.defaultFarmIndex) {
-                LOGGER.info("\t" + this.farms.get(i).getFarmName() + "(Default)");
-            } else {
-                LOGGER.info("\t" + this.farms.get(i).getFarmName());
-            }
-        }
+
+        IntStream.range(0, this.farms.size())
+                .forEach(i -> {
+                    String farmName = this.farms.get(i).getFarmName();
+                    if (i == this.defaultFarmIndex) {
+                        LOGGER.info("\t" + farmName + "(Default)");
+                    } else {
+                        LOGGER.info("\t" + farmName);
+                    }
+                });
+
     }
 
     public void displayWithIndex() {
         LOGGER.info("");
         LOGGER.info("list of all farms");
-        for (int i = 0; i < this.farms.size(); i++) {
-            if (i == this.defaultFarmIndex) {
-                LOGGER.info("\t" + i + ") " + this.farms.get(i).getFarmName() + "(Default)");
-            } else {
-                LOGGER.info("\t" + i + ") " + this.farms.get(i).getFarmName());
-            }
-        }
+        IntStream.range(0, this.farms.size())
+                .forEach(i -> {
+                    String farmName = this.farms.get(i).getFarmName();
+                    if (i == this.defaultFarmIndex) {
+                        LOGGER.info("\t" + i + ") " + farmName + "(Default)");
+                    } else {
+                        LOGGER.info("\t" + i + ") " + farmName);
+                    }
+                });
     }
 
 }

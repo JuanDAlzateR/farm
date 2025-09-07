@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class AnimalList<T extends FarmAnimals> extends AbstractList {
     public static final Logger LOGGER = LogManager.getLogger(AnimalList.class);
-    private ArrayList<T> animals = new ArrayList<>();
-    private Class<T> farmAnimalClass;
+    private final ArrayList<T> animals = new ArrayList<>();
+    private final Class<T> farmAnimalClass;
 
     public AnimalList(Class<T> farmAnimalClass) {
         this.farmAnimalClass = farmAnimalClass;
@@ -24,17 +24,12 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
         If it doesn't find it, it returns -1  */
     @Override
     public int indexOfName(String name) {
-//        for (int i = 0; i < animals.size(); i++) {
-//            if (animals.get(i).getName().equals(name)) {
-//                return i;
-//            }
-//        }
-        int index = IntStream.range(0, animals.size())
+
+        return IntStream.range(0, animals.size())
                 .filter(i -> animals.get(i).getName().equals(name))
                 .findFirst()
                 .orElse(-1);
 
-        return index;
     }
 
     public void add(T animal) {
@@ -50,14 +45,13 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
         LOGGER.info("");
         LOGGER.info("list of " + getNameOfClass() + " animals in the farm");
 
-        for (T animal : animals) {
-            LOGGER.info(animal);
-        }
+        animals.stream()
+                .forEach(LOGGER::info);
     }
 
     public void displayAllFeed() {
         animals.stream()
-                .forEach(animal->LOGGER.info(animal.getAnimalFeed()));
+                .forEach(animal -> LOGGER.info(animal.getAnimalFeed()));
     }
 
     public ArrayList<T> getList() {
@@ -74,7 +68,7 @@ public class AnimalList<T extends FarmAnimals> extends AbstractList {
 
     public void passTime(int days) {
         animals.stream()
-                .forEach(animal->animal.passTime(days));
+                .forEach(animal -> animal.passTime(days));
 
     }
 

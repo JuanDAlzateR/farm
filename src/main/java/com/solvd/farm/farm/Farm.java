@@ -170,31 +170,34 @@ public class Farm implements IPassTime, IDisplay {
     public void passTime(int days) {
         this.date = this.date.plusDays(days);
 
-        applyPassTime(crops,days);
-        applyPassTime(products,days);
-        applyPassTime(tools,days);
+        applyPassTime(crops, days);
+        applyPassTime(products, days);
+        applyPassTime(tools, days);
 
         animalSet.passTime(days);
     }
 
     public void sowAllGrains() {
-        for (Grain grain : grains.getList()) {
-            if (grain.getQuantity() > 0) {
-                Crop crop = new Crop(grain);
-                addCrop(crop);
-            }
-        }
+
+        grains.getList().stream()
+                .filter(grain -> grain.getQuantity() > 0)
+                .forEach(grain -> {
+                    Crop crop = new Crop(grain);
+                    addCrop(crop);
+                });
     }
 
     public void harvestAllCrops() {
-        for (Crop crop : crops.getList()) {
-            if (crop.getGrowthPercentage() >= 100) {
-                Product product = new Product(crop);
-                addProduct(product);
-                crop.setGrowthPercentage(0F);
-                crop.setCropState(CropState.HARVESTED);
-            }
-        }
+
+        crops.getList().stream()
+                .filter(crop -> crop.getGrowthPercentage() >= 100)
+                .forEach(crop -> {
+                    Product product = new Product(crop);
+                    addProduct(product);
+                    crop.setGrowthPercentage(0F);
+                    crop.setCropState(CropState.HARVESTED);
+                });
+
     }
 
     public void harvestCrop(Crop crop, float price) {
@@ -207,12 +210,10 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public Product findProduct(Product product1) {
-        for (Product product : products.getList()) {
-            if (product.getName().equals(product1.getName())) {
-                return product;
-            }
-        }
-        return null;
+        return products.getList().stream()
+                .filter(product -> product.getName().equals(product1.getName()))
+                .findFirst()
+                .orElse(null);
     }
 
     /**

@@ -33,8 +33,8 @@ public class Constructor<T> implements IConstructor<T> {
         this.validator = validator;
     }
 
-    public Constructor(Class<?>clazz, Supplier<Exception> supplier) {
-        this(clazz+"Constructor",InputClass.createIConstructor(clazz),supplier);
+    public Constructor(Class<?> clazz, Supplier<Exception> supplier) {
+        this(clazz + "Constructor", InputClass.createIConstructor(clazz), supplier);
     }
 
     public void setValidator(Predicate<String> validator) {

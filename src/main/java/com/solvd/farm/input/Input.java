@@ -42,12 +42,12 @@ public class Input {
     }
 
     public static <T> InputClass contains(Class<T> tClass) {
-        for (InputClass inputClass : classesSet) {
-            if (inputClass.getClazz().equals(tClass)) {
-                return inputClass;
-            }
-        }
-        return null;
+
+        InputClass foundedClass = classesSet.stream()
+                .filter(inputClass -> inputClass.getClazz().equals(tClass))
+                .findFirst()
+                .orElse(null);
+        return foundedClass;
     }
 
 }
