@@ -2,6 +2,9 @@ package com.solvd.farm.farm;
 
 import com.solvd.farm.abstracts.Countable;
 import com.solvd.farm.animals.*;
+import com.solvd.farm.display.DisplayMethod;
+import com.solvd.farm.display.DisplayType;
+import com.solvd.farm.display.Displayable;
 import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
 import com.solvd.farm.interfaces.IPassTime;
@@ -11,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 
+@Displayable
 public class Farm implements IPassTime, IDisplay {
 
     public static final Logger LOGGER = LogManager.getLogger(Farm.class);
@@ -103,6 +107,7 @@ public class Farm implements IPassTime, IDisplay {
         return this.animalSet;
     }
 
+    @DisplayMethod
     public void display() {
         LOGGER.info("Date: " + this.date);
         LOGGER.info("Number of types of grains: " + this.grains.getList().toArray().length);
@@ -110,6 +115,16 @@ public class Farm implements IPassTime, IDisplay {
         LOGGER.info("Number of types of products: " + this.products.getList().toArray().length);
         LOGGER.info("Number of types of animals: " + this.animalSet.size());
         LOGGER.info("Number of tools: " + this.tools.getList().toArray().length);
+    }
+
+    @DisplayMethod(displayType = DisplayType.LONG)
+    public void longDisplay() {
+        LOGGER.info("Date: " + this.date);
+        displayGrains();
+        displayCrops();
+        displayProducts();
+        displayAnimals();
+        displayTools();
     }
 
     public void displayAnimals() {

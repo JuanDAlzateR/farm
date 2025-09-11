@@ -1,5 +1,7 @@
 package com.solvd.farm.farm;
 
+import com.solvd.farm.display.Display;
+import com.solvd.farm.display.DisplayType;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IDisplay;
 import org.apache.logging.log4j.LogManager;
@@ -34,9 +36,9 @@ public class FarmAccount implements IDisplay {
 
     public void display() {
         LOGGER.info("BANK ACCOUNT:");
-        account.display();
+        Display.display(account);
         LOGGER.info("FARM INFO:");
-        farm.display();
+        Display.display(farm);
         LOGGER.info("-------");
     }
 
@@ -44,7 +46,7 @@ public class FarmAccount implements IDisplay {
         LOGGER.info(farm.getDate());
         if (IBuy.buy(item, this.account)) {
             item.addToFarm(this.farm);
-            account.shortDisplay();
+            Display.display(account, DisplayType.SHORT);
         }
     }
 

@@ -72,13 +72,14 @@ public class AllActions {
         int index = inputInt("Please type the option number of the bank account to edit");
         BankAccount bankAccount = AllMenus.bankAccountList.getList().get(index);
 
-        String bankName = inputName("Current bank: " + bankAccount.getBankName() + ". Please type the new name of the bank");
-        int accountNumber = inputInt("Current Account number: " + bankAccount.getAccountNumber() + ". Please type the account number");
+        LOGGER.info("Bank (not editable): " + bankAccount.getBankName());
+        LOGGER.info("Account number (not editable): " + bankAccount.getAccountNumber());
+
+//        String bankName = inputName("Current bank: " + bankAccount.getBankName() + ". Please type the new name of the bank");
+//        int accountNumber = inputInt("Current Account number: " + bankAccount.getAccountNumber() + ". Please type the account number");
         float balance = inputFloat("Current balance: " + bankAccount.getBalance() + ". Please type the account balance");
         String nickName = inputString("Current nickname: " + bankAccount.getNickname() + ". Please type the account nickname");
 
-        bankAccount.setBankName(bankName);
-        bankAccount.setAccountNumber(accountNumber);
         bankAccount.setBalance(balance);
         bankAccount.setNickname(nickName);
 

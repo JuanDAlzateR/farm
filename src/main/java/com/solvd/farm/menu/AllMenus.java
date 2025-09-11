@@ -68,9 +68,9 @@ public class AllMenus {
         adminFarmMenu.add("Buy Items/Animals", buyMenu);
 
         //I haven't implemented some features in the menu, I hope to finish this for the next week
-//        adminFarmMenu.add("*Admin Crops",AllActions::editarAnimal);
-//        adminFarmMenu.add("*Admin Animals",AllActions::eliminarAnimal);
-//        adminFarmMenu.add("*Sell Products",AllActions::eliminarAnimal);
+//        adminFarmMenu.add("*Admin Crops",AllActions::editAnimal);
+//        adminFarmMenu.add("*Admin Animals",AllActions::eliminateAnimal);
+//        adminFarmMenu.add("*Sell Products",AllActions::eliminateAnimal);
 
         //Buy Items Menu
         buyMenu.add("Back to previous menu", adminFarmMenu);
