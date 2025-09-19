@@ -4,6 +4,7 @@ import com.solvd.farm.animals.*;
 import com.solvd.farm.crops.Grain;
 import com.solvd.farm.exceptions.InvalidOptionException;
 import com.solvd.farm.farm.*;
+import com.solvd.farm.tasks.TaskList;
 
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class AllMenus {
     static FarmList farmList = new FarmList();
     static BankAccountList bankAccountList = new BankAccountList();
     static FarmAccount farmAccount;
+    public static TaskList taskList = new TaskList();
 
     public AllMenus() {
         Farm farm = new Farm();
@@ -31,6 +33,7 @@ public class AllMenus {
         MenuAction chooseFarmMenu = new MenuAction("CHOOSE FARM");
         MenuAction adminAccountsMenu = new MenuAction("ADMIN BANK ACCOUNTS");
         MenuAction adminFarmMenu = new MenuAction("ADMIN FARM");
+        MenuAction adminTasksMenu = new MenuAction("ADMIN TASKS");
 
         MenuAction buyMenu = new MenuAction("BUY ITEMS");
 //        MenuAction adminCropsMenu = new MenuAction("ADMIN CROPS");
@@ -38,6 +41,7 @@ public class AllMenus {
 //        MenuAction sellMenu = new MenuAction("SELL PRODUCTS");
 
         MenuAction buyAnimalMenu = new MenuAction("BUY ANIMALS");
+        MenuAction newTasksMenu = new MenuAction("CREATE NEW AUTOMATED TASK");
 
         //Now, define each menu, with the options and the actions
 
@@ -46,6 +50,7 @@ public class AllMenus {
         mainMenu.add("Create/Choose Farm", chooseFarmMenu);
         mainMenu.add("Create/Choose Bank Account", adminAccountsMenu);
         mainMenu.add("Admin Farm", adminFarmMenu);
+        mainMenu.add("Admin Tasks", adminTasksMenu);
         mainMenu.add("EXAMPLE: TEST FARM METHODS", AllActions::testFarmMethods);
 
         //Choose Farm Menu
@@ -90,6 +95,16 @@ public class AllMenus {
         buyAnimalMenu.add("Livestock", AllActions.buyAnimalAction(Livestock.class));
         buyAnimalMenu.add("Poultry", AllActions.buyAnimalAction(Poultry.class));
         buyAnimalMenu.add("Others", AllActions.buyAnimalAction(Others.class));
+
+        //Admin Tasks Menu
+        adminTasksMenu.add("Back to previous menu", mainMenu);
+        adminTasksMenu.add("Display current tasks", () -> taskList.display());
+        adminTasksMenu.add("Start new task", newTasksMenu);
+        adminTasksMenu.add("Stop a task", AllActions::stopTask);
+
+        //New Tasks Menu
+        newTasksMenu.add("Back to previous menu", adminTasksMenu);
+        newTasksMenu.add("Start Weather Monitoring", AllActions::weatherMonitoring);
 
     }
 

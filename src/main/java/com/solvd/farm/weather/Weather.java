@@ -21,7 +21,7 @@ public enum Weather {
 
     public static final Logger LOGGER = LogManager.getLogger(Weather.class);
 
-    public void getWeather(String lat, String lon, boolean fullInfo){
+    public void getWeather(String lat, String lon, boolean fullInfo) {
         try {
             HttpResponse<String> response = getHttpResponse(lat, lon);
             String jsonString = "";
@@ -31,10 +31,9 @@ public enum Weather {
             } else {
                 throw new RuntimeException();
             }
-            if(fullInfo) {
+            if (fullInfo) {
                 getWeatherInfo(jsonString);
-            }
-            else {
+            } else {
                 getCurrentWeather(jsonString);
             }
         } catch (Exception e) {
@@ -42,14 +41,14 @@ public enum Weather {
         }
     }
 
-    public void getWeather(String lat, String lon){
-        getWeather(lat,lon,true);
+    public void getWeather(String lat, String lon) {
+        getWeather(lat, lon, true);
     }
 
     private static String accessKey() {
 
         File file = new File("config\\weatherapi\\key.txt");
-        String content="";
+        String content = "";
         try {
             content = FileUtils.readFileToString(file, "UTF-8");
 
@@ -65,10 +64,10 @@ public enum Weather {
 
         HttpClient client = HttpClient.newHttpClient();
 
-        String key=accessKey();//access token for meteosource
+        String key = accessKey();//access token for meteosource
         String urlTemplate = "https://www.meteosource.com/api/v1/free/point?lat=%s&lon=%s&sections=current%%2Chourly&language=en&units=metric&key=%s";
         //String url="https://www.meteosource.com/api/v1/free/point?lat="+lat+"&lon="+lon+"&sections=current%2Chourly&language=en&units=metric&key="+key;
-        String url=String.format(urlTemplate, lat, lon,key);
+        String url = String.format(urlTemplate, lat, lon, key);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -99,31 +98,29 @@ public enum Weather {
             throw new RuntimeException(e);
         }
 
-        LOGGER.info("BASIC INFO:");
-        String lat=rootNode.get("lat").asText();
-        String lon=rootNode.get("lon").asText();
-        int elevation=rootNode.get("elevation").asInt();
-        String timezone=rootNode.get("timezone").asText();
-        LOGGER.info("timezone: "+timezone+" lat: "+lat+" lon: "+lon+" elevation : "+elevation+"m");
+        String lat = rootNode.get("lat").asText();
+        String lon = rootNode.get("lon").asText();
+        int elevation = rootNode.get("elevation").asInt();
+        String timezone = rootNode.get("timezone").asText();
+        LOGGER.info("BASIC INFO:  timezone: " + timezone + " lat: " + lat + " lon: " + lon + " elevation : " + elevation + "m");
 
-        LOGGER.info("CURRENT WEATHER:");
-        String summary=rootNode.path("current").get("summary").asText();
-        double temperature=rootNode.path("current").get("temperature").asDouble();
-        LocalDateTime dateTime= LocalDateTime.now();
+        String summary = rootNode.path("current").get("summary").asText();
+        double temperature = rootNode.path("current").get("temperature").asDouble();
+        LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String timeNow= dateTime.format(formatter);
-        LOGGER.info("time: "+timeNow+" summary: "+summary+"  temperature: "+temperature+" °C");
+        String timeNow = dateTime.format(formatter);
+        LOGGER.info("CURRENT WEATHER:  time: " + timeNow + " summary: " + summary + "  temperature: " + temperature + " °C");
 
-        LOGGER.info("PREDICTION:");
         JsonNode hourlyData = rootNode.path("hourly").path("data");
         int minutes = dateTime.getMinute();
-        int n=(minutes<45)? 1:2;
-        JsonNode hourNode=hourlyData.get(n);
+        int n = (minutes < 45) ? 1 : 2;
+        JsonNode hourNode = hourlyData.get(2); //needs to implement better logic to access desired hour prediction
+
         String date = hourNode.get("date").asText();
-        String time= date.split("T")[1];
+        String time = date.split("T")[1];
         String summ = hourNode.get("summary").asText();
         double temp = hourNode.get("temperature").asDouble();
-        LOGGER.info("time: "+time+" summary: "+summ+"  temperature: "+temp+" °C");
+        LOGGER.info("PREDICTION:  time: " + time + " summary: " + summ + "  temperature: " + temp + " °C");
     }
 
     private static void getCurrentWeather(String jsonString) {
@@ -137,12 +134,12 @@ public enum Weather {
         }
 
         LOGGER.info("CURRENT WEATHER:");
-        String summary=rootNode.path("current").get("summary").asText();
-        double temperature=rootNode.path("current").get("temperature").asDouble();
-        LocalDateTime dateTime= LocalDateTime.now();
+        String summary = rootNode.path("current").get("summary").asText();
+        double temperature = rootNode.path("current").get("temperature").asDouble();
+        LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String timeNow= String.valueOf(dateTime.format(formatter));
-        LOGGER.info("time: "+timeNow+" summary: "+summary+"  temperature: "+temperature+" °C");
+        String timeNow = String.valueOf(dateTime.format(formatter));
+        LOGGER.info("time: " + timeNow + " summary: " + summary + "  temperature: " + temperature + " °C");
 
     }
 }

@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class Display {
     public static final Logger LOGGER = LogManager.getLogger(Display.class);
+
     public static boolean isDisplayable(Class<?> clazz) {
         return clazz.isAnnotationPresent(Displayable.class);
 
@@ -29,8 +30,8 @@ public class Display {
                             throw new RuntimeException(e);
                         }
                     });
-        }else{
-            LOGGER.warn("class "+clazz+" it's not displayable");
+        } else {
+            LOGGER.warn("class " + clazz + " it's not displayable");
         }
     }
 

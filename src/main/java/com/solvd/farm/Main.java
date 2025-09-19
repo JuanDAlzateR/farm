@@ -12,6 +12,8 @@ import com.solvd.farm.crops.*;
 import com.solvd.farm.farm.*;
 import com.solvd.farm.menu.*;
 
+import com.solvd.farm.tasks.TaskThread;
+import com.solvd.farm.weather.WeatherTask;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +30,6 @@ public class Main {
         AllMenus menu = new AllMenus();
 
         //Scanner scanner = menu.getScanner();
-
 
         try {
             menu.runMainMenu();
@@ -115,6 +116,14 @@ public class Main {
         farm.passTime(5);
         LOGGER.info("Date:" + farm.getDate());
         LOGGER.info(tool);
+
+        LOGGER.info("");
+        LOGGER.info("Weather Monitoring every minute activated.");
+        // Create the background task
+        WeatherTask weatherTask = new WeatherTask(60); // Update every minute
+        TaskThread taskThread = new TaskThread("weather monitoring", weatherTask);
+        AllMenus.taskList.add(taskThread);
+        taskThread.start();
 
 //        AllActions.buyAnimalFeed();
 //        AllActions.displayAnimalFeed();

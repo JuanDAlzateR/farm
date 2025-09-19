@@ -29,6 +29,7 @@ public class Farm implements IPassTime, IDisplay {
     private String latitude;
     private String longitude;
 
+
     public Farm() {
         GenericList<Grain> grains = new GenericList<>();
         GenericList<Product> products = new GenericList<>();
@@ -41,8 +42,8 @@ public class Farm implements IPassTime, IDisplay {
         this.date = LocalDate.now();
         this.animalSet = new AnimalSet();
         this.farmName = "New Farm";
-        this.latitude="6.265643";
-        this.longitude="-75.574925";
+        this.latitude = "6.265643";
+        this.longitude = "-75.574925";
     }
 
     public Farm(String farmName) {
@@ -149,8 +150,14 @@ public class Farm implements IPassTime, IDisplay {
     }
 
     public void displayWeather() {
-        Weather.WEATHER.getWeather(latitude,longitude);
+        Weather.WEATHER.getWeather(latitude, longitude);
     }
+
+//    public WeatherThread weatherTread(int seconds) {
+//        WeatherTask weatherTask=new WeatherTask(latitude,longitude,seconds);
+//        WeatherThread weatherThread=new WeatherThread(weatherTask);
+//        return weatherThread;
+//    }
 
     public void displayAnimals() {
         LOGGER.info("Date:" + getDate() + " - Animals in farm:");

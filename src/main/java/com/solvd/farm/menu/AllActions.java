@@ -6,6 +6,8 @@ import com.solvd.farm.farm.*;
 import com.solvd.farm.input.*;
 import com.solvd.farm.interfaces.IBuy;
 import com.solvd.farm.interfaces.IMenuAction;
+import com.solvd.farm.tasks.TaskThread;
+import com.solvd.farm.weather.WeatherTask;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -211,6 +213,29 @@ public class AllActions {
 //
 //    }
 
+    public static void displayTasks() {
+        AllMenus.taskList.display();
+    }
+
+    public static void stopTask() {
+        AllMenus.taskList.display();
+        int i = inputInt("Please the task you would like to stop :");
+        try {
+            AllMenus.taskList.stop(i);
+        } catch (Exception e) {
+            LOGGER.warn("Invalid option");
+        }
+    }
+
+    public static void weatherMonitoring() {
+        int seconds = inputInt("Please type how often you want the monitoring to be performed (in seconds) :");
+        // Create the background task
+        WeatherTask weatherTask = new WeatherTask(seconds);
+        TaskThread taskThread = new TaskThread("weather monitoring", weatherTask);
+        AllMenus.taskList.add(taskThread);
+        taskThread.start();
+    }
+
     public static void exit() {
         LOGGER.info("Closing...");
         System.exit(0);
@@ -251,4 +276,6 @@ public class AllActions {
     public static void testFarmMethods() {
         Main.example(AllMenus.farmAccount);
     }
+
+
 }
