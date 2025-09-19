@@ -9,6 +9,7 @@ import com.solvd.farm.crops.*;
 import com.solvd.farm.interfaces.IDisplay;
 import com.solvd.farm.interfaces.IPassTime;
 
+import com.solvd.farm.weather.Weather;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +26,8 @@ public class Farm implements IPassTime, IDisplay {
     private GenericList<Tool> tools;
     private LocalDate date;
     private AnimalSet animalSet;
+    private String latitude;
+    private String longitude;
 
     public Farm() {
         GenericList<Grain> grains = new GenericList<>();
@@ -38,6 +41,8 @@ public class Farm implements IPassTime, IDisplay {
         this.date = LocalDate.now();
         this.animalSet = new AnimalSet();
         this.farmName = "New Farm";
+        this.latitude="6.265643";
+        this.longitude="-75.574925";
     }
 
     public Farm(String farmName) {
@@ -79,6 +84,14 @@ public class Farm implements IPassTime, IDisplay {
         this.animalSet = animalSet;
     }
 
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getFarmName() {
         return farmName;
     }
@@ -107,6 +120,14 @@ public class Farm implements IPassTime, IDisplay {
         return this.animalSet;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
     @DisplayMethod
     public void display() {
         LOGGER.info("Date: " + this.date);
@@ -125,6 +146,10 @@ public class Farm implements IPassTime, IDisplay {
         displayProducts();
         displayAnimals();
         displayTools();
+    }
+
+    public void displayWeather() {
+        Weather.WEATHER.getWeather(latitude,longitude);
     }
 
     public void displayAnimals() {
